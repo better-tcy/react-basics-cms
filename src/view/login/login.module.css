@@ -1,0 +1,32 @@
+.content {
+  background-color: #545c64;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 800px;
+  height: 360px;
+
+  padding: 20px;
+
+  background-color: #FFFFFF;
+  border-radius: 20px;
+}
+
+.title {
+  text-align: center;
+}
+
+.form {
+  width: 500px;
+  margin: 30px auto 0 auto;
+}
+
+.nav {
+  color: #545c64;
+  text-decoration: none
+}

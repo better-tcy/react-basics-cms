@@ -1,0 +1,1 @@
+export const GET_COMMON_DATA_ONE = 'GET_COMMON_DATA_ONE'

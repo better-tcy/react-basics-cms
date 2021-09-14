@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+文档
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 一.说明
 
-## Available Scripts
+这是一个基于create-react-app 4.0.3(react 17.0.2)搭建的一个cms基础模板,集成mock.js模拟接口,全程使用hooks函数式组件
+redux + redux-thunk统一管理数据的开发模式(页面内所需数据直接在页面内进行请求和操作即可,如果是公共数据 可以使用中间件保存到redux中)
+ 
+## 二.目录
 
-In the project directory, you can run:
+### 1.public:静态资源文件夹
 
-### `yarn start`
+### 2.src:项目资源
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* assets:项目资源(mock模拟接口,css初始化,模拟导航数据)
+* components:组件(页面公共组件,cms框架组件)
+* request:网络请求(api文件夹:接口统一维护,http.js:基于axios封装的网络请求)
+* router:路由(index.js主路由,content中每个文件对应的是每个一级菜单下所有的路由)
+* store:redux统一数据管理
+* utils:工具文件夹(持久化redux state,页面公共方法)
+* view:项目所有页面(content文件中最外层为一级菜单,依次延伸 最后一层.js文件为具体页面)
+* APP.js:项目主组件
+* index.js:项目入口文件
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 3.env:对应模式的环境变量(开发,测试,生产)
 
-### `yarn test`
+### 4.package-lock.json:项目具体所依赖的库 插件等
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 5.craco.config.js:对webpack以及serve的一些配置
 
-### `yarn build`
+## 三.目录设计思路及个人开发规范
+1. 所有组件使用大驼峰命名
+2. 变量函数使用小驼峰命名
+3. 图片 样式class 以cms_name格式命名
+4. 解耦request router redux(middleware action reducer)
+5. view和request目录结构一一对应(层级明了)
+6. router目录中index.js主路由,content中每个文件对应的是每个一级菜单下所有的路由
+7. store中 frameWork文件是操作及保存框架所需公共数据的 business文件是操作及保存业务所需公共数据的
+8. 函数、变量、文件名称等大写字母结尾含义:H:请求接口函数 C:页面内封装的组件 A:派发action函数 M:中间件 R:reducer数据
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### ps:页面渲染内容虽然不多 但是可以参考下整体代码设计 欢迎提出问题 共同进步 
