@@ -1,5 +1,6 @@
 .content {
-  background-color: #545c64;
+  background: url('@/assets/img/login/login_bg.jpg') no-repeat;
+  background-size: cover;
   height: 100vh;
 
   display: flex;
@@ -10,11 +11,16 @@
 .card {
   width: 800px;
   height: 360px;
-
   padding: 20px;
+  background: linear-gradient(180deg, #112a6e 1%, #071946 100%);
+  border: 1px solid #0775ce;
+  box-shadow: 0px 0px 32px #0775ce inset;
 
-  background-color: #FFFFFF;
   border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 }
 
 .title {
@@ -24,9 +30,4 @@
 .form {
   width: 500px;
   margin: 30px auto 0 auto;
-}
-
-.nav {
-  color: #545c64;
-  text-decoration: none
 }

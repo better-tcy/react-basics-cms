@@ -1,3 +1,9 @@
+.navigation {
+  background: #030D28 !important;
+  border: 1px solid #0775CE;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.14);
+}
+
 .cms_name {
   color: #FFFFFF;
   font-size: 18px;
@@ -6,10 +12,17 @@
 }
 
 .header {
-  background: #001529;
   padding: 0 20px !important;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  border: 1px solid #0775CE;
+  background: linear-gradient(180deg, #030D28 1%, #071741 100%) !important;
+  box-shadow: 0px 0px 32px #0775ce inset;
+}
+
+.content {
+  background-color: #030D28;
+  box-shadow: 0px 0px 32px #0775ce inset;
 }

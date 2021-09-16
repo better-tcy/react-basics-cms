@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 // 样式
 import loginCss from './login.module.css'
+import './loginResetAntd.css'
 
 import { Form, Input, Button } from 'antd';
 
@@ -22,12 +23,12 @@ const Login = memo(() => {
 
 
   return (
-    <div>
+    <div className="login">
       <div className={loginCss.content}>
 
         <div className={loginCss.card}>
           <h1 className={loginCss.title}>哈哈哈管理系统</h1>
-          <div className={loginCss.form}>
+          <div className={loginCss.form} >
             <Form
               name="basic"
               labelCol={{

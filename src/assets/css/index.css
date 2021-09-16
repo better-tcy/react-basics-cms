@@ -3,9 +3,20 @@
 body {
   margin: 0;
   padding: 0;
+  color: #fff;
 }
 
 div,
 span {
   font-size: 14px;
+  color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #fff;
 }

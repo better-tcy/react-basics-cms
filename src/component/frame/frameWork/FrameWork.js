@@ -19,7 +19,9 @@ import { Layout, Menu, Button } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  UserOutlined,
+  HomeOutlined,
+  SmileOutlined,
+  TeamOutlined
 } from '@ant-design/icons';
 
 const { Header, Sider, Content } = Layout;
@@ -67,20 +69,20 @@ const FrameWork = memo((props) => {
 
   return (
     <Layout style={{ height: '100vh' }}>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider className={frameWorkCss.navigation} trigger={null} collapsible collapsed={collapsed}>
         <div className={frameWorkCss.cms_name}>{collapsed ? '' : '哈哈哈管理系统'}</div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={[currentTwoMenuPathR ? currentTwoMenuPathR : '/content/home']} defaultOpenKeys={[currentOneMenuPathR]}>
           {
             menuData.map((oneMenu) => {
               if (!oneMenu.children || oneMenu.children.length === 0) {
-                return (<Menu.Item key={oneMenu.path} icon={<UserOutlined />} onClick={() => { getSelectPath(oneMenu.path) }}>{oneMenu.name}</Menu.Item>)
+                return (<Menu.Item key={oneMenu.path} icon={<HomeOutlined />} onClick={() => { getSelectPath(oneMenu.path) }}>{oneMenu.name}</Menu.Item>)
               } else {
                 return (
-                  <SubMenu key={oneMenu.path} icon={<UserOutlined />} title={oneMenu.name}>
+                  <SubMenu key={oneMenu.path} title={oneMenu.name} icon={<SmileOutlined />}>
                     {
                       oneMenu.children.map((twoMenu) => {
                         return (
-                          <Menu.Item key={twoMenu.path} onClick={() => { getSelectPath(twoMenu.path, oneMenu.path) }}>{twoMenu.name}</Menu.Item>
+                          <Menu.Item key={twoMenu.path} icon={<TeamOutlined />} onClick={() => { getSelectPath(twoMenu.path, oneMenu.path) }}>{twoMenu.name}</Menu.Item>
                         )
                       })
                     }
@@ -107,6 +109,7 @@ const FrameWork = memo((props) => {
 
         </Header>
         <Content
+          className={frameWorkCss.content}
           style={{
             padding: 20,
           }}
