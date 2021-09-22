@@ -1,6 +1,6 @@
 import { Redirect } from 'react-router-dom'
 
-import FrameWork from '@/component/frame/frameWork/FrameWork'
+import FrameWork from '@/component/frame/frame-work/FrameWork'
 
 import loginRouter from './login/login'
 
