@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, createContext } from 'react';
 
 // 通过Provider把store共享出去
 import { Provider } from 'react-redux'
@@ -12,8 +12,11 @@ import routes from '@/router/index'
 
 import { setStoreData, getDataMergeState } from '@/utils/storageStateData'
 
-const App = memo(() => {
+import themeConfig from '@/assets/data/themeConfig';
 
+export const ThemeContext = createContext()
+
+const App = memo(() => {
 
   // 监听浏览器刷新 缓存部分redux数据
   setStoreData()
@@ -22,11 +25,14 @@ const App = memo(() => {
   getDataMergeState()
 
   return (
-    <Provider store={store}>
-      <HashRouter>
-        {renderRoutes(routes)}
-      </HashRouter>
-    </Provider>
+    <ThemeContext.Provider value={themeConfig}>
+      <Provider store={store}>
+        <HashRouter>
+          {renderRoutes(routes)}
+        </HashRouter>
+      </Provider>
+    </ThemeContext.Provider>
+
   );
 });
 

@@ -3,7 +3,7 @@
 ## 一.说明
 
 这是一个基于create-react-app 4.0.3(react 17.0.2)搭建的一个cms基础模板,集成mock.js模拟接口,全程使用hooks函数式组件
-redux + redux-thunk统一管理数据的开发模式(页面内所需数据直接在页面内进行请求和操作即可,如果是公共数据 可以使用中间件保存到redux中)
+redux + redux-thunk统一管理数据的开发模式(页面内所需数据直接在页面内进行请求和操作即可,如果是公共数据 可以使用中间件保存到redux中)，可以在src->assets->data->themeConfig.js中定制项目主题
  
 ## 二.目录
 

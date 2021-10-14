@@ -1,16 +1,16 @@
-import React, { memo, useState, useCallback } from 'react';
+import React, { memo, useState, useCallback, useContext } from 'react';
 
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 
 import { useHistory } from "react-router-dom";
 import { renderRoutes } from 'react-router-config'
 
+import { ThemeContext } from '../../../App';
 
 import { setCurrentOneMenuPathA, setCurrentTwoMenuPathA } from '@/store/createAction/frameWork.js'
 
-
 // 模拟导航数据
-import menuData from '@/assets/menuData/menuData';
+import menuData from '@/assets/data/menuData';
 
 // 样式
 import frameWorkCss from './frameWork.module.css'
@@ -24,10 +24,10 @@ import {
   TeamOutlined
 } from '@ant-design/icons';
 
+
 const { Header, Sider, Content } = Layout;
 
 const { SubMenu } = Menu;
-
 
 const FrameWork = memo((props) => {
   const { route } = props
@@ -35,6 +35,8 @@ const FrameWork = memo((props) => {
   const history = useHistory();
 
   const dispatch = useDispatch()
+
+  const theme = useContext(ThemeContext)
 
   const [collapsed, setCollapsed] = useState(false)
 
@@ -69,9 +71,9 @@ const FrameWork = memo((props) => {
 
   return (
     <Layout style={{ height: '100vh' }}>
-      <Sider className={frameWorkCss.navigation} trigger={null} collapsible collapsed={collapsed}>
+      <Sider style={{ background: theme.asideBgColor }} trigger={null} collapsible collapsed={collapsed}>
         <div className={frameWorkCss.cms_name}>{collapsed ? '' : '哈哈哈管理系统'}</div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={[currentTwoMenuPathR ? currentTwoMenuPathR : '/content/home']} defaultOpenKeys={[currentOneMenuPathR]}>
+        <Menu style={{ color: theme.menuTextColor }} theme="dark" mode="inline" defaultSelectedKeys={[currentTwoMenuPathR ? currentTwoMenuPathR : '/content/home']} defaultOpenKeys={[currentOneMenuPathR]}>
           {
             menuData.map((oneMenu) => {
               if (!oneMenu.children || oneMenu.children.length === 0) {
@@ -95,7 +97,7 @@ const FrameWork = memo((props) => {
       </Sider>
 
       <Layout>
-        <Header className={frameWorkCss.header} >
+        <Header style={{ background: theme.headBgColor }} className={frameWorkCss.header} >
 
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: 'trigger',
@@ -112,6 +114,7 @@ const FrameWork = memo((props) => {
           className={frameWorkCss.content}
           style={{
             padding: 20,
+            background: theme.mainBgColor
           }}
         >
           {

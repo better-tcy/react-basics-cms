@@ -1,6 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
 
 import { useHistory } from "react-router-dom";
+
+import { ThemeContext } from '../../App';
 
 // 样式
 import loginCss from './login.module.css'
@@ -11,6 +13,8 @@ import { Form, Input, Button } from 'antd';
 const Login = memo(() => {
 
   const history = useHistory();
+
+  const theme = useContext(ThemeContext)
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -24,8 +28,7 @@ const Login = memo(() => {
 
   return (
     <div className="login">
-      <div className={loginCss.content}>
-
+      <div className={loginCss.content} style={{ backgroundImage: `url(${theme.loginBgImg.default})` }}>
         <div className={loginCss.card}>
           <h1 className={loginCss.title}>哈哈哈管理系统</h1>
           <div className={loginCss.form} >
