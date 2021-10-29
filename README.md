@@ -2,8 +2,7 @@
 
 ## 一.说明
 
-这是一个基于create-react-app 4.0.3(react 17.0.2)搭建的一个cms基础模板,集成mock.js模拟接口,全程使用hooks函数式组件
-redux + redux-thunk统一管理数据的开发模式(页面内所需数据直接在页面内进行请求和操作即可,如果是公共数据 可以使用中间件保存到redux中)，可以在src->assets->data->themeConfig.js中定制项目主题
+这是一个基于create-react-app 4.0.3(react 17.0.2)搭建的一个cms基础模板,集成mock.js模拟接口,全程使用hooks函数式组件，redux + redux-thunk统一管理数据的开发模式(页面内所需数据直接在页面内进行请求和操作即可,如果是公共数据 可以使用中间件保存到redux中)，可以在src->assets->data->themeConfig.js中定制项目主题，里面使用的ui组件库的是个人基于antd二次封装的,可移步到 https://www.npmjs.com/package/react-component-storehouse 查看组件库文档
  
 ## 二.目录
 

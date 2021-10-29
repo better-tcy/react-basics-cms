@@ -8,4 +8,4 @@ const OneOne = memo(() => {
   );
 });
 
-export default OneOne;
+export default OneOne

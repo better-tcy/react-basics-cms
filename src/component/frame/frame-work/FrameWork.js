@@ -14,6 +14,7 @@ import menuData from '@/assets/data/menuData';
 
 // 样式
 import frameWorkCss from './frameWork.module.css'
+import './frameWorkResetAntd.css'
 
 import { Layout, Menu, Button } from 'antd';
 import {
@@ -70,59 +71,61 @@ const FrameWork = memo((props) => {
 
 
   return (
-    <Layout style={{ height: '100vh' }}>
-      <Sider style={{ background: theme.asideBgColor }} trigger={null} collapsible collapsed={collapsed}>
-        <div className={frameWorkCss.cms_name}>{collapsed ? '' : '哈哈哈管理系统'}</div>
-        <Menu style={{ color: theme.menuTextColor }} theme="dark" mode="inline" defaultSelectedKeys={[currentTwoMenuPathR ? currentTwoMenuPathR : '/content/home']} defaultOpenKeys={[currentOneMenuPathR]}>
-          {
-            menuData.map((oneMenu) => {
-              if (!oneMenu.children || oneMenu.children.length === 0) {
-                return (<Menu.Item key={oneMenu.path} icon={<HomeOutlined />} onClick={() => { getSelectPath(oneMenu.path) }}>{oneMenu.name}</Menu.Item>)
-              } else {
-                return (
-                  <SubMenu key={oneMenu.path} title={oneMenu.name} icon={<SmileOutlined />}>
-                    {
-                      oneMenu.children.map((twoMenu) => {
-                        return (
-                          <Menu.Item key={twoMenu.path} icon={<TeamOutlined />} onClick={() => { getSelectPath(twoMenu.path, oneMenu.path) }}>{twoMenu.name}</Menu.Item>
-                        )
-                      })
-                    }
-                  </SubMenu>
-                )
-              }
-            })
-          }
-        </Menu>
-      </Sider>
+    <div className='frame_work'>
+      <Layout style={{ height: '100%', minHeight: '100vh' }}>
+        <Sider style={{ background: theme.asideBgColor }} trigger={null} collapsible collapsed={collapsed}>
+          <div className={frameWorkCss.cms_name}>{collapsed ? '' : '哈哈哈管理系统'}</div>
+          <Menu style={{ color: theme.menuTextColor }} theme="dark" mode="inline" defaultSelectedKeys={[currentTwoMenuPathR ? currentTwoMenuPathR : '/content/home']} defaultOpenKeys={[currentOneMenuPathR]}>
+            {
+              menuData.map((oneMenu) => {
+                if (!oneMenu.children || oneMenu.children.length === 0) {
+                  return (<Menu.Item key={oneMenu.path} icon={<HomeOutlined />} onClick={() => { getSelectPath(oneMenu.path) }}>{oneMenu.name}</Menu.Item>)
+                } else {
+                  return (
+                    <SubMenu key={oneMenu.path} title={oneMenu.name} icon={<SmileOutlined />}>
+                      {
+                        oneMenu.children.map((twoMenu) => {
+                          return (
+                            <Menu.Item key={twoMenu.path} icon={<TeamOutlined />} onClick={() => { getSelectPath(twoMenu.path, oneMenu.path) }}>{twoMenu.name}</Menu.Item>
+                          )
+                        })
+                      }
+                    </SubMenu>
+                  )
+                }
+              })
+            }
+          </Menu>
+        </Sider>
 
-      <Layout>
-        <Header style={{ background: theme.headBgColor }} className={frameWorkCss.header} >
+        <Layout>
+          <Header style={{ background: theme.headBgColor }} className={frameWorkCss.header} >
 
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
-            style: { color: '#ffffff' },
-            onClick: toggle,
-          })}
+            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+              className: 'trigger',
+              style: { color: '#ffffff' },
+              onClick: toggle,
+            })}
 
-          <div className={frameWorkCss.header_right}>
-            <Button onClick={exit} size="small" type="primary">退出程序</Button>
-          </div>
+            <div className={frameWorkCss.header_right}>
+              <Button onClick={exit} size="small" type="primary">退出程序</Button>
+            </div>
 
-        </Header>
-        <Content
-          className={frameWorkCss.content}
-          style={{
-            padding: 20,
-            background: theme.mainBgColor
-          }}
-        >
-          {
-            renderRoutes(route.routes)
-          }
-        </Content>
+          </Header>
+          <Content
+            className={frameWorkCss.content}
+            style={{
+              padding: 20,
+              background: theme.mainBgColor
+            }}
+          >
+            {
+              renderRoutes(route.routes)
+            }
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
+    </div>
   );
 });
 
