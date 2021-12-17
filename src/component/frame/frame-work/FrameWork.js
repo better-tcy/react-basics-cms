@@ -1,11 +1,11 @@
-import React, { memo, useState, useCallback, useContext } from 'react';
+import React, { memo, useState, useCallback, useContext, Suspense } from 'react';
 
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 
 import { useHistory } from "react-router-dom";
 import { renderRoutes } from 'react-router-config'
 
-import { ThemeContext } from '../../../App';
+import { ThemeContext } from '@/App';
 
 import { setCurrentOneMenuPathA, setCurrentTwoMenuPathA } from '@/store/createAction/frameWork.js'
 
@@ -25,7 +25,6 @@ import {
   TeamOutlined
 } from '@ant-design/icons';
 
-
 const { Header, Sider, Content } = Layout;
 
 const { SubMenu } = Menu;
@@ -41,6 +40,8 @@ const FrameWork = memo((props) => {
 
   const [collapsed, setCollapsed] = useState(false)
 
+  const [openKeys, setOpenKeys] = useState([]);
+
   const { currentOneMenuPathR, currentTwoMenuPathR } = useSelector((state) => {
     return {
       currentOneMenuPathR: state.get('frameWork').get('currentOneMenuPathR'),
@@ -52,13 +53,17 @@ const FrameWork = memo((props) => {
     setCollapsed(!collapsed)
   }, [collapsed])
 
-  const getSelectPath = useCallback((twoMenuPath, oneMenuPath) => {
+  const getSelectedPath = useCallback((twoMenuPath, oneMenuPath) => {
     history.push(twoMenuPath)
 
     // 派发(把选中的一级菜单 二级菜单path保存到redux中)
     dispatch(setCurrentTwoMenuPathA(twoMenuPath))
     dispatch(setCurrentOneMenuPathA(oneMenuPath))
   }, [history, dispatch])
+
+  const onOpenChange = keys => {
+    setOpenKeys([keys[keys.length - 1]]);
+  };
 
   const exit = useCallback(() => {
     // 需要清空缓存数据以及重置redux frameWork state数据
@@ -72,21 +77,34 @@ const FrameWork = memo((props) => {
 
   return (
     <div className='frame_work'>
-      <Layout style={{ height: '100%', minHeight: '100vh' }}>
-        <Sider style={{ background: theme.asideBgColor }} trigger={null} collapsible collapsed={collapsed}>
-          <div className={frameWorkCss.cms_name}>{collapsed ? '' : '哈哈哈管理系统'}</div>
-          <Menu style={{ color: theme.menuTextColor }} theme="dark" mode="inline" defaultSelectedKeys={[currentTwoMenuPathR ? currentTwoMenuPathR : '/content/home']} defaultOpenKeys={[currentOneMenuPathR]}>
+      <Layout style={{ height: '100vh' }}>
+        <Sider
+          style={{ background: theme.asideBgColor }}
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+        >
+          <div className={frameWorkCss.cms_name}>{collapsed ? '' : 'Betteryourself'}</div>
+          <Menu
+            theme="dark"
+            mode="inline"
+            style={{ color: theme.menuTextColor }}
+            openKeys={openKeys}
+            defaultSelectedKeys={[currentTwoMenuPathR ? currentTwoMenuPathR : '/content/home']}
+            defaultOpenKeys={[currentOneMenuPathR]}
+            onOpenChange={onOpenChange}
+          >
             {
               menuData.map((oneMenu) => {
                 if (!oneMenu.children || oneMenu.children.length === 0) {
-                  return (<Menu.Item key={oneMenu.path} icon={<HomeOutlined />} onClick={() => { getSelectPath(oneMenu.path) }}>{oneMenu.name}</Menu.Item>)
+                  return (<Menu.Item key={oneMenu.path} icon={<HomeOutlined />} onClick={() => { getSelectedPath(oneMenu.path) }}>{oneMenu.name}</Menu.Item>)
                 } else {
                   return (
                     <SubMenu key={oneMenu.path} title={oneMenu.name} icon={<SmileOutlined />}>
                       {
                         oneMenu.children.map((twoMenu) => {
                           return (
-                            <Menu.Item key={twoMenu.path} icon={<TeamOutlined />} onClick={() => { getSelectPath(twoMenu.path, oneMenu.path) }}>{twoMenu.name}</Menu.Item>
+                            <Menu.Item key={twoMenu.path} icon={<TeamOutlined />} onClick={() => { getSelectedPath(twoMenu.path, oneMenu.path) }}>{twoMenu.name}</Menu.Item>
                           )
                         })
                       }
@@ -101,14 +119,16 @@ const FrameWork = memo((props) => {
         <Layout>
           <Header style={{ background: theme.headBgColor }} className={frameWorkCss.header} >
 
-            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              style: { color: '#ffffff' },
-              onClick: toggle,
-            })}
+            {
+              React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                className: 'trigger',
+                style: { color: '#ffffff' },
+                onClick: toggle,
+              })
+            }
 
             <div className={frameWorkCss.header_right}>
-              <Button onClick={exit} size="small" type="primary">退出程序</Button>
+              <Button onClick={() => { exit() }} size="small" type="primary">退出程序</Button>
             </div>
 
           </Header>
@@ -119,9 +139,11 @@ const FrameWork = memo((props) => {
               background: theme.mainBgColor
             }}
           >
-            {
-              renderRoutes(route.routes)
-            }
+            <Suspense fallback={<div>Loading...</div>}>
+              {
+                renderRoutes(route.routes)
+              }
+            </Suspense>
           </Content>
         </Layout>
       </Layout>

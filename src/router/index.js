@@ -6,7 +6,7 @@ import loginRouter from './login/login'
 
 import homeRouter from './content/home'
 import oneRouter from './content/one'
-import twoRouter from './content/two'
+
 
 const routes = [
   {  //重定向
@@ -34,8 +34,7 @@ const routes = [
       },
 
       ...homeRouter,
-      ...oneRouter,
-      ...twoRouter
+      ...oneRouter
     ]
   },
 ]

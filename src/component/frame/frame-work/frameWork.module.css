@@ -6,8 +6,15 @@
 }
 
 .header {
+  height: 58px;
   padding: 0 20px !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: solid 1px #ccc;
+}
+
+.content {
+  height: calc(100vh - 58px);
+  overflow: auto
 }

@@ -5,8 +5,9 @@ import { Provider } from 'react-redux'
 import store from '@/store'
 
 import {
-  HashRouter,
+  BrowserRouter,
 } from 'react-router-dom'
+
 import { renderRoutes } from 'react-router-config'
 import routes from '@/router/index'
 
@@ -27,9 +28,9 @@ const App = memo(() => {
   return (
     <ThemeContext.Provider value={themeConfig}>
       <Provider store={store}>
-        <HashRouter>
+        <BrowserRouter>
           {renderRoutes(routes)}
-        </HashRouter>
+        </BrowserRouter>
       </Provider>
     </ThemeContext.Provider>
 

@@ -21,7 +21,6 @@ export function getDataMergeState() {
 
     store.dispatch(resetFrameWorkStateA({ ...store.getState().get('frameWork'), ...JSON.parse(sessionStorage.getItem("frameWorkState")) }))
 
-    // 给vuex赋值成功后  清空sessionStorage
     sessionStorage.clear()
   }
 }

@@ -1,15 +1,45 @@
 const path = require("path");
 
-//拼接路径
 const resolve = dir => path.resolve(__dirname, dir);
 
-//webpack额外的配置
+const CracoLessPlugin = require('craco-less');
+
+const { getThemeVariables } = require('antd/dist/theme');
+
+// webpack额外的配置
 module.exports = {
   webpack: {
     //配置别名
     alias: {
       "@": resolve('src'),
     }
-  }
+  },
+  babel: {
+    plugins: [['import', {
+      libraryName: 'antd',
+      libraryDirectory: 'es',
+      style: true,
+    }]],
+  },
+  plugins: [
+    {
+      plugin: CracoLessPlugin,
+      options: {
+        lessLoaderOptions: {
+          lessOptions: {
+            // 自定义主题 更多配置请参考 https://ant.design/docs/react/customize-theme-cn
+            // 修改完之后记得重启项目才会生效
+            modifyVars: {
+              '@primary-color': '#1DA57A',
+            },
+            // modifyVars: getThemeVariables({
+            //   dark: true, // 开启暗黑模式
+            //   compact: true, // 开启紧凑模式
+            // }),
+            javascriptEnabled: true,
+          },
+        },
+      },
+    },
+  ],
 }
-//修改配置相关的东西 项目需要重新运行一下

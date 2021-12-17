@@ -1,14 +1,11 @@
-import OneOne from '@/view/content/one/OneOne'
-import OneTwo from '@/view/content/one/OneTwo'
+import { lazy } from 'react';
+
+const One = lazy(() => import('@/view/content/one/OneOne'))
 
 const oneRouter = [
   {
-    path:'/content/one/one',
-    component:OneOne
-  },
-  {
-    path:'/content/one/two',
-    component:OneTwo
+    path: '/content/one/one',
+    component: One
   }
 ]
 

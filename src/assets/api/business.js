@@ -6,7 +6,7 @@ Mock.setup({
 })
 
 // 生成随机数据
-Mock.mock('http://localhost:8080/commonData', function () {
+Mock.mock('http://localhost:3001/commonData/', function () {
   return Mock.mock({
     'code': 0,
     'msg': '',

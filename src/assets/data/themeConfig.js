@@ -1,14 +1,14 @@
-// 基础配置
 
+// 比craco.config.js中的自定义主题优先级高
 const themeConfig = {
   // 登录页面背景图
-  loginBgImg: require('../img/login/login_bg.jpg'),
+  loginBgImg: require('../img/login/login_bg.svg'),
   // 侧边导航栏背景颜色
-  asideBgColor: '#001529',
+  asideBgColor: '',
   // head 背景颜色
-  headBgColor: '#ccc',
+  headBgColor: '',
   // main背景色
-  mainBgColor: '#FFFFFF',
+  mainBgColor: '',
 }
 
 export default themeConfig

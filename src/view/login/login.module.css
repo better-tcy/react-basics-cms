@@ -1,5 +1,5 @@
 .content {
-  background-size: cover;
+  width: 100%;
   height: 100vh;
 
   display: flex;
@@ -8,25 +8,8 @@
 }
 
 .card {
-  width: 800px;
-  height: 360px;
-  padding: 20px;
-  background: linear-gradient(180deg, #112a6e 1%, #071946 100%);
-  border: 1px solid #0775ce;
-  box-shadow: 0px 0px 32px #0775ce inset;
-
-  border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
-}
-
-.title {
-  text-align: center;
-}
-
-.form {
   width: 500px;
-  margin: 30px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
