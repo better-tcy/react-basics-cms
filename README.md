@@ -10,7 +10,7 @@
 
 ### 2.src:项目资源
 
-* assets:项目资源(mock模拟接口,css初始化,模拟导航数据)
+* assets:项目资源(mock模拟接口,css初始化,模拟导航数据,图片)
 * components:组件(页面公共组件,cms框架组件)
 * request:网络请求(api文件夹:接口统一维护,http.js:基于axios封装的网络请求)
 * router:路由(index.js主路由,content中每个文件对应的是每个一级菜单下所有的路由)
@@ -27,10 +27,10 @@
 ### 5.craco.config.js:对webpack以及serve的一些配置
 
 ## 三.目录设计思路及个人开发规范
-1. 除store文件夹外 所有文件夹 文件及导航名称使用 - 分割 例:frame-work
+1. 除store文件夹外 所有文件夹使用 - 分割 方式命名 例:frame-work
 2. 路由path 一级以 - 分割命名 二级以大驼峰命名
 3. 所有具体组件使用大驼峰命名
-4. 变量函数使用小驼峰命名
+4. 变量 函数 文件名 使用小驼峰命名
 5. 图片 样式class 以cms_name格式命名
 6. 解耦request router redux(middleware action reducer)
 7. view和request目录结构一一对应(层级明了)

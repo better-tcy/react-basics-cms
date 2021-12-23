@@ -1,11 +1,17 @@
 import { Map } from 'immutable'
 
-import { RESET_FRAMEWORK_STATE, SET_CURRENT_ONE_MENU_PATH, SET_CURRENT_TWO_MENU_PATH } from '../const/frameWork.js'
+import {
+  RESET_FRAMEWORK_STATE,
+  SET_CURRENT_ONE_MENU_PATH,
+  SET_CURRENT_TWO_MENU_PATH,
+  SET_MENU_DATA
+} from '../const/frameWork.js'
 
 
 const defaultState = Map({
   currentOneMenuPathR: '',
-  currentTwoMenuPathR: ''
+  currentTwoMenuPathR: '',
+  menuDataR: []
 })
 
 function reducer(state = defaultState, action) {
@@ -16,6 +22,8 @@ function reducer(state = defaultState, action) {
       return state.set('currentOneMenuPathR', action.currentOneMenuPath)
     case SET_CURRENT_TWO_MENU_PATH:
       return state.set('currentTwoMenuPathR', action.currentTwoMenuPath)
+    case SET_MENU_DATA:
+      return state.set('menuDataR', action.menuData)
     default:
       return state
   }

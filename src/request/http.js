@@ -66,7 +66,7 @@ axios1.interceptors.response.use(
   // 网络层状态码不是200的情况
   (error) => {
     if (error) {
-      return Promise.reject()
+      return Promise.reject(error.response)
     }
   }
 )

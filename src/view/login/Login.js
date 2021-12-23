@@ -2,22 +2,35 @@ import React, { memo, useContext } from 'react';
 
 import { useHistory } from "react-router-dom";
 
+import { useDispatch } from 'react-redux'
+
 import { Form, Input, Button, } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
+import { setMenuDataA } from '@/store/createAction/frameWork'
 
 import { ThemeContext } from '@/App';
 
 import loginCss from './login.module.css'
 import './loginResetAntd.css'
 
+// 模拟导航数据
+import menuData from '@/assets/data/menuData'
 
 const Login = memo(() => {
 
   const history = useHistory();
 
+  const dispatch = useDispatch()
+
   const theme = useContext(ThemeContext)
 
   const onFinish = () => {
+
+    localStorage.setItem('token', 'token')
+
+    dispatch(setMenuDataA(menuData))
+
     history.replace('/content')
   };
 

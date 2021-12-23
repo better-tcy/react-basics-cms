@@ -10,6 +10,7 @@ export function setStoreData() {
       JSON.stringify({
         currentOneMenuPathR: state.get('frameWork').get('currentOneMenuPathR'),
         currentTwoMenuPathR: state.get('frameWork').get('currentTwoMenuPathR'),
+        menuDataR: state.get('frameWork').get('menuDataR'),
       })
     );
   });

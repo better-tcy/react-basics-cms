@@ -24,3 +24,10 @@ export const setCurrentTwoMenuPathA = (currentTwoMenuPath) => {
   }
 }
 
+export const setMenuDataA = (menuData) => {
+  return {
+    type: types.SET_MENU_DATA,
+    menuData
+  }
+}
+

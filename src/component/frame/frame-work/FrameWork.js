@@ -7,10 +7,7 @@ import { renderRoutes } from 'react-router-config'
 
 import { ThemeContext } from '@/App';
 
-import { setCurrentOneMenuPathA, setCurrentTwoMenuPathA } from '@/store/createAction/frameWork.js'
-
-// 模拟导航数据
-import menuData from '@/assets/data/menuData';
+import { setCurrentOneMenuPathA, setCurrentTwoMenuPathA, setMenuDataA } from '@/store/createAction/frameWork.js'
 
 // 样式
 import frameWorkCss from './frameWork.module.css'
@@ -42,10 +39,11 @@ const FrameWork = memo((props) => {
 
   const [openKeys, setOpenKeys] = useState([]);
 
-  const { currentOneMenuPathR, currentTwoMenuPathR } = useSelector((state) => {
+  const { currentOneMenuPath, currentTwoMenuPath, menuData } = useSelector((state) => {
     return {
-      currentOneMenuPathR: state.get('frameWork').get('currentOneMenuPathR'),
-      currentTwoMenuPathR: state.get('frameWork').get('currentTwoMenuPathR')
+      currentOneMenuPath: state.get('frameWork').get('currentOneMenuPathR'),
+      currentTwoMenuPath: state.get('frameWork').get('currentTwoMenuPathR'),
+      menuData: state.get('frameWork').get('menuDataR')
     }
   }, shallowEqual)
 
@@ -70,6 +68,7 @@ const FrameWork = memo((props) => {
     localStorage.clear()
     dispatch(setCurrentTwoMenuPathA('/content/home'))
     dispatch(setCurrentOneMenuPathA(''))
+    dispatch(setMenuDataA([]))
 
     history.replace('/login')
   }, [dispatch, history])
@@ -89,13 +88,13 @@ const FrameWork = memo((props) => {
             theme="dark"
             mode="inline"
             style={{ color: theme.menuTextColor }}
-            openKeys={openKeys}
-            defaultSelectedKeys={[currentTwoMenuPathR ? currentTwoMenuPathR : '/content/home']}
-            defaultOpenKeys={[currentOneMenuPathR]}
+            openKeys={openKeys.length === 0 ? [currentOneMenuPath] : openKeys}
+            defaultSelectedKeys={[currentTwoMenuPath ? currentTwoMenuPath : '/content/home']}
+            defaultOpenKeys={[currentOneMenuPath]}
             onOpenChange={onOpenChange}
           >
             {
-              menuData.map((oneMenu) => {
+              menuData && menuData.map((oneMenu) => {
                 if (!oneMenu.children || oneMenu.children.length === 0) {
                   return (<Menu.Item key={oneMenu.path} icon={<HomeOutlined />} onClick={() => { getSelectedPath(oneMenu.path) }}>{oneMenu.name}</Menu.Item>)
                 } else {
