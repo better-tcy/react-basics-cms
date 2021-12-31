@@ -121,7 +121,7 @@ const FrameWork = memo((props) => {
             {
               React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                 className: 'trigger',
-                style: { color: '#ffffff' },
+                style: { color: '#000000', fontSize: '20px' },
                 onClick: toggle,
               })
             }

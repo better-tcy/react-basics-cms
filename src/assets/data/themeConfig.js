@@ -6,7 +6,7 @@ const themeConfig = {
   // 侧边导航栏背景颜色
   asideBgColor: '',
   // head 背景颜色
-  headBgColor: '',
+  headBgColor: '#ffffff',
   // main背景色
   mainBgColor: '',
 }
