@@ -11,7 +11,7 @@ import {
 import { renderRoutes } from 'react-router-config'
 import routes from '@/router/index'
 
-import { setStoreData, getDataMergeState } from '@/utils/storageStateData'
+import { setStoreData, getDataMergeState } from '@/utils/global/storageStateData'
 
 import themeConfig from '@/assets/data/themeConfig';
 

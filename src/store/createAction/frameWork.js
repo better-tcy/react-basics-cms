@@ -31,3 +31,11 @@ export const setMenuDataA = (menuData) => {
   }
 }
 
+// 设置一维数组（导航） 登录拿到token后 访问某个path 判断是否有权限时会用到
+export const setMenuPathArrA = (menuPathArr) => {
+  return {
+    type: types.SET_MENU_PATH_ARR,
+    menuPathArr
+  }
+}
+

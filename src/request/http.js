@@ -7,10 +7,8 @@ const axios1 = axios.create()
 
 // 环境的切换
 if (process.env.NODE_ENV === 'development') {
-  console.log('开发模式')
   axios1.defaults.baseURL = 'http://localhost:3001'
 } else if (process.env.NODE_ENV === 'production') {
-  console.log('生产模式')
   axios1.defaults.baseURL = ''
 }
 axios1.defaults.timeout = 10000
@@ -33,7 +31,6 @@ axios1.interceptors.request.use(
 // 响应拦截器 code只是案例 具体code结合后端来定
 axios1.interceptors.response.use(
   (response) => {
-    console.log('响应拦截器拦截的数据', response)
     // 网络层200
     if (response.status === 200) {
       switch (response.data.code) {

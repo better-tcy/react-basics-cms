@@ -11,6 +11,7 @@ export function setStoreData() {
         currentOneMenuPathR: state.get('frameWork').get('currentOneMenuPathR'),
         currentTwoMenuPathR: state.get('frameWork').get('currentTwoMenuPathR'),
         menuDataR: state.get('frameWork').get('menuDataR'),
+        menuPathArrR: state.get('frameWork').get('menuPathArrR'),
       })
     );
   });

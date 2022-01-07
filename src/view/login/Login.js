@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { Form, Input, Button, } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
-import { setMenuDataA } from '@/store/createAction/frameWork'
+import { setMenuDataA, setMenuPathArrA } from '@/store/createAction/frameWork'
 
 import { ThemeContext } from '@/App';
 
@@ -30,6 +30,22 @@ const Login = memo(() => {
     localStorage.setItem('token', 'token')
 
     dispatch(setMenuDataA(menuData))
+
+    // 递归把导航菜单转成一维数组（path）
+    const menuPathArr = []
+
+    function recurseArr(arr) {
+      arr.forEach((item) => {
+        menuPathArr.push(item.path)
+        if (item.children) {
+          recurseArr(item.children)
+        }
+      })
+    }
+
+    recurseArr(menuData)
+
+    dispatch(setMenuPathArrA(menuPathArr))
 
     history.replace('/content')
   };

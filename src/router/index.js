@@ -1,6 +1,6 @@
 import { Redirect } from 'react-router-dom'
 
-import { message } from 'antd'
+import { authenticationPath } from '@/utils/global/authenticationPath'
 
 import FrameWork from '@/component/frame/frame-work/FrameWork'
 
@@ -8,7 +8,7 @@ import loginRouter from './login/login'
 
 import homeRouter from './content/home'
 import oneRouter from './content/one'
-
+import notFoundRouter from './content/not-found'
 
 const routes = [
   {  //重定向
@@ -24,13 +24,8 @@ const routes = [
 
   {
     path: '/content',
-    render: ({ route }) => {
-      if (localStorage.getItem('token')) {
-        return <route.component route={route}></route.component>
-      } else {
-        message.warning('请先登录')
-        return <Redirect to="/login" />
-      }
+    render: ({ route, location }) => {
+      return authenticationPath(route, location)
     },
     component: FrameWork,
     routes: [
@@ -44,7 +39,8 @@ const routes = [
       },
 
       ...homeRouter,
-      ...oneRouter
+      ...oneRouter,
+      ...notFoundRouter
     ]
   },
 
