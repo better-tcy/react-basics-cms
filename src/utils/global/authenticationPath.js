@@ -9,13 +9,25 @@ export function authenticationPath(route, location) {
   const menuPathArr = state.get('frameWork').get('menuPathArrR')
 
   if (localStorage.getItem('token')) {
+
+    if (location.pathname === '/content') {
+      return <route.component route={route}></route.component>
+    }
+
     let isToPage = false
-    for (let itemPath of menuPathArr) {
-      if (location.pathname === itemPath || location.pathname === '/content' || location.pathname === '/content/not-found') {
-        isToPage = true
-        break
+
+    let routeItem = route.routes.find(item => item.path === location.pathname)
+    if (routeItem && routeItem.allowAccess) {
+      isToPage = true
+    } else {
+      for (let itemPath of menuPathArr) {
+        if (location.pathname === itemPath) {
+          isToPage = true
+          break
+        }
       }
     }
+
 
     if (isToPage) {
       return <route.component route={route}></route.component>

@@ -35,10 +35,6 @@ const FrameWork = memo((props) => {
 
   const theme = useContext(ThemeContext)
 
-  const [collapsed, setCollapsed] = useState(false)
-
-  const [openKeys, setOpenKeys] = useState([]);
-
   const { currentOneMenuPath, currentTwoMenuPath, menuData } = useSelector((state) => {
     return {
       currentOneMenuPath: state.get('frameWork').get('currentOneMenuPathR'),
@@ -46,6 +42,10 @@ const FrameWork = memo((props) => {
       menuData: state.get('frameWork').get('menuDataR')
     }
   }, shallowEqual)
+
+  const [collapsed, setCollapsed] = useState(false)
+
+  const [openKeys, setOpenKeys] = useState([]);
 
   const toggle = useCallback(() => {
     setCollapsed(!collapsed)

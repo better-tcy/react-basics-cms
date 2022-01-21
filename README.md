@@ -2,7 +2,7 @@
 
 ## 一.说明
 
-这是一个基于create-react-app 4.0.3(react 17.0.2)搭建的一个cms基础模板,集成mock.js模拟接口,全程使用hooks函数式组件，redux + redux-thunk统一管理数据的开发模式(页面内所需数据直接在页面内进行请求和操作即可,如果是公共数据 可以使用中间件保存到redux中)，可以在src->assets->data->themeConfig.js或者craco.config.js中定制项目主题。
+这是一个基于create-react-app 4.0.3(react 17.0.2)搭建的一个cms基础模板，集成mock.js模拟接口，全程使用hooks函数式组件，redux + redux-thunk统一管理数据的开发模式(页面内所需数据直接在页面内进行请求和操作即可，如果是公共数据 可以使用中间件保存到redux中)，集成异常监控功能（基于sentry），另外可以在src->assets->data->themeConfig.js或者craco.config.js中定制项目主题。
  
 ## 二.目录
 
@@ -37,5 +37,13 @@
 8. router目录中index.js主路由,content中每个文件对应的是每个一级菜单下所有的路由
 9. store中 frameWork文件是操作及保存框架所需公共数据的 business文件是操作及保存业务所需公共数据的
 10. 函数、变量、文件名称等大写字母结尾含义:H:请求接口函数 A:派发action函数 M:中间件 R:reducer数据
+11. 编写组件从上到下结构顺序：
+  * 1.获取props数据
+  * 2.声明history及dispatch
+  * 3.获取所用到的全局数据（缓存，redux，context等）
+  * 4.定义useRef及useState数据
+  * 5.其他let及const变量
+  * 6.定义页面所需函数
+  * 7.jsx代码
 
 #### ps:页面渲染内容虽然不多 但是可以参考下整体代码设计 欢迎提出问题 共同进步 
