@@ -11,7 +11,7 @@ const homeRouter = [
     component: Home,
   },
   {
-    path: "/content/home/test",
+    path: "/content/home/Test",
     exact: true,
     component: Test,
     // 是否有token后就可以访问的页面 （和导航权限无关的页面）

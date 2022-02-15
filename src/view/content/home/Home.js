@@ -27,7 +27,7 @@ const Home = memo(() => {
   return (
     <div>
       {commonDataOne}
-      <Button onClick={() => { history.push('/content/home/test') }}>点我一下</Button>
+      <Button onClick={() => { history.push('/content/home/Test') }}>点我一下</Button>
     </div>
   );
 });

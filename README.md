@@ -39,11 +39,13 @@
 10. 函数、变量、文件名称等大写字母结尾含义:H:请求接口函数 A:派发action函数 M:中间件 R:reducer数据
 11. 编写组件从上到下结构顺序：
   * 1.获取props数据
-  * 2.声明history及dispatch
-  * 3.获取所用到的全局数据（缓存，redux，context等）
-  * 4.定义useRef及useState数据
-  * 5.其他let及const变量
-  * 6.定义页面所需函数
-  * 7.jsx代码
+  * 2.用useImperativeHandle暴露一些外部ref能访问的属性
+  * 3.声明history及dispatch
+  * 4获取所用到的全局数据(缓存，redux，context等)
+  * 5.定义useRef及useState数据(按照页面所需数据从上到下顺序定义)
+  * 6.其他let及const变量(按照页面所需数据从上到下顺序定义，函数也同样)
+  * 7.定义页面所需函数(页面公共函数 放到函数区最开始，例如getTableData函数;如果上述let或const变量是个对象，且对象中使用到函数了，则函数使用函数声明方式来定义函数 例：function foo(){})
+  * 8.useEffect()
+  * 9.jsx代码
 
 #### ps:页面渲染内容虽然不多 但是可以参考下整体代码设计 欢迎提出问题 共同进步 

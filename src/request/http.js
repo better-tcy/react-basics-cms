@@ -2,6 +2,10 @@ import axios from 'axios'
 
 import { message } from 'antd';
 
+import store from '@/store'
+
+import { setCurrentOneMenuPathA, setCurrentTwoMenuPathA, setMenuDataA } from '@/store/createAction/frameWork.js'
+
 // 创建axios实例
 const axios1 = axios.create()
 
@@ -42,13 +46,18 @@ axios1.interceptors.response.use(
         case 500:
           return Promise.reject(response.data.msg)
 
-        // 登录过期对用户进行提示
-        // 清除本地token
-        // 跳转登录页面
+        // token失效
         case 401:
-          // 清除token
-          localStorage.removeItem('token')
-          // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
+
+          localStorage.clear()
+          store.dispatch(setCurrentTwoMenuPathA('/content/home'))
+          store.dispatch(setCurrentOneMenuPathA(''))
+          store.dispatch(setMenuDataA([]))
+
+          setTimeout(() => {
+            window.location.replace(`/login`)
+          }, 1000)
+
           return Promise.reject(response.data.msg)
 
         // 其他非0状态
