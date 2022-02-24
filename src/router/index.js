@@ -1,6 +1,6 @@
 import { Redirect } from 'react-router-dom'
 
-import { authenticationPath } from '@/utils/global/authenticationPath'
+import { authenticationPath } from '@/utils/global'
 
 import FrameWork from '@/component/frame/frame-work/FrameWork'
 

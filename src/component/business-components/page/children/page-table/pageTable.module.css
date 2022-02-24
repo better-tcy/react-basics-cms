@@ -1,0 +1,31 @@
+.page_table {
+  min-height: 670px;
+  background-color: #fff;
+  margin-top: 18px;
+}
+
+.page_table_top {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 36px;
+}
+
+.page_table_title {
+  font-size: 18px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.start_btn {
+  background: #5DCA2E;
+  border: 1px solid #5DCA2E;
+  color: #fff
+}
+
+.stop_btn {
+  background: #FA982D;
+  border: 1px solid #FA982D;
+  color: #fff
+}

@@ -1,0 +1,3 @@
+.page_table .page_table_btns .ant-btn:not(:last-child) {
+  margin-right: 10px;
+}

@@ -134,7 +134,6 @@ const FrameWork = memo((props) => {
           <Content
             className={frameWorkCss.content}
             style={{
-              padding: 20,
               background: theme.mainBgColor
             }}
           >

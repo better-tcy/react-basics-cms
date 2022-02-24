@@ -1,5 +1,9 @@
 import React, { memo, createContext } from 'react';
 
+import { ConfigProvider } from 'antd'
+import zhCN from 'antd/lib/locale/zh_CN';
+import 'moment/locale/zh-cn';
+
 // 通过Provider把store共享出去
 import { Provider } from 'react-redux'
 import store from '@/store'
@@ -11,7 +15,7 @@ import {
 import { renderRoutes } from 'react-router-config'
 import routes from '@/router/index'
 
-import { setStoreData, getDataMergeState } from '@/utils/global/storageStateData'
+import { setStoreData, getDataMergeState } from '@/utils/global'
 
 import themeConfig from '@/assets/data/themeConfig';
 
@@ -26,14 +30,15 @@ const App = memo(() => {
   getDataMergeState()
 
   return (
-    <ThemeContext.Provider value={themeConfig}>
-      <Provider store={store}>
-        <BrowserRouter>
-          {renderRoutes(routes)}
-        </BrowserRouter>
-      </Provider>
-    </ThemeContext.Provider>
-
+    <ConfigProvider locale={zhCN} >
+      <ThemeContext.Provider value={themeConfig}>
+        <Provider store={store}>
+          <BrowserRouter>
+            {renderRoutes(routes)}
+          </BrowserRouter>
+        </Provider>
+      </ThemeContext.Provider>
+    </ConfigProvider>
   );
 });
 

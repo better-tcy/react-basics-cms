@@ -4,7 +4,7 @@ const resolve = dir => path.resolve(__dirname, dir);
 
 const CracoLessPlugin = require('craco-less');
 
-const { getThemeVariables } = require('antd/dist/theme');
+// const { getThemeVariables } = require('antd/dist/theme');
 
 // webpack额外的配置
 module.exports = {
@@ -12,6 +12,7 @@ module.exports = {
     //配置别名
     alias: {
       "@": resolve('src'),
+      "page": resolve('src/component/business-components/page')
     }
   },
   babel: {
@@ -30,7 +31,7 @@ module.exports = {
             // 自定义主题 更多配置请参考 https://ant.design/docs/react/customize-theme-cn
             // 修改完之后记得重启项目才会生效
             modifyVars: {
-              '@primary-color': '#1DA57A',
+              // '@primary-color': '#1DA57A',
             },
             // modifyVars: getThemeVariables({
             //   dark: true, // 开启暗黑模式

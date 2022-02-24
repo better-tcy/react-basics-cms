@@ -1,0 +1,28 @@
+/* 修改全部modal样式 */
+.ant-modal-footer {
+  border-top: 0 !important;
+  text-align: center !important;
+}
+
+.ant-modal-header {
+  background: #1890FF !important;
+  height: 50px !important;
+}
+
+.ant-modal-title {
+  font-size: 17px !important;
+  font-weight: 400 !important;
+  color: #FFFFFF !important;
+}
+
+.ant-modal-content .ant-modal-close .anticon svg {
+  color: #fff !important;
+}
+
+/* 修改表格样式 */
+.ant-table-thead .ant-table-cell {
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #333333;
+}

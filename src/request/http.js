@@ -105,7 +105,7 @@ export function getRestful(url, params) {
     id
   } = params
   return new Promise((resolve, reject) => {
-    axios1.get(`${url}${id}`).then(res => {
+    axios1.get(`${url}/${id}`).then(res => {
       resolve(res.data)
     }).catch((err = "网络出错") => {
       message.error(err);
@@ -154,10 +154,9 @@ export function put(url, params) {
  * @param {Object} params [请求时携带的参数]
  */
 export function remove(url, params) {
+  const { id } = params
   return new Promise((resolve, reject) => {
-    axios1.delete(url, {
-      params
-    }).then(res => {
+    axios1.delete(`${url}/${id}`).then(res => {
       resolve(res.data)
     }).catch((err = "网络出错") => {
       message.error(err);

@@ -9,26 +9,13 @@ const menuData = [
     children: [
       {
         name: 'oneOne',
-        path: '/content/one/One',
+        path: '/content/one/OneOne',
       }, {
         name: 'oneTwo',
-        path: '/content/one/Two',
+        path: '/content/one/OneTwo',
       }
     ]
   },
-  // {
-  //   name: 'two',
-  //   path: '/content/two',
-  //   children: [
-  //     {
-  //       name: 'twoOne',
-  //       path: '/content/two/One',
-  //     }, {
-  //       name: 'twoTwo',
-  //       path: '/content/two/Two',
-  //     }
-  //   ]
-  // }
 ]
 
 export default menuData

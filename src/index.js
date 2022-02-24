@@ -8,8 +8,11 @@ import { Integrations } from "@sentry/tracing";
 
 import App from './App';
 
+import '@/assets/api/business'; // 引入mock文件
+
 // 样式初始化
 import '@/assets/css/index.css'
+import '@/assets/css/resetAntdStyle.css'
 
 Sentry.init({
   dsn: "",
