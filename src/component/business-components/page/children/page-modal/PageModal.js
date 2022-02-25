@@ -40,10 +40,12 @@ const PageModal = memo((props) => {
       startDateField.current = itemConfig.field[0]
       endDateField.current = itemConfig.field[1]
       rangePickerFormat.current = itemConfig.format
+
     } else if (itemConfig.type === 'datePicker') {
 
       datePickerField.current = itemConfig.field
       datePickerFormat.current = itemConfig.format
+
     }
 
   }
@@ -126,6 +128,7 @@ const PageModal = memo((props) => {
             }
           }
         }
+
         form.setFieldsValue(res.data)
       })
     }

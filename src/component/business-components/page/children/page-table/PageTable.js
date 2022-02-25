@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useCallback, useState, useRef } from 'react';
+import React, { memo, useEffect, useCallback, useState, useRef, useImperativeHandle } from 'react';
 
 import { Button, Table, Space, Switch, message, Modal } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -6,6 +6,8 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import _ from 'lodash'
 
 import { getTableDataH, removeTableDataH, startTableDataH, stopTableDataH } from '@/request/api/content/common/page'
+
+import { btnAuthority } from 'page/utils'
 
 import { PageModal } from 'page/children';
 
@@ -18,7 +20,24 @@ const PageTable = memo((props) => {
 
   const { pageRequestUrl, pageTableConfig, searchData, pageModalConfig } = props
   const { curdUrl, startUrl, stopUrl } = pageRequestUrl
-  const { columns } = pageTableConfig
+  const {
+    columns,
+    pageAuthorityArr,
+    tableMoreButtonArr = [],
+    pageMoreButtonArr = [],
+    isShowAddBtn = true,
+    isShowGetBtn = true,
+    isShowUpdateBtn = true,
+    isShowRemoveBtn = true,
+    isShowEnableDisableBtn = true,
+    isShowActionColumns = true,
+  } = pageTableConfig
+
+  useImperativeHandle(props.onRef, () => {
+    return {
+      getTableData,
+    };
+  });
 
   const pageNum = useRef(1)
   const pageSize = useRef(10)
@@ -34,21 +53,29 @@ const PageTable = memo((props) => {
 
   const newColumns = [
     ...columns,
-    {
+    isShowActionColumns ? {
       title: '操作',
       key: 'action',
       align: "center",
       render: (_, record) => (
         <Space size="middle">
-          {<Button type="text" style={{ color: '#1890FF' }} onClick={() => { showModal('查看', record.id) }}>查看</Button>}
-          {<Button type="text" style={{ color: '#48ED4B' }} onClick={() => { showModal('修改', record.id) }}>修改</Button>}
-          {<Button type="text" style={{ color: '#EB3030' }} onClick={() => { removeTableData(record.id) }}>删除</Button>}
-
-          {<Switch checkedChildren="启用" unCheckedChildren="禁用"
+          {btnAuthority(pageAuthorityArr, '查看') && isShowGetBtn && <Button type="text" style={{ color: '#1890FF' }} onClick={() => { showModal('查看', record.id) }}>查看</Button>}
+          {btnAuthority(pageAuthorityArr, '修改') && isShowUpdateBtn && <Button type="text" style={{ color: '#48ED4B' }} onClick={() => { showModal('修改', record.id) }}>修改</Button>}
+          {btnAuthority(pageAuthorityArr, '删除') && isShowRemoveBtn && <Button type="text" style={{ color: '#EB3030' }} onClick={() => { removeTableData(record.id) }}>删除</Button>}
+          {
+            tableMoreButtonArr.map((funItem) => {
+              if (funItem instanceof Function) {
+                return funItem(record)
+              } else {
+                return console.warn('表格中渲染的其他按钮 必须用函数包裹')
+              }
+            })
+          }
+          {btnAuthority(pageAuthorityArr, '启用停用') && isShowEnableDisableBtn && <Switch checkedChildren="启用" unCheckedChildren="禁用"
             checked={record.status === 1} onClick={(checked) => { enableOrDisable(checked, [record.id]) }} />}
         </Space>
       ),
-    }
+    } : {}
   ]
 
   const paginationConfig = {
@@ -180,9 +207,18 @@ const PageTable = memo((props) => {
           查询表格
         </div>
         <div className='page_table_btns'>
-          <Button type="primary" onClick={() => { showModal('新建') }}>新建</Button>
-          <Button className={pageTableCss.start_btn} onClick={() => { enableRows() }}>启用</Button>
-          <Button className={pageTableCss.stop_btn} onClick={() => { disableRows() }}>停用</Button>
+          {btnAuthority(pageAuthorityArr, '新建') && isShowAddBtn && <Button type="primary" onClick={() => { showModal('新建') }}>新建</Button>}
+          {btnAuthority(pageAuthorityArr, '启用停用') && isShowEnableDisableBtn && <Button className={pageTableCss.start_btn} onClick={() => { enableRows() }}>启用</Button>}
+          {btnAuthority(pageAuthorityArr, '启用停用') && isShowEnableDisableBtn && <Button className={pageTableCss.stop_btn} onClick={() => { disableRows() }}>停用</Button>}
+          {
+            pageMoreButtonArr.map((funItem) => {
+              if (funItem instanceof Function) {
+                return funItem(selectedRowKeys)
+              } else {
+                return console.warn('page中渲染的其他按钮 必须用函数包裹')
+              }
+            })
+          }
         </div>
       </div>
 

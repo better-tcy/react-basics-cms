@@ -19,13 +19,13 @@
 }
 
 .start_btn {
-  background: #5DCA2E;
-  border: 1px solid #5DCA2E;
-  color: #fff
+  background: #5DCA2E !important;
+  border: 1px solid #5DCA2E !important;
+  color: #fff !important
 }
 
 .stop_btn {
-  background: #FA982D;
-  border: 1px solid #FA982D;
-  color: #fff
+  background: #FA982D !important;
+  border: 1px solid #FA982D !important;
+  color: #fff !important;
 }

@@ -51,11 +51,16 @@ const FrameWork = memo((props) => {
     setCollapsed(!collapsed)
   }, [collapsed])
 
-  const getSelectedPath = useCallback((twoMenuPath, oneMenuPath) => {
-    history.push(twoMenuPath)
+  const getSelectedPath = useCallback((twoMenu, oneMenuPath) => {
+    history.push({
+      pathname: twoMenu.path,
+      state: {
+        pageAuthorityArr: twoMenu.children || []
+      }
+    })
 
     // 派发(把选中的一级菜单 二级菜单path保存到redux中)
-    dispatch(setCurrentTwoMenuPathA(twoMenuPath))
+    dispatch(setCurrentTwoMenuPathA(twoMenu.path))
     dispatch(setCurrentOneMenuPathA(oneMenuPath))
   }, [history, dispatch])
 
@@ -96,14 +101,14 @@ const FrameWork = memo((props) => {
             {
               menuData && menuData.map((oneMenu) => {
                 if (!oneMenu.children || oneMenu.children.length === 0) {
-                  return (<Menu.Item key={oneMenu.path} icon={<HomeOutlined />} onClick={() => { getSelectedPath(oneMenu.path) }}>{oneMenu.name}</Menu.Item>)
+                  return (<Menu.Item key={oneMenu.path} icon={<HomeOutlined />} onClick={() => { getSelectedPath(oneMenu) }}>{oneMenu.name}</Menu.Item>)
                 } else {
                   return (
                     <SubMenu key={oneMenu.path} title={oneMenu.name} icon={<SmileOutlined />}>
                       {
                         oneMenu.children.map((twoMenu) => {
                           return (
-                            <Menu.Item key={twoMenu.path} icon={<TeamOutlined />} onClick={() => { getSelectedPath(twoMenu.path, oneMenu.path) }}>{twoMenu.name}</Menu.Item>
+                            <Menu.Item key={twoMenu.path} icon={<TeamOutlined />} onClick={() => { getSelectedPath(twoMenu, oneMenu.path) }}>{twoMenu.name}</Menu.Item>
                           )
                         })
                       }

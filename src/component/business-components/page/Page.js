@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useRef, useImperativeHandle } from 'react';
 
 import { PageTitle, PageSearch, PageTable } from 'page/children';
 
@@ -17,6 +17,14 @@ const Page = memo((props) => {
     pageTableConfig,
     pageModalConfig
   } = newPageConfig
+
+  useImperativeHandle(props.onRef, () => {
+    return {
+      getTableData: pageTableRef.current.getTableData,
+    };
+  });
+
+  const pageTableRef = useRef()
 
   const [searchData, setSearchData] = useState({})
 
@@ -46,7 +54,7 @@ const Page = memo((props) => {
           pageSearchConfig && <PageSearch pageSearchConfig={newPageSearchConfig}></PageSearch>
         }
 
-        <PageTable pageRequestUrl={pageRequestUrl} searchData={searchData} pageTableConfig={pageTableConfig} pageModalConfig={pageModalConfig}></PageTable>
+        <PageTable onRef={pageTableRef} pageRequestUrl={pageRequestUrl} searchData={searchData} pageTableConfig={pageTableConfig} pageModalConfig={pageModalConfig}></PageTable>
       </div>
 
     </div>
