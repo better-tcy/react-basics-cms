@@ -19,7 +19,7 @@ const { confirm } = Modal;
 const PageTable = memo((props) => {
 
   const { pageRequestUrl, pageTableConfig, searchData, pageModalConfig } = props
-  const { curdUrl, startUrl, stopUrl } = pageRequestUrl
+  const { curdUrl, enableUrl, disabledUrl } = pageRequestUrl
   const {
     columns,
     pageAuthorityArr,
@@ -67,7 +67,7 @@ const PageTable = memo((props) => {
               if (funItem instanceof Function) {
                 return funItem(record)
               } else {
-                return console.warn('表格中渲染的其他按钮 必须用函数包裹')
+                return ''
               }
             })
           }
@@ -174,7 +174,7 @@ const PageTable = memo((props) => {
     if (isEnable) {
       // 启用
       function callBackFun() {
-        startTableDataH(startUrl || `${curdUrl}start`, { ids: rowIdArr }).then((res) => {
+        startTableDataH(enableUrl || `${curdUrl}start`, { ids: rowIdArr }).then((res) => {
           message.success('已启用')
           getTableData()
         })
@@ -185,7 +185,7 @@ const PageTable = memo((props) => {
     } else {
       // 禁用
       function callBackFun() {
-        stopTableDataH(stopUrl || `${curdUrl}stop`, { ids: rowIdArr }).then((res) => {
+        stopTableDataH(disabledUrl || `${curdUrl}stop`, { ids: rowIdArr }).then((res) => {
           message.warning('已禁用')
           getTableData()
         })
@@ -215,7 +215,7 @@ const PageTable = memo((props) => {
               if (funItem instanceof Function) {
                 return funItem(selectedRowKeys)
               } else {
-                return console.warn('page中渲染的其他按钮 必须用函数包裹')
+                return ''
               }
             })
           }

@@ -13,8 +13,8 @@ const OneOne = memo((props) => {
   const pageConfig = {
     pageRequestUrl: {
       curdUrl: '/oneOne',
-      startUrl: '/oneOne/start',
-      stopUrl: '/oneOne/stop',
+      enableUrl: '/oneOne/start',
+      disabledUrl: '/oneOne/stop',
     },
     pageTitleConfig: {
       title: '测试page'
@@ -26,11 +26,7 @@ const OneOne = memo((props) => {
           type: 'input',
           label: '姓名',
           field: 'name',
-        },
-        {
-          type: 'select',
-          label: '性别',
-          field: 'gender'
+          placeholder: '请输入姓名',
         },
         {
           type: 'rangePicker',
@@ -81,18 +77,21 @@ const OneOne = memo((props) => {
           type: 'input',
           label: '姓名',
           field: 'name',
+          placeholder: '请输入姓名',
           rules: []
         },
         {
           type: 'password',
           label: '密码',
           field: 'password',
+          placeholder: '请输入密码',
           rules: []
         },
         {
           type: 'select',
           label: '选择水果',
           field: 'fruit',
+          placeholder: '请选择水果',
           rules: [],
           customizeOptionsValueKey: 'id', // 默认为value
           customizeOptionsLabelKey: 'name',  // 默认为label
@@ -109,7 +108,7 @@ const OneOne = memo((props) => {
         },
         {
           type: 'radio',
-          label: '单选',
+          label: '性别',
           field: 'radioVal',
           customizeOptionsValueKey: 'id', // 默认为value
           customizeOptionsLabelKey: 'name',  // 默认为label
@@ -126,7 +125,7 @@ const OneOne = memo((props) => {
         },
         {
           type: 'checkbox',
-          label: '多选',
+          label: '汽车',
           field: 'checkboxVal',
           customizeOptionsValueKey: 'id', // 默认为value
           customizeOptionsLabelKey: 'name',  // 默认为label
@@ -143,7 +142,7 @@ const OneOne = memo((props) => {
         },
         {
           type: 'tree',
-          label: '树形选择',
+          label: '学习的编程语言',
           field: 'treeVal',
           rules: [],
           halfCheckedKeys: true,
@@ -185,7 +184,7 @@ const OneOne = memo((props) => {
   }
 
   if (pageConfig.pageTableConfig) {
-    // 表格增加权限
+    // 表格增加按钮权限
     pageConfig.pageTableConfig.pageAuthorityArr = pageAuthorityArr
   }
 
@@ -209,10 +208,10 @@ const OneOne = memo((props) => {
   }
 
   const tableBtn1 = () => {
-    // 表格中其他按钮的权限
+    // 表格中其他按钮的权限 可结合src\assets\data\menuData.js中数据 梳理逻辑
     if (btnAuthority(pageAuthorityArr, '其他按钮')) {
       return function (record) {
-        return <Button key={1} type="text" onClick={() => { tableBtn1ClickFun(record) }}>其他按钮</Button>
+        return <Button key={1} type="text" style={{ color: "rgb(250, 152, 35)" }} onClick={() => { tableBtn1ClickFun(record) }}>其他按钮</Button>
       }
     }
   }
