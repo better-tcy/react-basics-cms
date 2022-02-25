@@ -218,6 +218,7 @@ const OneOne = memo((props) => {
   }
 
   const pageBtn1 = () => {
+    // Page页其他按钮的权限
     if (btnAuthority(pageAuthorityArr, '其他按钮')) {
       return function (tableSelectedRowKeys) {
         return <Button key={1} type="primary" onClick={() => { pageBtn1ClickFun(tableSelectedRowKeys) }}>其他按钮</Button>
