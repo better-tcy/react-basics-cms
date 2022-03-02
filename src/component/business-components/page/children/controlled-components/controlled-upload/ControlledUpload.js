@@ -78,5 +78,4 @@ const ControlledUpload = memo((props) => {
   )
 })
 
-
 export default ControlledUpload

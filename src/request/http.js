@@ -17,7 +17,7 @@ const axios1 = axios.create()
 if (process.env.NODE_ENV === 'development') {
   axios1.defaults.baseURL = 'http://localhost:3001'
 } else if (process.env.NODE_ENV === 'production') {
-  axios1.defaults.baseURL = ''
+  axios1.defaults.baseURL = 'http://localhost:3001'
 }
 axios1.defaults.timeout = 10000
 axios1.defaults.headers.post['Content-Type'] =
