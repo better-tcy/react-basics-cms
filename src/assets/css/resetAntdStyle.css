@@ -5,14 +5,14 @@
 }
 
 .ant-modal-header {
-  background: #1890FF !important;
+  background: #1890ff !important;
   height: 50px !important;
 }
 
 .ant-modal-title {
   font-size: 17px !important;
   font-weight: 400 !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .ant-modal-content .ant-modal-close .anticon svg {

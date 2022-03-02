@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy } from 'react'
 
 const NotFound = lazy(() => import('@/view/content/not-found/NotFound'))
 

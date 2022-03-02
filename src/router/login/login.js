@@ -2,10 +2,10 @@ import Login from '@/view/login/Login'
 
 const loginRouter = [
   {
-    path: "/login",
+    path: '/login',
     exact: true,
-    component: Login,
-  },
+    component: Login
+  }
 ]
 
 export default loginRouter

@@ -38,4 +38,3 @@ export const setMenuPathArrA = (menuPathArr) => {
     menuPathArr
   }
 }
-

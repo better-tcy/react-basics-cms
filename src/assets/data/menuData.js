@@ -1,7 +1,7 @@
 const menuData = [
   {
     name: '首页',
-    path: '/content/home',
+    path: '/content/home'
   },
   {
     name: 'one',
@@ -36,12 +36,13 @@ const menuData = [
             name: '其他按钮'
           }
         ]
-      }, {
+      },
+      {
         name: 'oneTwo',
-        path: '/content/one/OneTwo',
+        path: '/content/one/OneTwo'
       }
     ]
-  },
+  }
 ]
 
 export default menuData

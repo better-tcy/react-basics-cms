@@ -1,9 +1,8 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, useRef } from 'react'
 
 import { Button, Tag } from 'antd'
 
-import Page from '@/component/business-components/page/Page';
-
+import Page from '@/component/business-components/page/Page'
 
 import { btnAuthority } from 'page/utils'
 
@@ -14,7 +13,7 @@ const OneOne = memo((props) => {
     pageRequestUrl: {
       curdUrl: '/oneOne',
       enableUrl: '/oneOne/start',
-      disabledUrl: '/oneOne/stop',
+      disabledUrl: '/oneOne/stop'
     },
     pageTitleConfig: {
       title: '测试page'
@@ -26,7 +25,7 @@ const OneOne = memo((props) => {
           type: 'input',
           label: '姓名',
           field: 'name',
-          placeholder: '请输入姓名',
+          placeholder: '请输入姓名'
         },
         {
           type: 'rangePicker',
@@ -34,7 +33,7 @@ const OneOne = memo((props) => {
           format: 'YYYY-MM-DD', // 默认为时间戳
           field: ['startDate', 'endDate']
         }
-      ],
+      ]
     },
     pageTableConfig: {
       // isShowAddBtn: false, // 默认都为true
@@ -48,19 +47,19 @@ const OneOne = memo((props) => {
           title: '角色名称',
           dataIndex: 'name',
           key: 'name',
-          align: "center",
+          align: 'center'
         },
         {
           title: '手机号',
           dataIndex: 'iphone',
           key: 'iphone',
-          align: "center",
+          align: 'center'
         },
         {
           title: '职务',
           dataIndex: 'jobTitle',
           key: 'jobTitle',
-          align: "center",
+          align: 'center',
           render: (text) => {
             if (text === 1) {
               return <Tag color="processing">管理员</Tag>
@@ -68,8 +67,8 @@ const OneOne = memo((props) => {
               return <Tag color="processing">测试员</Tag>
             }
           }
-        },
-      ],
+        }
+      ]
     },
     pageModalConfig: {
       modalItemArr: [
@@ -94,15 +93,15 @@ const OneOne = memo((props) => {
           placeholder: '请选择水果',
           rules: [],
           customizeOptionsValueKey: 'id', // 默认为value
-          customizeOptionsLabelKey: 'name',  // 默认为label
+          customizeOptionsLabelKey: 'name', // 默认为label
           options: [
             {
               name: '苹果',
-              id: 1,
+              id: 1
             },
             {
               name: '香蕉',
-              id: 2,
+              id: 2
             }
           ]
         },
@@ -111,13 +110,14 @@ const OneOne = memo((props) => {
           label: '性别',
           field: 'radioVal',
           customizeOptionsValueKey: 'id', // 默认为value
-          customizeOptionsLabelKey: 'name',  // 默认为label
+          customizeOptionsLabelKey: 'name', // 默认为label
           rules: [],
           options: [
             {
               id: 1,
               name: '男'
-            }, {
+            },
+            {
               id: 2,
               name: '女'
             }
@@ -128,13 +128,14 @@ const OneOne = memo((props) => {
           label: '汽车',
           field: 'checkboxVal',
           customizeOptionsValueKey: 'id', // 默认为value
-          customizeOptionsLabelKey: 'name',  // 默认为label
+          customizeOptionsLabelKey: 'name', // 默认为label
           rules: [],
           options: [
             {
               id: 1,
               name: '红旗'
-            }, {
+            },
+            {
               id: 2,
               name: '吉利'
             }
@@ -147,7 +148,7 @@ const OneOne = memo((props) => {
           rules: [],
           halfCheckedKeys: true,
           customizeOptionsValueKey: 'id', // 默认为value
-          customizeOptionsLabelKey: 'name',  // 默认为label
+          customizeOptionsLabelKey: 'name', // 默认为label
           customizeOptionsChildrenKey: 'children', // 默认为children
           options: [
             {
@@ -169,7 +170,7 @@ const OneOne = memo((props) => {
           label: '选择日期',
           field: 'datePickerVal',
           format: '', // 默认为时间戳
-          rules: [],
+          rules: []
         },
         {
           type: 'rangePicker',
@@ -177,8 +178,14 @@ const OneOne = memo((props) => {
           field: ['startDate', 'endDate'],
           format: '', // 默认为时间戳
           rules: [],
-          showTime: true,
+          showTime: true
         },
+        {
+          type: 'upload',
+          label: '上传',
+          field: 'uploadVal',
+          rules: []
+        }
       ]
     }
   }
@@ -211,7 +218,18 @@ const OneOne = memo((props) => {
     // 表格中其他按钮的权限 可结合src\assets\data\menuData.js中数据 梳理逻辑
     if (btnAuthority(pageAuthorityArr, '其他按钮')) {
       return function (record) {
-        return <Button key={1} type="text" style={{ color: "rgb(250, 152, 35)" }} onClick={() => { tableBtn1ClickFun(record) }}>其他按钮</Button>
+        return (
+          <Button
+            key={1}
+            type="text"
+            style={{ color: 'rgb(250, 152, 35)' }}
+            onClick={() => {
+              tableBtn1ClickFun(record)
+            }}
+          >
+            其他按钮
+          </Button>
+        )
       }
     }
   }
@@ -220,7 +238,17 @@ const OneOne = memo((props) => {
     // Page页其他按钮的权限
     if (btnAuthority(pageAuthorityArr, '其他按钮')) {
       return function (tableSelectedRowKeys) {
-        return <Button key={1} type="primary" onClick={() => { pageBtn1ClickFun(tableSelectedRowKeys) }}>其他按钮</Button>
+        return (
+          <Button
+            key={1}
+            type="primary"
+            onClick={() => {
+              pageBtn1ClickFun(tableSelectedRowKeys)
+            }}
+          >
+            其他按钮
+          </Button>
+        )
       }
     }
   }
@@ -228,16 +256,11 @@ const OneOne = memo((props) => {
   // 其他按钮
   if (pageConfig.pageTableConfig) {
     // 表格中其他按钮
-    pageConfig.pageTableConfig.tableMoreButtonArr = [
-      tableBtn1()
-    ]
+    pageConfig.pageTableConfig.tableMoreButtonArr = [tableBtn1()]
 
     // Page中其他按钮
-    pageConfig.pageTableConfig.pageMoreButtonArr = [
-      pageBtn1()
-    ]
+    pageConfig.pageTableConfig.pageMoreButtonArr = [pageBtn1()]
   }
-
 
   const pageRef = useRef()
 
@@ -245,7 +268,7 @@ const OneOne = memo((props) => {
     <div>
       <Page onRef={pageRef} pageConfig={pageConfig}></Page>
     </div>
-  );
-});
+  )
+})
 
 export default OneOne

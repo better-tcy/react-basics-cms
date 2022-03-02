@@ -1,6 +1,6 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, useRef } from 'react'
 
-import { Form, Button, message } from 'antd';
+import { Form, Button, message } from 'antd'
 
 import moment from 'moment'
 
@@ -9,12 +9,11 @@ import pageSearchCss from './pageSearch.module.css'
 import { renderItem as renderSearchItem } from '../../utils'
 
 const PageSearch = memo((props) => {
-
   const { pageSearchConfig } = props
 
   const { searchItemArr } = pageSearchConfig
 
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   const startDateField = useRef('')
   const endDateField = useRef('')
@@ -46,13 +45,16 @@ const PageSearch = memo((props) => {
     if (startDateField.current && endDateField.current) {
       // 日期选择器 是否选择了值
       if (searchData[startDateField.current]) {
-
         const startDate = searchData[startDateField.current][0]
         const endDate = searchData[startDateField.current][1]
 
         // 给传给后端的数据 添加开始日期和结束日期的key val
-        searchData[startDateField.current] = rangePickerFormat.current ? moment(startDate).format(rangePickerFormat.current) : moment(startDate).valueOf()
-        searchData[endDateField.current] = rangePickerFormat.current ? moment(endDate).format(rangePickerFormat.current) : moment(endDate).valueOf()
+        searchData[startDateField.current] = rangePickerFormat.current
+          ? moment(startDate).format(rangePickerFormat.current)
+          : moment(startDate).valueOf()
+        searchData[endDateField.current] = rangePickerFormat.current
+          ? moment(endDate).format(rangePickerFormat.current)
+          : moment(endDate).valueOf()
       }
     }
 
@@ -72,25 +74,40 @@ const PageSearch = memo((props) => {
         autoComplete="off"
         form={form}
       >
-        {
-          searchItemArr.map((searchItem) => {
-            return (
-              <div key={searchItem.field} style={{ marginRight: pageSearchConfig.searchItemMarginRight || '28px' }}>{renderSearchItem(searchItem, renderItemCallBack)}</div>
-            )
-          })
-        }
+        {searchItemArr.map((searchItem) => {
+          return (
+            <div
+              key={searchItem.field}
+              style={{
+                marginRight: pageSearchConfig.searchItemMarginRight || '28px'
+              }}
+            >
+              {renderSearchItem(searchItem, renderItemCallBack)}
+            </div>
+          )
+        })}
       </Form>
 
       <div>
-        <Button type="primary" onClick={() => { search() }}>
+        <Button
+          type="primary"
+          onClick={() => {
+            search()
+          }}
+        >
           查询
         </Button>
-        <Button className={pageSearchCss.reset_btn} onClick={() => { reset() }}>
+        <Button
+          className={pageSearchCss.reset_btn}
+          onClick={() => {
+            reset()
+          }}
+        >
           重置
         </Button>
       </div>
-    </div >
-  );
-});
+    </div>
+  )
+})
 
-export default PageSearch;
+export default PageSearch

@@ -1,8 +1,4 @@
 import { authenticationPath } from './authenticationPath'
 import { setStoreData, getDataMergeState } from './storageStateData'
 
-export {
-  authenticationPath,
-  setStoreData,
-  getDataMergeState
-}
+export { authenticationPath, setStoreData, getDataMergeState }

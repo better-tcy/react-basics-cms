@@ -1,12 +1,15 @@
-import React, { memo } from 'react';
+import React, { memo } from 'react'
 
-import { Tree } from 'antd';
+import { Tree } from 'antd'
 
 const ControlledTree = memo((props) => {
-  const { disabled, halfCheckedKeys, treeData, fieldNames, onChange, value } = props
+  const { disabled, halfCheckedKeys, treeData, fieldNames, onChange, value } =
+    props
 
   if (!treeData[0].key) {
-    console.warn('请给options的每一项 添加一个key（唯一），来提升渲染速度，出于性能考虑 组件内部不会自动添加key')
+    console.warn(
+      '请给options的每一项 添加一个key（唯一），来提升渲染速度，出于性能考虑 组件内部不会自动添加key'
+    )
   }
 
   const onCheck = (checkedKeys, info) => {
@@ -26,12 +29,12 @@ const ControlledTree = memo((props) => {
         checkedKeys={value}
         treeData={treeData}
         fieldNames={fieldNames}
-        onCheck={(checkedKeys, info) => { onCheck(checkedKeys, info) }}
-      >
-
-      </Tree>
+        onCheck={(checkedKeys, info) => {
+          onCheck(checkedKeys, info)
+        }}
+      ></Tree>
     </div>
-  );
-});
+  )
+})
 
-export default ControlledTree;
+export default ControlledTree

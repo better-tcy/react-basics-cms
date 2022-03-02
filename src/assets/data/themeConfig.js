@@ -1,4 +1,3 @@
-
 // 比craco.config.js中的自定义主题优先级高
 const themeConfig = {
   // 登录页面背景图
@@ -8,7 +7,7 @@ const themeConfig = {
   // head 背景颜色
   headBgColor: '#ffffff',
   // main背景色
-  mainBgColor: '',
+  mainBgColor: ''
 }
 
 export default themeConfig

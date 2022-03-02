@@ -29,8 +29,9 @@
   "scripts": {
     "start": "craco start --mode development",
     "build": "craco build --mode production",
-    "test": "craco test",
-    "eject": "craco eject"
+    "prettier": "prettier --write .",
+    "prepare": "husky install",
+    "commit": "cz"
   },
   "eslintConfig": {
     "extends": [
@@ -50,7 +51,20 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^16.2.1",
+    "@commitlint/config-conventional": "^16.2.1",
     "babel-plugin-import": "^1.13.3",
-    "mockjs": "^1.1.0"
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "mockjs": "^1.1.0",
+    "prettier": "^2.5.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

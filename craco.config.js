@@ -1,8 +1,8 @@
-const path = require("path");
+const path = require('path')
 
-const resolve = dir => path.resolve(__dirname, dir);
+const resolve = (dir) => path.resolve(__dirname, dir)
 
-const CracoLessPlugin = require('craco-less');
+const CracoLessPlugin = require('craco-less')
 
 // const { getThemeVariables } = require('antd/dist/theme');
 
@@ -11,16 +11,21 @@ module.exports = {
   webpack: {
     //配置别名
     alias: {
-      "@": resolve('src'),
-      "page": resolve('src/component/business-components/page')
+      '@': resolve('src'),
+      page: resolve('src/component/business-components/page')
     }
   },
   babel: {
-    plugins: [['import', {
-      libraryName: 'antd',
-      libraryDirectory: 'es',
-      style: true,
-    }]],
+    plugins: [
+      [
+        'import',
+        {
+          libraryName: 'antd',
+          libraryDirectory: 'es',
+          style: true
+        }
+      ]
+    ]
   },
   plugins: [
     {
@@ -37,10 +42,10 @@ module.exports = {
             //   dark: true, // 开启暗黑模式
             //   compact: true, // 开启紧凑模式
             // }),
-            javascriptEnabled: true,
-          },
-        },
-      },
-    },
-  ],
+            javascriptEnabled: true
+          }
+        }
+      }
+    }
+  ]
 }

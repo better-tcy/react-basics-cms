@@ -1,15 +1,15 @@
-import React, { memo, useContext } from 'react';
+import React, { memo, useContext } from 'react'
 
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
 
-import { Form, Input, Button, } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Form, Input, Button } from 'antd'
+import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
 import { setMenuDataA, setMenuPathArrA } from '@/store/createAction/frameWork'
 
-import { ThemeContext } from '@/App';
+import { ThemeContext } from '@/App'
 
 import loginCss from './login.module.css'
 import './loginResetAntd.css'
@@ -18,15 +18,13 @@ import './loginResetAntd.css'
 import menuData from '@/assets/data/menuData'
 
 const Login = memo(() => {
-
-  const history = useHistory();
+  const history = useHistory()
 
   const dispatch = useDispatch()
 
   const theme = useContext(ThemeContext)
 
   const onFinish = () => {
-
     localStorage.setItem('token', 'token')
 
     dispatch(setMenuDataA(menuData))
@@ -48,15 +46,18 @@ const Login = memo(() => {
     dispatch(setMenuPathArrA(menuPathArr))
 
     history.replace('/content')
-  };
+  }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
 
   return (
     <div className="login">
-      <div className={loginCss.content} style={{ backgroundImage: `url(${theme.loginBgImg.default})` }}>
+      <div
+        className={loginCss.content}
+        style={{ backgroundImage: `url(${theme.loginBgImg.default})` }}
+      >
         <div className={loginCss.card}>
           <h1>Hello Betteryourself</h1>
           <Form
@@ -71,17 +72,27 @@ const Login = memo(() => {
             <Form.Item
               label="Username"
               name="username"
-              rules={[{ required: true, message: 'Please input your username!' }]}
+              rules={[
+                { required: true, message: 'Please input your username!' }
+              ]}
             >
-              <Input placeholder="Please input your username!" prefix={<UserOutlined className="site-form-item-icon" />} />
+              <Input
+                placeholder="Please input your username!"
+                prefix={<UserOutlined className="site-form-item-icon" />}
+              />
             </Form.Item>
 
             <Form.Item
               label="Password"
               name="password"
-              rules={[{ required: true, message: 'Please input your password!' }]}
+              rules={[
+                { required: true, message: 'Please input your password!' }
+              ]}
             >
-              <Input.Password placeholder="Please input your password!" prefix={<LockOutlined className="site-form-item-icon" />} />
+              <Input.Password
+                placeholder="Please input your password!"
+                prefix={<LockOutlined className="site-form-item-icon" />}
+              />
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 5, span: 18 }}>
@@ -93,7 +104,7 @@ const Login = memo(() => {
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
-export default Login;
+export default Login

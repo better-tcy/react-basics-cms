@@ -1,10 +1,14 @@
 import axios from 'axios'
 
-import { message } from 'antd';
+import { message } from 'antd'
 
 import store from '@/store'
 
-import { setCurrentOneMenuPathA, setCurrentTwoMenuPathA, setMenuDataA } from '@/store/createAction/frameWork.js'
+import {
+  setCurrentOneMenuPathA,
+  setCurrentTwoMenuPathA,
+  setMenuDataA
+} from '@/store/createAction/frameWork.js'
 
 // 创建axios实例
 const axios1 = axios.create()
@@ -16,11 +20,12 @@ if (process.env.NODE_ENV === 'development') {
   axios1.defaults.baseURL = ''
 }
 axios1.defaults.timeout = 10000
-axios1.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8;multipart/form-data'
+axios1.defaults.headers.post['Content-Type'] =
+  'application/x-www-form-urlencoded;charset=UTF-8;multipart/form-data'
 
 // 请求拦截器
 axios1.interceptors.request.use(
-  config => {
+  (config) => {
     // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
     // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
     const token = localStorage.getItem('token')
@@ -28,9 +33,10 @@ axios1.interceptors.request.use(
     token && (config.headers.token = token)
     return config
   },
-  error => {
+  (error) => {
     return Promise.error(error)
-  })
+  }
+)
 
 // 响应拦截器 code只是案例 具体code结合后端来定
 axios1.interceptors.response.use(
@@ -48,7 +54,6 @@ axios1.interceptors.response.use(
 
         // token失效
         case 401:
-
           localStorage.clear()
           store.dispatch(setCurrentTwoMenuPathA('/content/home'))
           store.dispatch(setCurrentOneMenuPathA(''))
@@ -84,14 +89,17 @@ axios1.interceptors.response.use(
  */
 export function getQuery(url, params) {
   return new Promise((resolve, reject) => {
-    axios1.get(url, {
-      params
-    }).then(res => {
-      resolve(res.data)
-    }).catch((err = "网络出错") => {
-      message.error(err);
-      reject(err)
-    })
+    axios1
+      .get(url, {
+        params
+      })
+      .then((res) => {
+        resolve(res.data)
+      })
+      .catch((err = '网络出错') => {
+        message.error(err)
+        reject(err)
+      })
   })
 }
 
@@ -101,16 +109,17 @@ export function getQuery(url, params) {
  * @param {Object} params [请求时携带的参数]
  */
 export function getRestful(url, params) {
-  const {
-    id
-  } = params
+  const { id } = params
   return new Promise((resolve, reject) => {
-    axios1.get(`${url}/${id}`).then(res => {
-      resolve(res.data)
-    }).catch((err = "网络出错") => {
-      message.error(err);
-      reject(err)
-    })
+    axios1
+      .get(`${url}/${id}`)
+      .then((res) => {
+        resolve(res.data)
+      })
+      .catch((err = '网络出错') => {
+        message.error(err)
+        reject(err)
+      })
   })
 }
 
@@ -121,11 +130,13 @@ export function getRestful(url, params) {
  */
 export function post(url, params) {
   return new Promise((resolve, reject) => {
-    axios1.post(url, params)
-      .then(res => {
+    axios1
+      .post(url, params)
+      .then((res) => {
         resolve(res.data)
-      }).catch((err = "网络出错") => {
-        message.error(err);
+      })
+      .catch((err = '网络出错') => {
+        message.error(err)
         reject(err)
       })
   })
@@ -138,29 +149,34 @@ export function post(url, params) {
  */
 export function put(url, params) {
   return new Promise((resolve, reject) => {
-    axios1.put(url, params)
-      .then(res => {
+    axios1
+      .put(url, params)
+      .then((res) => {
         resolve(res.data)
-      }).catch((err = "网络出错") => {
-        message.error(err);
+      })
+      .catch((err = '网络出错') => {
+        message.error(err)
         reject(err)
       })
   })
 }
 
 /**
- * delete方法，对应delete请求 
+ * delete方法，对应delete请求
  * @param {String} url [请求的url地址]
  * @param {Object} params [请求时携带的参数]
  */
 export function remove(url, params) {
   const { id } = params
   return new Promise((resolve, reject) => {
-    axios1.delete(`${url}/${id}`).then(res => {
-      resolve(res.data)
-    }).catch((err = "网络出错") => {
-      message.error(err);
-      reject(err)
-    })
+    axios1
+      .delete(`${url}/${id}`)
+      .then((res) => {
+        resolve(res.data)
+      })
+      .catch((err = '网络出错') => {
+        message.error(err)
+        reject(err)
+      })
   })
 }

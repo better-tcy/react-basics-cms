@@ -1,4 +1,4 @@
-import Mock from 'mockjs';
+import Mock from 'mockjs'
 
 // 模拟延迟
 Mock.setup({
@@ -8,20 +8,20 @@ Mock.setup({
 // 公共数据
 Mock.mock('http://localhost:3001/commonData', 'get', function () {
   return Mock.mock({
-    'code': 0,
-    'msg': '',
-    'result': '我是公共的数据 哈哈哈'
+    code: 0,
+    msg: '',
+    result: '我是公共的数据 哈哈哈，配置生成页面 请去OneOne目录'
   })
 })
 
 // 查看表格数据及详情
 Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
   console.log(options)
-  if (options.url === 'http://localhost:3001/oneOne?pageNum=1&pageSize=10') {
+  if (options.url.indexOf('?') !== -1) {
     return Mock.mock({
-      'code': 0,
-      'msg': '',
-      'data': {
+      code: 0,
+      msg: '',
+      data: {
         total: 2,
         list: [
           {
@@ -29,7 +29,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
             name: 'tom',
             iphone: '1323097666',
             jobTitle: 1,
-            status: 1,
+            status: 1
           },
           {
             id: 2,
@@ -43,9 +43,9 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
     })
   } else {
     return Mock.mock({
-      'code': 0,
-      'msg': '',
-      'data': {
+      code: 0,
+      msg: '',
+      data: {
         name: '哈哈哈',
         password: '123456',
         fruit: 1,
@@ -58,43 +58,57 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
       }
     })
   }
-
 })
 
 // 删除某条数据
-Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'delete', function () {
-  return Mock.mock({
-    'code': 0,
-    'msg': '',
-    'data': '删除成功'
-  })
-})
+Mock.mock(
+  RegExp(`http://localhost:3001/oneOne.*`),
+  'delete',
+  function (options) {
+    console.log(options)
+    return Mock.mock({
+      code: 0,
+      msg: '',
+      data: '删除成功'
+    })
+  }
+)
 
 // 启用数据
-Mock.mock(RegExp(`http://localhost:3001/oneOne/start.*`), 'post', function () {
-  return Mock.mock({
-    'code': 0,
-    'msg': '',
-    'data': '已启用'
-  })
-})
+Mock.mock(
+  RegExp(`http://localhost:3001/oneOne/start.*`),
+  'post',
+  function (options) {
+    console.log(options)
+    return Mock.mock({
+      code: 0,
+      msg: '',
+      data: '已启用'
+    })
+  }
+)
 
 // 禁用数据
-Mock.mock(RegExp(`http://localhost:3001/oneOne/stop.*`), 'post', function () {
-  return Mock.mock({
-    'code': 0,
-    'msg': '',
-    'data': '已禁用'
-  })
-})
+Mock.mock(
+  RegExp(`http://localhost:3001/oneOne/stop.*`),
+  'post',
+  function (options) {
+    console.log(options)
+    return Mock.mock({
+      code: 0,
+      msg: '',
+      data: '已禁用'
+    })
+  }
+)
 
 // 新增数据
 Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'post', function (options) {
   console.log(options)
   return Mock.mock({
-    'code': 0,
-    'msg': '',
-    'data': '添加成功'
+    code: 0,
+    msg: '',
+    data: '添加成功'
   })
 })
 
@@ -102,8 +116,8 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'post', function (options) {
 Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'put', function (options) {
   console.log(options)
   return Mock.mock({
-    'code': 0,
-    'msg': '',
-    'data': '修改成功'
+    code: 0,
+    msg: '',
+    data: '修改成功'
   })
 })

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react'
 
 import { Form, Button, message } from 'antd'
 
@@ -8,12 +8,20 @@ import _ from 'lodash'
 
 import { renderItem as renderModalItem } from '../../utils'
 
-import { addTableDataItemH, getTableDataItemDetailsH, updateTableDataItemH } from '@/request/api/content/common/page'
+import {
+  addTableDataItemH,
+  getTableDataItemDetailsH,
+  updateTableDataItemH
+} from '@/request/api/content/common/page'
 
 const PageModal = memo((props) => {
-
-  const { modalTitle, tableItemId, pageModalConfig, curdUrl, closeModal } = props
-  const { modalItemArr, labelCol = { offset: 0, span: 6 }, wrapperCol = { offset: 1, span: 8 } } = pageModalConfig
+  const { modalTitle, tableItemId, pageModalConfig, curdUrl, closeModal } =
+    props
+  const {
+    modalItemArr,
+    labelCol = { offset: 0, span: 6 },
+    wrapperCol = { offset: 1, span: 8 }
+  } = pageModalConfig
 
   const [form] = Form.useForm()
 
@@ -34,20 +42,14 @@ const PageModal = memo((props) => {
   }
 
   const renderItemCallBack = (itemConfig) => {
-
     if (itemConfig.type === 'rangePicker') {
-
       startDateField.current = itemConfig.field[0]
       endDateField.current = itemConfig.field[1]
       rangePickerFormat.current = itemConfig.format
-
     } else if (itemConfig.type === 'datePicker') {
-
       datePickerField.current = itemConfig.field
       datePickerFormat.current = itemConfig.format
-
     }
-
   }
 
   const preserve = () => {
@@ -57,14 +59,16 @@ const PageModal = memo((props) => {
     if (startDateField.current && endDateField.current) {
       // 日期区间选择器 是否选择了值
       if (formData[startDateField.current]) {
-
         const startDate = formData[startDateField.current][0]
         const endDate = formData[startDateField.current][1]
 
         // 给传给后端的数据 添加开始日期和结束日期的key val
-        formData[startDateField.current] = rangePickerFormat.current ? moment(startDate).format(rangePickerFormat.current) : moment(startDate).valueOf()
-        formData[endDateField.current] = rangePickerFormat.current ? moment(endDate).format(rangePickerFormat.current) : moment(endDate).valueOf()
-
+        formData[startDateField.current] = rangePickerFormat.current
+          ? moment(startDate).format(rangePickerFormat.current)
+          : moment(startDate).valueOf()
+        formData[endDateField.current] = rangePickerFormat.current
+          ? moment(endDate).format(rangePickerFormat.current)
+          : moment(endDate).valueOf()
       }
     }
 
@@ -74,8 +78,9 @@ const PageModal = memo((props) => {
       if (formData[datePickerField.current]) {
         const datePrickerVal = formData[datePickerField.current]
 
-        formData[datePickerField.current] = datePickerFormat.current ? moment(datePrickerVal).format(datePickerFormat.current) : moment(datePrickerVal).valueOf()
-
+        formData[datePickerField.current] = datePickerFormat.current
+          ? moment(datePrickerVal).format(datePickerFormat.current)
+          : moment(datePrickerVal).valueOf()
       }
     }
 
@@ -107,9 +112,15 @@ const PageModal = memo((props) => {
           if (startDate && endDate) {
             // 回显的日期是时间戳
             if (!rangePickerFormat.current) {
-              res.data[startDateField.current] = [moment(startDate), moment(endDate)]
+              res.data[startDateField.current] = [
+                moment(startDate),
+                moment(endDate)
+              ]
             } else {
-              res.data[startDateField.current] = [moment(startDate, rangePickerFormat.current), moment(endDate, rangePickerFormat.current)]
+              res.data[startDateField.current] = [
+                moment(startDate, rangePickerFormat.current),
+                moment(endDate, rangePickerFormat.current)
+              ]
             }
           }
         }
@@ -124,7 +135,10 @@ const PageModal = memo((props) => {
             if (!datePickerFormat.current) {
               res.data[datePickerField.current] = moment(datePickerVal)
             } else {
-              res.data[datePickerField.current] = moment(datePickerVal, datePickerFormat.current)
+              res.data[datePickerField.current] = moment(
+                datePickerVal,
+                datePickerFormat.current
+              )
             }
           }
         }
@@ -137,32 +151,42 @@ const PageModal = memo((props) => {
   return (
     <div>
       <Form
-        name='pageModalForm'
+        name="pageModalForm"
         form={form}
         labelCol={labelCol}
         wrapperCol={wrapperCol}
         autoComplete="off"
       >
-        {
-          (newModalItemArr || modalItemArr).map((modalItem) => {
-            return (
-              <div key={modalItem.field} >{renderModalItem(modalItem, renderItemCallBack)}</div>
-            )
-          })
-        }
+        {(newModalItemArr || modalItemArr).map((modalItem) => {
+          return (
+            <div key={modalItem.field}>
+              {renderModalItem(modalItem, renderItemCallBack)}
+            </div>
+          )
+        })}
       </Form>
-      {
-        !newModalItemArr && <div style={{ width: '200px', margin: '0 auto', textAlign: 'center' }}>
-          <Button style={{ marginRight: '10px' }} onClick={() => { closeModal() }}>
+      {!newModalItemArr && (
+        <div style={{ width: '200px', margin: '0 auto', textAlign: 'center' }}>
+          <Button
+            style={{ marginRight: '10px' }}
+            onClick={() => {
+              closeModal()
+            }}
+          >
             取消
           </Button>
-          <Button type="primary" onClick={() => { preserve() }}>
+          <Button
+            type="primary"
+            onClick={() => {
+              preserve()
+            }}
+          >
             确定
           </Button>
         </div>
-      }
+      )}
     </div>
-  );
-});
+  )
+})
 
-export default PageModal;
+export default PageModal

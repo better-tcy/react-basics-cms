@@ -1,5 +1,4 @@
 export function btnAuthority(pageAuthorityArr, btnAuthorityName) {
-
   if (!pageAuthorityArr || pageAuthorityArr.length === 0) {
     return false
   }
@@ -7,7 +6,7 @@ export function btnAuthority(pageAuthorityArr, btnAuthorityName) {
   let isShowBtn = false
   for (let authorityItem of pageAuthorityArr) {
     if (authorityItem.name === btnAuthorityName) {
-      isShowBtn = true;
+      isShowBtn = true
       break
     }
   }

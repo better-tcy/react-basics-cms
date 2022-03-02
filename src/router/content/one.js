@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy } from 'react'
 
 const One = lazy(() => import('@/view/content/one/one-one/OneOne'))
 

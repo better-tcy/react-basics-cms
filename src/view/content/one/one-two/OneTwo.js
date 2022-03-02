@@ -1,11 +1,7 @@
-import React, { memo } from 'react';
+import React, { memo } from 'react'
 
 const OneTwo = memo(() => {
-  return (
-    <div>
-      OneTwo
-    </div>
-  );
-});
+  return <div>OneTwo</div>
+})
 
-export default OneTwo;
+export default OneTwo

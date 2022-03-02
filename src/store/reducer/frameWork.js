@@ -8,12 +8,11 @@ import {
   SET_MENU_PATH_ARR
 } from '../const/frameWork.js'
 
-
 const defaultState = Map({
   currentOneMenuPathR: '',
   currentTwoMenuPathR: '',
   menuDataR: [],
-  menuPathArrR: [],
+  menuPathArrR: []
 })
 
 function reducer(state = defaultState, action) {

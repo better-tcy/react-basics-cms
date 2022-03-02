@@ -11,7 +11,8 @@ import oneRouter from './content/one'
 import notFoundRouter from './content/not-found'
 
 const routes = [
-  {  //重定向
+  {
+    //重定向
     path: '/', //一旦匹配到是这个路径 就会执行render函数
     exact: true,
     render: () => {
@@ -29,7 +30,8 @@ const routes = [
     },
     component: FrameWork,
     routes: [
-      {  // 重定向
+      {
+        // 重定向
         path: '/content', // 一旦匹配到是这个路径 就会执行render函数
         exact: true,
         render: () => {
