@@ -10,11 +10,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
   switch (itemConfig.type) {
     case 'input':
       return (
-        <Form.Item
-          label={itemConfig.label}
-          name={itemConfig.field}
-          rules={itemConfig.rules}
-        >
+        <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Input
             disabled={itemConfig.disabled}
             style={{ width: itemConfig.width || '200px' }}
@@ -24,11 +20,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
       )
     case 'password':
       return (
-        <Form.Item
-          label={itemConfig.label}
-          name={itemConfig.field}
-          rules={itemConfig.rules}
-        >
+        <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Input.Password
             disabled={itemConfig.disabled}
             style={{ width: itemConfig.width || '200px' }}
@@ -38,11 +30,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
       )
     case 'select':
       return (
-        <Form.Item
-          label={itemConfig.label}
-          name={itemConfig.field}
-          rules={itemConfig.rules}
-        >
+        <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Select
             showSearch
             disabled={itemConfig.disabled}
@@ -55,9 +43,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
                 return (
                   <Option
                     key={option[itemConfig.customizeOptionsValueKey || 'value']}
-                    value={
-                      option[itemConfig.customizeOptionsValueKey || 'value']
-                    }
+                    value={option[itemConfig.customizeOptionsValueKey || 'value']}
                   >
                     {option[itemConfig.customizeOptionsLabelKey || 'label']}
                   </Option>
@@ -69,11 +55,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
     case 'datePicker':
       renderItemCallBack(itemConfig)
       return (
-        <Form.Item
-          label={itemConfig.label}
-          name={itemConfig.field}
-          rules={itemConfig.rules}
-        >
+        <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <DatePicker
             disabled={itemConfig.disabled}
             placeholder={itemConfig.placeholder || '请选择日期'}
@@ -85,11 +67,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
     case 'rangePicker':
       renderItemCallBack(itemConfig)
       return (
-        <Form.Item
-          label={itemConfig.label}
-          name={itemConfig.field[0]}
-          rules={itemConfig.rules}
-        >
+        <Form.Item label={itemConfig.label} name={itemConfig.field[0]} rules={itemConfig.rules}>
           <RangePicker
             disabled={itemConfig.disabled}
             showTime={itemConfig.showTime}
@@ -100,11 +78,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
       )
     case 'radio':
       return (
-        <Form.Item
-          label={itemConfig.label}
-          name={itemConfig.field}
-          rules={itemConfig.rules}
-        >
+        <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Radio.Group disabled={itemConfig.disabled}>
             {itemConfig.options.map((option) => {
               return (
@@ -127,22 +101,14 @@ export function renderItem(itemConfig, renderItemCallBack) {
         }
       })
       return (
-        <Form.Item
-          label={itemConfig.label}
-          name={itemConfig.field}
-          rules={itemConfig.rules}
-        >
+        <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Checkbox.Group disabled={itemConfig.disabled} options={newOptions} />
         </Form.Item>
       )
 
     case 'tree':
       return (
-        <Form.Item
-          label={itemConfig.label}
-          name={itemConfig.field}
-          rules={itemConfig.rules}
-        >
+        <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <ControlledTree
             disabled={itemConfig.disabled}
             halfCheckedKeys={itemConfig.halfCheckedKeys}
@@ -158,12 +124,15 @@ export function renderItem(itemConfig, renderItemCallBack) {
 
     case 'upload':
       return (
-        <Form.Item
-          label={itemConfig.label}
-          name={itemConfig.field}
-          rules={itemConfig.rules}
-        >
-          <ControlledUpload disabled={itemConfig.disabled}></ControlledUpload>
+        <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
+          <ControlledUpload
+            disabled={itemConfig.disabled}
+            actionUrl={itemConfig.actionUrl}
+            headers={itemConfig.headers}
+            accept={itemConfig.accept}
+            data={itemConfig.data}
+            listType={itemConfig.listType}
+          ></ControlledUpload>
         </Form.Item>
       )
     default:

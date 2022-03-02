@@ -9,13 +9,8 @@ const Page = memo((props) => {
 
   const newPageConfig = checkPageConfig(pageConfig)
 
-  const {
-    pageRequestUrl,
-    pageTitleConfig,
-    pageSearchConfig,
-    pageTableConfig,
-    pageModalConfig
-  } = newPageConfig
+  const { pageRequestUrl, pageTitleConfig, pageSearchConfig, pageTableConfig, pageModalConfig } =
+    newPageConfig
 
   useImperativeHandle(props.onRef, () => {
     return {
@@ -46,9 +41,7 @@ const Page = memo((props) => {
       <PageTitle pageTitleConfig={pageTitleConfig}></PageTitle>
 
       <div style={{ padding: '18px' }}>
-        {pageSearchConfig && (
-          <PageSearch pageSearchConfig={newPageSearchConfig}></PageSearch>
-        )}
+        {pageSearchConfig && <PageSearch pageSearchConfig={newPageSearchConfig}></PageSearch>}
 
         <PageTable
           onRef={pageTableRef}

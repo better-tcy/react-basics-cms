@@ -68,12 +68,7 @@ const PageSearch = memo((props) => {
 
   return (
     <div className={pageSearchCss.page_search}>
-      <Form
-        name="pageSearchForm"
-        layout="inline"
-        autoComplete="off"
-        form={form}
-      >
+      <Form name="pageSearchForm" layout="inline" autoComplete="off" form={form}>
         {searchItemArr.map((searchItem) => {
           return (
             <div

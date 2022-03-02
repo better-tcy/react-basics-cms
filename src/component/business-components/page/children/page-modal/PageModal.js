@@ -15,8 +15,7 @@ import {
 } from '@/request/api/content/common/page'
 
 const PageModal = memo((props) => {
-  const { modalTitle, tableItemId, pageModalConfig, curdUrl, closeModal } =
-    props
+  const { modalTitle, tableItemId, pageModalConfig, curdUrl, closeModal } = props
   const {
     modalItemArr,
     labelCol = { offset: 0, span: 6 },
@@ -112,10 +111,7 @@ const PageModal = memo((props) => {
           if (startDate && endDate) {
             // 回显的日期是时间戳
             if (!rangePickerFormat.current) {
-              res.data[startDateField.current] = [
-                moment(startDate),
-                moment(endDate)
-              ]
+              res.data[startDateField.current] = [moment(startDate), moment(endDate)]
             } else {
               res.data[startDateField.current] = [
                 moment(startDate, rangePickerFormat.current),
@@ -135,10 +131,7 @@ const PageModal = memo((props) => {
             if (!datePickerFormat.current) {
               res.data[datePickerField.current] = moment(datePickerVal)
             } else {
-              res.data[datePickerField.current] = moment(
-                datePickerVal,
-                datePickerFormat.current
-              )
+              res.data[datePickerField.current] = moment(datePickerVal, datePickerFormat.current)
             }
           }
         }
@@ -158,11 +151,7 @@ const PageModal = memo((props) => {
         autoComplete="off"
       >
         {(newModalItemArr || modalItemArr).map((modalItem) => {
-          return (
-            <div key={modalItem.field}>
-              {renderModalItem(modalItem, renderItemCallBack)}
-            </div>
-          )
+          return <div key={modalItem.field}>{renderModalItem(modalItem, renderItemCallBack)}</div>
         })}
       </Form>
       {!newModalItemArr && (

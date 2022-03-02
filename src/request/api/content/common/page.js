@@ -27,3 +27,5 @@ export function getTableDataItemDetailsH(url, params) {
 export function updateTableDataItemH(url, params) {
   return put(url, params)
 }
+
+

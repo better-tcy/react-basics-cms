@@ -54,53 +54,49 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
         treeVal: [2],
         startDate: 1645514128000,
         endDate: 1645514129000,
-        datePickerVal: 1645514128000
+        datePickerVal: 1645514128000,
+        uploadVal: [
+          {
+            uid: 1,
+            name: 'image.jpg',
+            status: 'done',
+            url: 'http://101.43.153.100/images/image.jpg'
+          }
+        ]
       }
     })
   }
 })
 
 // 删除某条数据
-Mock.mock(
-  RegExp(`http://localhost:3001/oneOne.*`),
-  'delete',
-  function (options) {
-    console.log(options)
-    return Mock.mock({
-      code: 0,
-      msg: '',
-      data: '删除成功'
-    })
-  }
-)
+Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'delete', function (options) {
+  console.log(options)
+  return Mock.mock({
+    code: 0,
+    msg: '',
+    data: '删除成功'
+  })
+})
 
 // 启用数据
-Mock.mock(
-  RegExp(`http://localhost:3001/oneOne/start.*`),
-  'post',
-  function (options) {
-    console.log(options)
-    return Mock.mock({
-      code: 0,
-      msg: '',
-      data: '已启用'
-    })
-  }
-)
+Mock.mock(RegExp(`http://localhost:3001/oneOne/start.*`), 'post', function (options) {
+  console.log(options)
+  return Mock.mock({
+    code: 0,
+    msg: '',
+    data: '已启用'
+  })
+})
 
 // 禁用数据
-Mock.mock(
-  RegExp(`http://localhost:3001/oneOne/stop.*`),
-  'post',
-  function (options) {
-    console.log(options)
-    return Mock.mock({
-      code: 0,
-      msg: '',
-      data: '已禁用'
-    })
-  }
-)
+Mock.mock(RegExp(`http://localhost:3001/oneOne/stop.*`), 'post', function (options) {
+  console.log(options)
+  return Mock.mock({
+    code: 0,
+    msg: '',
+    data: '已禁用'
+  })
+})
 
 // 新增数据
 Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'post', function (options) {
@@ -119,5 +115,15 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'put', function (options) {
     code: 0,
     msg: '',
     data: '修改成功'
+  })
+})
+
+// 上传图片
+Mock.mock(RegExp(`http://localhost:3001/upload.*`), 'post', function (options) {
+  console.log(options)
+  return Mock.mock({
+    code: 0,
+    msg: '',
+    data: 'http://101.43.153.100/images/image.jpg'
   })
 })

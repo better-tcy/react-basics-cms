@@ -3,8 +3,7 @@ import React, { memo } from 'react'
 import { Tree } from 'antd'
 
 const ControlledTree = memo((props) => {
-  const { disabled, halfCheckedKeys, treeData, fieldNames, onChange, value } =
-    props
+  const { disabled, halfCheckedKeys, treeData, fieldNames, onChange, value } = props
 
   if (!treeData[0].key) {
     console.warn(

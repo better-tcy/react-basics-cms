@@ -77,6 +77,7 @@ const OneOne = memo((props) => {
           label: '姓名',
           field: 'name',
           placeholder: '请输入姓名',
+          disabled: false, // 是否禁用
           rules: []
         },
         {
@@ -184,6 +185,11 @@ const OneOne = memo((props) => {
           type: 'upload',
           label: '上传',
           field: 'uploadVal',
+          actionUrl: 'http://localhost:3001/upload', // 上传的地址
+          headers: {},
+          accept: '', // 接受上传的文件类型, 详见 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept
+          data: {}, // 上传所需额外参数或返回上传额外参数的方法
+          listType: '', //	上传列表的内建样式，支持三种基本样式 text, picture 和 picture-card
           rules: []
         }
       ]

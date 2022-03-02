@@ -34,22 +34,13 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
-  if (
-    pageConfig.pageSearchConfig &&
-    !pageConfig.pageSearchConfig.searchItemArr
-  ) {
+  if (pageConfig.pageSearchConfig && !pageConfig.pageSearchConfig.searchItemArr) {
     console.warn('请传入pageSearchConfig -> searchItemArr这项配置')
     return false
   }
 
-  if (
-    pageConfig.pageSearchConfig &&
-    pageConfig.pageSearchConfig.searchItemArr
-  ) {
-    const res = checkFormItemConfig(
-      'searchItemArr',
-      pageConfig.pageSearchConfig.searchItemArr
-    )
+  if (pageConfig.pageSearchConfig && pageConfig.pageSearchConfig.searchItemArr) {
+    const res = checkFormItemConfig('searchItemArr', pageConfig.pageSearchConfig.searchItemArr)
     if (!res) {
       return false
     }
@@ -71,10 +62,7 @@ export function checkPageConfig(pageConfig) {
   }
 
   if (pageConfig.pageModalConfig && pageConfig.pageModalConfig.modalItemArr) {
-    const res = checkFormItemConfig(
-      'modalItemArr',
-      pageConfig.pageModalConfig.modalItemArr
-    )
+    const res = checkFormItemConfig('modalItemArr', pageConfig.pageModalConfig.modalItemArr)
     if (!res) {
       return false
     }

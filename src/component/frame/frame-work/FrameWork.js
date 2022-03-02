@@ -39,16 +39,13 @@ const FrameWork = memo((props) => {
 
   const theme = useContext(ThemeContext)
 
-  const { currentOneMenuPath, currentTwoMenuPath, menuData } = useSelector(
-    (state) => {
-      return {
-        currentOneMenuPath: state.get('frameWork').get('currentOneMenuPathR'),
-        currentTwoMenuPath: state.get('frameWork').get('currentTwoMenuPathR'),
-        menuData: state.get('frameWork').get('menuDataR')
-      }
-    },
-    shallowEqual
-  )
+  const { currentOneMenuPath, currentTwoMenuPath, menuData } = useSelector((state) => {
+    return {
+      currentOneMenuPath: state.get('frameWork').get('currentOneMenuPathR'),
+      currentTwoMenuPath: state.get('frameWork').get('currentTwoMenuPathR'),
+      menuData: state.get('frameWork').get('menuDataR')
+    }
+  }, shallowEqual)
 
   const [collapsed, setCollapsed] = useState(false)
 
@@ -97,17 +94,13 @@ const FrameWork = memo((props) => {
           collapsible
           collapsed={collapsed}
         >
-          <div className={frameWorkCss.cms_name}>
-            {collapsed ? '' : 'Betteryourself'}
-          </div>
+          <div className={frameWorkCss.cms_name}>{collapsed ? '' : 'Betteryourself'}</div>
           <Menu
             theme="dark"
             mode="inline"
             style={{ color: theme.menuTextColor }}
             openKeys={openKeys.length === 0 ? [currentOneMenuPath] : openKeys}
-            defaultSelectedKeys={[
-              currentTwoMenuPath ? currentTwoMenuPath : '/content/home'
-            ]}
+            defaultSelectedKeys={[currentTwoMenuPath ? currentTwoMenuPath : '/content/home']}
             defaultOpenKeys={[currentOneMenuPath]}
             onOpenChange={onOpenChange}
           >
@@ -127,11 +120,7 @@ const FrameWork = memo((props) => {
                   )
                 } else {
                   return (
-                    <SubMenu
-                      key={oneMenu.path}
-                      title={oneMenu.name}
-                      icon={<SmileOutlined />}
-                    >
+                    <SubMenu key={oneMenu.path} title={oneMenu.name} icon={<SmileOutlined />}>
                       {oneMenu.children.map((twoMenu) => {
                         return (
                           <Menu.Item
@@ -153,18 +142,12 @@ const FrameWork = memo((props) => {
         </Sider>
 
         <Layout>
-          <Header
-            style={{ background: theme.headBgColor }}
-            className={frameWorkCss.header}
-          >
-            {React.createElement(
-              collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-              {
-                className: 'trigger',
-                style: { color: '#000000', fontSize: '20px' },
-                onClick: toggle
-              }
-            )}
+          <Header style={{ background: theme.headBgColor }} className={frameWorkCss.header}>
+            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+              className: 'trigger',
+              style: { color: '#000000', fontSize: '20px' },
+              onClick: toggle
+            })}
 
             <div className={frameWorkCss.header_right}>
               <Button
@@ -184,9 +167,7 @@ const FrameWork = memo((props) => {
               background: theme.mainBgColor
             }}
           >
-            <Suspense fallback={<div>Loading...</div>}>
-              {renderRoutes(route.routes)}
-            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>{renderRoutes(route.routes)}</Suspense>
           </Content>
         </Layout>
       </Layout>

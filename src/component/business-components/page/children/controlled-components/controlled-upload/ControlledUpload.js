@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 
 import axios from 'axios'
 
@@ -8,7 +8,7 @@ import { UploadOutlined } from '@ant-design/icons'
 import './controlledUpladResetAntd.css'
 
 const ControlledUpload = memo((props) => {
-  const { onChange } = props
+  const { onChange, value, actionUrl, accept, data, listType, headers } = props
 
   const id = useRef()
 
@@ -22,16 +22,13 @@ const ControlledUpload = memo((props) => {
     const formData = new FormData()
     formData.append('attach', option.file)
 
-    const res = await axios.post(
-      'http://192.168.1.65:8082/file_upload_service/file/uploading',
-      formData
-    )
+    const res = await axios.post(actionUrl, formData)
 
     let fileObj = {
       uid: id.current,
       name: option.file.name,
       status: 'done',
-      url: `http://4395n2305f.zicp.vip/file/field_inspection_file/${res.data.data}`
+      url: res.data.data
     }
 
     const newFileList = [...fileList, fileObj]
@@ -53,11 +50,17 @@ const ControlledUpload = memo((props) => {
     onChange(newFileList)
   }
 
+  useEffect(() => {
+    value && setFileList(value)
+  }, [value])
+
   return (
     <div className="controlled_upload">
       <Upload
-        listType="picture"
-        data={{}}
+        listType={listType || 'picture'}
+        headers={headers}
+        data={data}
+        accept={accept}
         fileList={fileList}
         beforeUpload={(file) => {
           beforeUpload(file)
@@ -75,6 +78,5 @@ const ControlledUpload = memo((props) => {
   )
 })
 
-// listType  data actionUrl
 
 export default ControlledUpload

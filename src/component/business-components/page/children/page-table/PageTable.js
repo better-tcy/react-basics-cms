@@ -1,11 +1,4 @@
-import React, {
-  memo,
-  useEffect,
-  useCallback,
-  useState,
-  useRef,
-  useImperativeHandle
-} from 'react'
+import React, { memo, useEffect, useCallback, useState, useRef, useImperativeHandle } from 'react'
 
 import { Button, Table, Space, Switch, message, Modal } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
@@ -66,65 +59,64 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-          title: '操作',
-          key: 'action',
-          align: 'center',
-          render: (_, record) => (
-            <Space size="middle">
-              {btnAuthority(pageAuthorityArr, '查看') && isShowGetBtn && (
-                <Button
-                  type="text"
-                  style={{ color: '#1890FF' }}
-                  onClick={() => {
-                    showModal('查看', record.id)
-                  }}
-                >
-                  查看
-                </Button>
-              )}
-              {btnAuthority(pageAuthorityArr, '修改') && isShowUpdateBtn && (
-                <Button
-                  type="text"
-                  style={{ color: '#48ED4B' }}
-                  onClick={() => {
-                    showModal('修改', record.id)
-                  }}
-                >
-                  修改
-                </Button>
-              )}
-              {btnAuthority(pageAuthorityArr, '删除') && isShowRemoveBtn && (
-                <Button
-                  type="text"
-                  style={{ color: '#EB3030' }}
-                  onClick={() => {
-                    removeTableData(record.id)
-                  }}
-                >
-                  删除
-                </Button>
-              )}
-              {tableMoreButtonArr.map((funItem) => {
-                if (funItem instanceof Function) {
-                  return funItem(record)
-                } else {
-                  return ''
-                }
-              })}
-              {btnAuthority(pageAuthorityArr, '启用停用') &&
-                isShowEnableDisableBtn && (
-                  <Switch
-                    checkedChildren="启用"
-                    unCheckedChildren="禁用"
-                    checked={record.status === 1}
-                    onClick={(checked) => {
-                      enableOrDisable(checked, [record.id])
-                    }}
-                  />
-                )}
-            </Space>
-          )
-        }
+        title: '操作',
+        key: 'action',
+        align: 'center',
+        render: (_, record) => (
+          <Space size="middle">
+            {btnAuthority(pageAuthorityArr, '查看') && isShowGetBtn && (
+              <Button
+                type="text"
+                style={{ color: '#1890FF' }}
+                onClick={() => {
+                  showModal('查看', record.id)
+                }}
+              >
+                查看
+              </Button>
+            )}
+            {btnAuthority(pageAuthorityArr, '修改') && isShowUpdateBtn && (
+              <Button
+                type="text"
+                style={{ color: '#48ED4B' }}
+                onClick={() => {
+                  showModal('修改', record.id)
+                }}
+              >
+                修改
+              </Button>
+            )}
+            {btnAuthority(pageAuthorityArr, '删除') && isShowRemoveBtn && (
+              <Button
+                type="text"
+                style={{ color: '#EB3030' }}
+                onClick={() => {
+                  removeTableData(record.id)
+                }}
+              >
+                删除
+              </Button>
+            )}
+            {tableMoreButtonArr.map((funItem) => {
+              if (funItem instanceof Function) {
+                return funItem(record)
+              } else {
+                return ''
+              }
+            })}
+            {btnAuthority(pageAuthorityArr, '启用停用') && isShowEnableDisableBtn && (
+              <Switch
+                checkedChildren="启用"
+                unCheckedChildren="禁用"
+                checked={record.status === 1}
+                onClick={(checked) => {
+                  enableOrDisable(checked, [record.id])
+                }}
+              />
+            )}
+          </Space>
+        )
+      }
       : {}
   ]
 
@@ -223,24 +215,20 @@ const PageTable = memo((props) => {
     if (isEnable) {
       // 启用
       function callBackFun() {
-        startTableDataH(enableUrl || `${curdUrl}start`, { ids: rowIdArr }).then(
-          (res) => {
-            message.success('已启用')
-            getTableData()
-          }
-        )
+        startTableDataH(enableUrl || `${curdUrl}start`, { ids: rowIdArr }).then((res) => {
+          message.success('已启用')
+          getTableData()
+        })
       }
 
       commonConfirm('是否启用数据？', callBackFun)
     } else {
       // 禁用
       function callBackFun() {
-        stopTableDataH(disabledUrl || `${curdUrl}stop`, { ids: rowIdArr }).then(
-          (res) => {
-            message.warning('已禁用')
-            getTableData()
-          }
-        )
+        stopTableDataH(disabledUrl || `${curdUrl}stop`, { ids: rowIdArr }).then((res) => {
+          message.warning('已禁用')
+          getTableData()
+        })
       }
 
       commonConfirm('是否禁用数据？', callBackFun)
@@ -266,19 +254,18 @@ const PageTable = memo((props) => {
               新建
             </Button>
           )}
-          {btnAuthority(pageAuthorityArr, '启用停用') &&
-            isShowEnableDisableBtn && (
-              <Button
-                className={pageTableCss.start_btn}
-                onClick={() => {
-                  enableRows()
-                }}
-              >
-                启用
-              </Button>
-            )}
-          {btnAuthority(pageAuthorityArr, '启用停用') &&
-            isShowEnableDisableBtn && (
+          {btnAuthority(pageAuthorityArr, '启用停用') && isShowEnableDisableBtn && (
+            <Button
+              className={pageTableCss.start_btn}
+              onClick={() => {
+                enableRows()
+              }}
+            >
+              启用
+            </Button>
+          )}
+          {
+            btnAuthority(pageAuthorityArr, '启用停用') && isShowEnableDisableBtn && (
               <Button
                 className={pageTableCss.stop_btn}
                 onClick={() => {
@@ -287,14 +274,17 @@ const PageTable = memo((props) => {
               >
                 停用
               </Button>
-            )}
-          {pageMoreButtonArr.map((funItem) => {
-            if (funItem instanceof Function) {
-              return funItem(selectedRowKeys)
-            } else {
-              return ''
-            }
-          })}
+            )
+          }
+          {
+            pageMoreButtonArr.map((funItem) => {
+              if (funItem instanceof Function) {
+                return funItem(selectedRowKeys)
+              } else {
+                return ''
+              }
+            })
+          }
         </div>
       </div>
 
