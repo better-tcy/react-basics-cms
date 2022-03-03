@@ -71,6 +71,9 @@ const OneOne = memo((props) => {
       ]
     },
     pageModalConfig: {
+      // labelCol:{}, // 详见antd 官网
+      // wrapperCol:{},// 详见antd 官网
+      // layout:'' // 表单布局 可选值 horizontal | vertical | inline
       modalItemArr: [
         {
           type: 'input',

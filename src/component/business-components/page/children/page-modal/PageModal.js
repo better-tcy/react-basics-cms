@@ -18,6 +18,7 @@ const PageModal = memo((props) => {
   const { modalTitle, tableItemId, pageModalConfig, curdUrl, closeModal } = props
   const {
     modalItemArr,
+    layout = 'horizontal',
     labelCol = { offset: 0, span: 6 },
     wrapperCol = { offset: 1, span: 8 }
   } = pageModalConfig
@@ -146,6 +147,7 @@ const PageModal = memo((props) => {
       <Form
         name="pageModalForm"
         form={form}
+        layout={layout}
         labelCol={labelCol}
         wrapperCol={wrapperCol}
         autoComplete="off"
