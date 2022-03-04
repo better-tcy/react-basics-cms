@@ -37,7 +37,7 @@ const OneOne = memo((props) => {
     },
     pageTableConfig: {
       // isShowAddBtn: false, // 默认都为true
-      // isShowGetBtn: false,
+      // isShowCheckDetailsBtn: false,
       // isShowUpdateBtn: false,
       // isShowRemoveBtn: false,
       // isShowEnableDisableBtn: false,
@@ -68,7 +68,29 @@ const OneOne = memo((props) => {
             }
           }
         }
-      ]
+      ],
+      // 如果按钮权限不具体到表格行信息的时候 下面函数可不传 默认按钮都显示
+      // 根据行数据 是否渲染 查看按钮
+      // accordingRowIsRenderCheckBtn(record) {
+      //   // 返回值必须为true && false
+
+      // },
+      // 根据行数据 是否渲染 修改按钮
+      // accordingRowIsRenderUpdateBtn(record) {
+
+      // },
+      // 根据行数据 是否渲染 删除按钮
+      accordingRowIsRenderRemoveBtn(record) {
+        if (record.id === 1) {
+          return false
+        } else {
+          return true
+        }
+      },
+      // 根据行数据 是否渲染 启用停用
+      // accordingRowIsRenderEDBtn(record) {
+
+      // }
     },
     pageModalConfig: {
       // labelCol:{}, // 详见antd 官网
