@@ -86,7 +86,7 @@ const OneOne = memo((props) => {
         } else {
           return true
         }
-      },
+      }
       // 根据行数据 是否渲染 启用停用
       // accordingRowIsRenderEDBtn(record) {
 

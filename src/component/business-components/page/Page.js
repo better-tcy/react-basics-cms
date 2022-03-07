@@ -14,7 +14,7 @@ const Page = memo((props) => {
 
   useImperativeHandle(props.onRef, () => {
     return {
-      getTableData: pageTableRef.current.getTableData
+      getTableData: pageTableRef.current?.getTableData
     }
   })
 

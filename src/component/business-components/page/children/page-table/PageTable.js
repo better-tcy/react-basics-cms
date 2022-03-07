@@ -60,7 +60,6 @@ const PageTable = memo((props) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const tableBtnArr = [
-
     renderCheckRowDetailsBtn(),
 
     renderUpdateRowDataBtn(),
@@ -69,8 +68,7 @@ const PageTable = memo((props) => {
 
     ...tableMoreButtonArr,
 
-    renderEnableDisableBtn(),
-
+    renderEnableDisableBtn()
   ]
 
   const newColumns = [
@@ -82,15 +80,23 @@ const PageTable = memo((props) => {
         align: 'center',
         render: (_, record) => (
           <Space size="middle">
-
             {tableBtnArr.map((funItem) => {
               if (funItem instanceof Function) {
-                return funItem(record) || <Button type="text" key={record.id}>——</Button>
+                return (
+                  funItem(record) || (
+                    <Button type="text" key={record.id}>
+                      ——
+                    </Button>
+                  )
+                )
               } else {
-                return <Button type="text" key={record.id}>——</Button>
+                return (
+                  <Button type="text" key={record.id}>
+                    ——
+                  </Button>
+                )
               }
             })}
-
           </Space>
         )
       }
