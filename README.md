@@ -72,22 +72,22 @@
 
 - 第二步选择本次修改的范围（作用域）
 
-![image-20210723150147510](https://tva1.sinaimg.cn/large/008i3skNgy1gsqw8ca15oj30r600wmx4.jpg)
+![image-two](https://github.com/Betteryourself-tcy/images/blob/master/two.png?raw=true)
 
 - 第三步选择提交的信息
 
-![image-20210723150204780](https://tva1.sinaimg.cn/large/008i3skNgy1gsqw8mq3zlj60ni01hmx402.jpg)
+![image-three](https://github.com/Betteryourself-tcy/images/blob/master/three.png?raw=true)
 
 - 第四步提交详细的描述信息
 
-![image-20210723150223287](https://tva1.sinaimg.cn/large/008i3skNgy1gsqw8y05bjj30kt01fjrb.jpg)
+![image-four](https://github.com/Betteryourself-tcy/images/blob/master/four.png?raw=true)
 
 - 第五步是否是一次重大的更改
 
-![image-20210723150322122](https://tva1.sinaimg.cn/large/008i3skNgy1gsqw9z5vbij30bm00q744.jpg)
+![image-five](https://github.com/Betteryourself-tcy/images/blob/master/five.png?raw=true)
 
 - 第六步是否影响某个 open issue
 
-![image-20210723150407822](https://tva1.sinaimg.cn/large/008i3skNgy1gsqwar8xp1j30fq00ya9x.jpg)
+![image-six](https://github.com/Betteryourself-tcy/images/blob/master/six.png?raw=true)
 
 #### ps:页面渲染内容虽然不多 但是可以参考下整体代码设计 欢迎提出问题 共同进步
