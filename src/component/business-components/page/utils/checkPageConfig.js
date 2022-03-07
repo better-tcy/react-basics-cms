@@ -44,7 +44,7 @@ export function checkPageConfig(pageConfig) {
   }
 
   if (!pageConfig.pageRequestUrl) {
-    console.warn('请传入pageRequestUrl这项配置')
+    console.warn('请传入pageConfig -> pageRequestUrl这项配置')
     return false
   }
 
@@ -58,13 +58,13 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
-  if (!(checkIsString(pageConfig.pageRequestUrl.curdUrl))) {
-    console.warn('请传入 pageRequestUrl -> curdUrl这项配置必须为String类型')
+  if (!checkIsString(pageConfig.pageRequestUrl.curdUrl)) {
+    console.warn('pageRequestUrl -> curdUrl这项配置必须为String类型')
     return false
   }
 
   if (!pageConfig.pageTitleConfig) {
-    console.warn('请传入pageTitleConfig这项配置')
+    console.warn('请传入 pageConfig -> pageTitleConfig这项配置')
     return false
   }
 
@@ -78,13 +78,13 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
-  if (!(checkIsString(pageConfig.pageTitleConfig.title))) {
-    console.warn('请传入 pageTitleConfig -> title这项配置必须为String类型')
+  if (!checkIsString(pageConfig.pageTitleConfig.title)) {
+    console.warn('pageTitleConfig -> title这项配置必须为String类型')
     return false
   }
 
   if (pageConfig.pageSearchConfig) {
-    if (!(checkIsObject(pageConfig.pageSearchConfig))) {
+    if (!checkIsObject(pageConfig.pageSearchConfig)) {
       console.warn('pageConfig -> pageSearchConfig必须为对象')
       return false
     }
@@ -94,7 +94,7 @@ export function checkPageConfig(pageConfig) {
       return false
     }
 
-    if (!(checkIsArray(pageConfig.pageSearchConfig.searchItemArr))) {
+    if (!checkIsArray(pageConfig.pageSearchConfig.searchItemArr)) {
       console.warn('pageSearchConfig -> searchItemArr这项配置必须为数组')
       return false
     }
@@ -109,7 +109,6 @@ export function checkPageConfig(pageConfig) {
       return false
     }
   }
-
 
   if (!pageConfig.pageTableConfig) {
     console.warn('请传入pageTableConfig这项配置')
@@ -126,13 +125,13 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
-  if (!(checkIsArray(pageConfig.pageTableConfig.columns))) {
-    console.warn('请传入pageTableConfig -> columns这项必须为数组')
+  if (!checkIsArray(pageConfig.pageTableConfig.columns)) {
+    console.warn('pageTableConfig -> columns这项必须为数组')
     return false
   }
 
   if (pageConfig.pageModalConfig) {
-    if (!(checkIsObject(pageConfig.pageModalConfig))) {
+    if (!checkIsObject(pageConfig.pageModalConfig)) {
       console.warn('pageConfig -> pageModalConfig必须为对象')
       return false
     }
@@ -142,7 +141,7 @@ export function checkPageConfig(pageConfig) {
       return false
     }
 
-    if (!(checkIsArray(pageConfig.pageModalConfig.modalItemArr))) {
+    if (!checkIsArray(pageConfig.pageModalConfig.modalItemArr)) {
       console.warn('pageModalConfig -> modalItemArr这项配置必须为数组')
       return false
     }
