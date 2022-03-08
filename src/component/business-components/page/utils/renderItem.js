@@ -3,7 +3,7 @@ import { Form, Input, Select, DatePicker, Radio, Checkbox, Cascader } from 'antd
 import ControlledTree from 'page/children/controlled-components/controlled-tree/ControlledTree'
 import ControlledUpload from 'page/children/controlled-components/controlled-upload/ControlledUpload'
 
-const { TextArea } = Input;
+const { TextArea } = Input
 const { Option } = Select
 const { RangePicker } = DatePicker
 
@@ -164,7 +164,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
             expandTrigger={itemConfig.expandTrigger || 'click'}
             placeholder={itemConfig.placeholder || '请选择内容'}
           ></Cascader>
-        </Form.Item >
+        </Form.Item>
       )
 
     default:
