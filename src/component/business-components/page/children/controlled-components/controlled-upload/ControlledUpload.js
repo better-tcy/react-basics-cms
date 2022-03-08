@@ -57,7 +57,7 @@ const ControlledUpload = memo((props) => {
   return (
     <div className="controlled_upload">
       <Upload
-        listType={listType || 'picture'}
+        listType={listType}
         headers={headers}
         data={data}
         accept={accept}

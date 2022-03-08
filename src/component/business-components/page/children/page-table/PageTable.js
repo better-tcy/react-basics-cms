@@ -362,6 +362,7 @@ const PageTable = memo((props) => {
 
       {pageModalConfig && (
         <Modal
+          width={pageModalConfig.width || 560}
           title={modalTitle.current}
           destroyOnClose
           visible={isModalVisible}

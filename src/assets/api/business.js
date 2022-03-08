@@ -62,7 +62,9 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
             status: 'done',
             url: 'http://101.43.153.100/images/image.jpg'
           }
-        ]
+        ],
+        textAreaVal: '回显数据',
+        cascaderVal: [1, 2]
       }
     })
   }

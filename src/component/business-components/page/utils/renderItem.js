@@ -1,8 +1,9 @@
-import { Form, Input, Select, DatePicker, Radio, Checkbox } from 'antd'
+import { Form, Input, Select, DatePicker, Radio, Checkbox, Cascader } from 'antd'
 
 import ControlledTree from 'page/children/controlled-components/controlled-tree/ControlledTree'
 import ControlledUpload from 'page/children/controlled-components/controlled-upload/ControlledUpload'
 
+const { TextArea } = Input;
 const { Option } = Select
 const { RangePicker } = DatePicker
 
@@ -13,17 +14,31 @@ export function renderItem(itemConfig, renderItemCallBack) {
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Input
             disabled={itemConfig.disabled}
-            style={{ width: itemConfig.width || '200px' }}
+            style={{ width: itemConfig.width || '260px' }}
             placeholder={itemConfig.placeholder || '请输入内容'}
           />
         </Form.Item>
       )
+
+    case 'textArea':
+      return (
+        <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
+          <TextArea
+            disabled={itemConfig.disabled}
+            rows={itemConfig.rows || 2}
+            maxLength={itemConfig.maxLength || 100}
+            style={{ width: itemConfig.width || '260px', maxWidth: '1000px' }}
+            placeholder={itemConfig.placeholder || '请输入内容'}
+          />
+        </Form.Item>
+      )
+
     case 'password':
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Input.Password
             disabled={itemConfig.disabled}
-            style={{ width: itemConfig.width || '200px' }}
+            style={{ width: itemConfig.width || '260px' }}
             placeholder={itemConfig.placeholder || '请输入内容'}
           />
         </Form.Item>
@@ -32,11 +47,12 @@ export function renderItem(itemConfig, renderItemCallBack) {
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Select
+            mode={itemConfig.mode || ''}
             showSearch
             disabled={itemConfig.disabled}
-            style={{ width: itemConfig.width || '200px' }}
-            placeholder={itemConfig.placeholder || '请选择内容'}
             optionFilterProp="children"
+            style={{ width: itemConfig.width || '260px' }}
+            placeholder={itemConfig.placeholder || '请选择内容'}
           >
             {itemConfig.options &&
               itemConfig.options.map((option) => {
@@ -58,8 +74,8 @@ export function renderItem(itemConfig, renderItemCallBack) {
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <DatePicker
             disabled={itemConfig.disabled}
-            placeholder={itemConfig.placeholder || '请选择日期'}
             style={{ width: itemConfig.width || '260px' }}
+            placeholder={itemConfig.placeholder || '请选择日期'}
           />
         </Form.Item>
       )
@@ -71,8 +87,8 @@ export function renderItem(itemConfig, renderItemCallBack) {
           <RangePicker
             disabled={itemConfig.disabled}
             showTime={itemConfig.showTime}
-            placeholder={itemConfig.placeholder || ['开始日期', '结束日期']}
             style={{ width: itemConfig.width || '260px' }}
+            placeholder={itemConfig.placeholder || ['开始日期', '结束日期']}
           />
         </Form.Item>
       )
@@ -131,10 +147,26 @@ export function renderItem(itemConfig, renderItemCallBack) {
             headers={itemConfig.headers}
             accept={itemConfig.accept}
             data={itemConfig.data}
-            listType={itemConfig.listType}
+            listType={itemConfig.listType || 'picture'}
           ></ControlledUpload>
         </Form.Item>
       )
+
+    case 'cascader':
+      return (
+        <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
+          <Cascader
+            multiple={itemConfig.multiple}
+            disabled={itemConfig.disabled}
+            options={itemConfig.options}
+            changeOnSelect={itemConfig.changeOnSelect}
+            style={{ width: itemConfig.width || '260px' }}
+            expandTrigger={itemConfig.expandTrigger || 'click'}
+            placeholder={itemConfig.placeholder || '请选择内容'}
+          ></Cascader>
+        </Form.Item >
+      )
+
     default:
       console.warn('未找到对应组件')
   }

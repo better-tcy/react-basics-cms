@@ -93,6 +93,7 @@ const OneOne = memo((props) => {
       // }
     },
     pageModalConfig: {
+      // width: 500, // 弹窗宽度 默认为560
       // labelCol:{}, // 详见antd 官网
       // wrapperCol:{},// 详见antd 官网
       // layout:'' // 表单布局 可选值 horizontal | vertical | inline
@@ -115,6 +116,7 @@ const OneOne = memo((props) => {
         {
           type: 'select',
           label: '选择水果',
+          mode: '', // 设置 Select 的模式为多选或标签 可选值为 multiple | tags 不传为单选
           field: 'fruit',
           placeholder: '请选择水果',
           rules: [],
@@ -171,11 +173,11 @@ const OneOne = memo((props) => {
           type: 'tree',
           label: '学习的编程语言',
           field: 'treeVal',
-          rules: [],
           halfCheckedKeys: true,
           customizeOptionsValueKey: 'id', // 默认为value
           customizeOptionsLabelKey: 'name', // 默认为label
           customizeOptionsChildrenKey: 'children', // 默认为children
+          rules: [],
           options: [
             {
               id: 1,
@@ -203,8 +205,8 @@ const OneOne = memo((props) => {
           label: '选择日期区间',
           field: ['startDate', 'endDate'],
           format: '', // 默认为时间戳
+          showTime: true,
           rules: [],
-          showTime: true
         },
         {
           type: 'upload',
@@ -216,6 +218,59 @@ const OneOne = memo((props) => {
           data: {}, // 上传所需额外参数或返回上传额外参数的方法
           listType: '', //	上传列表的内建样式，支持三种基本样式 text, picture 和 picture-card
           rules: []
+        },
+        {
+          type: 'textArea',
+          label: '文本域',
+          field: 'textAreaVal',
+          placeholder: '请输入内容',
+          rows: 3, // 文本域行数 默认为2
+          maxLength: 10, // 输入内容最大长度 默认为100
+          rules: [],
+        },
+        {
+          type: 'cascader',
+          label: '级联选择',
+          field: 'cascaderVal',
+          placeholder: '请选择数据',
+          multiple: false, // 是否多选 默认为false
+          expandTrigger: 'hover', // 次级菜单的展开方式，可选 'click' 和 'hover' 默认为click
+          changeOnSelect: true, 	//（单选时生效）当此项为 true时，点选每级菜单选项值都会发生变化 默认为false
+          rules: [],
+          options: [
+            {
+              label: '前端',
+              value: 1,
+              children: [
+                {
+                  label: 'Vue',
+                  value: 2
+                },
+                {
+                  label: 'React',
+                  value: 3
+                }
+              ]
+            },
+            {
+              label: '后端',
+              value: 7,
+              children: [
+                {
+                  label: 'Java',
+                  value: 8,
+                },
+                {
+                  label: 'Golang',
+                  value: 9,
+                },
+                {
+                  label: 'Python',
+                  value: 10,
+                },
+              ]
+            }
+          ],
         }
       ]
     }
@@ -289,7 +344,7 @@ const OneOne = memo((props) => {
     // 表格中其他按钮
     pageConfig.pageTableConfig.tableMoreButtonArr = [tableBtn1()]
 
-    // Page中其他按钮
+    // Page页中其他按钮
     pageConfig.pageTableConfig.pageMoreButtonArr = [pageBtn1()]
   }
 
