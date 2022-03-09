@@ -23,7 +23,7 @@ const PageModal = memo((props) => {
     cancelText = '取消',
     layout = 'horizontal',
     labelCol = { offset: 0, span: 6 },
-    wrapperCol = { offset: 1, span: 8 },
+    wrapperCol = { offset: 1, span: 10 },
     modalItemArr
   } = pageModalConfig
 
@@ -56,7 +56,10 @@ const PageModal = memo((props) => {
     }
   }
 
-  const preserve = () => {
+  const preserve = async () => {
+
+    await form.validateFields()
+
     let formData = form.getFieldsValue()
 
     // 是否存在日期区间选择器

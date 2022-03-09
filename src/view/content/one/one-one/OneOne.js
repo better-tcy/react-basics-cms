@@ -107,7 +107,7 @@ const OneOne = memo((props) => {
           field: 'name',
           placeholder: '请输入姓名',
           disabled: false, // 是否禁用
-          rules: []
+          rules: [{ required: true, message: '请输入姓名' }]
         },
         {
           type: 'password',
