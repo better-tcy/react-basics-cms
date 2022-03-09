@@ -75,31 +75,31 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-          title: '操作',
-          key: 'action',
-          align: 'center',
-          render: (_, record) => (
-            <Space size="middle">
-              {tableBtnArr.map((funItem) => {
-                if (funItem instanceof Function) {
-                  return (
-                    funItem(record) || (
-                      <Button type="text" key={record.id}>
-                        ——
-                      </Button>
-                    )
-                  )
-                } else {
-                  return (
+        title: '操作',
+        key: 'action',
+        align: 'center',
+        render: (_, record) => (
+          <Space size="middle">
+            {tableBtnArr.map((funItem) => {
+              if (funItem instanceof Function) {
+                return (
+                  funItem(record) || (
                     <Button type="text" key={record.id}>
                       ——
                     </Button>
                   )
-                }
-              })}
-            </Space>
-          )
-        }
+                )
+              } else {
+                return (
+                  <Button type="text" key={record.id}>
+                    ——
+                  </Button>
+                )
+              }
+            })}
+          </Space>
+        )
+      }
       : {}
   ]
 
@@ -242,7 +242,6 @@ const PageTable = memo((props) => {
   }
 
   const closeModal = (_, isRequestTableData) => {
-    console.log(123)
     if (isRequestTableData) {
       getTableData()
     }

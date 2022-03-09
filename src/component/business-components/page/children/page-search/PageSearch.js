@@ -31,7 +31,7 @@ const PageSearch = memo((props) => {
     let isRequestData = false
 
     Object.values(searchData).forEach((item) => {
-      if (item) {
+      if (item || item === 0) {
         isRequestData = true
       }
     })
