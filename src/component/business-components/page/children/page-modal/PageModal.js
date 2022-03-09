@@ -90,6 +90,7 @@ const PageModal = memo((props) => {
 
     if (tableItemId) {
       // 修改
+      formData.id = tableItemId
       updateTableDataItemH(curdUrl, formData).then((res) => {
         message.success('修改成功')
         // true：重新请求table表格数据

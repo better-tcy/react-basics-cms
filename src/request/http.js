@@ -148,6 +148,11 @@ export function post(url, params) {
  * @param {Object} params [请求时携带的参数]
  */
 export function put(url, params) {
+  const id = params.id
+  if (id) {
+    url = `${url}/${id}`
+    delete params.id
+  }
   return new Promise((resolve, reject) => {
     axios1
       .put(url, params)

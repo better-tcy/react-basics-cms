@@ -282,7 +282,7 @@ const PageTable = memo((props) => {
     if (isEnable) {
       // 启用
       function callBackFun() {
-        startTableDataH(enableUrl || `${curdUrl}start`, { ids: rowIdArr }).then((res) => {
+        startTableDataH(enableUrl || `${curdUrl}/start`, { ids: rowIdArr }).then((res) => {
           message.success('已启用')
           getTableData()
         })
@@ -292,7 +292,7 @@ const PageTable = memo((props) => {
     } else {
       // 禁用
       function callBackFun() {
-        stopTableDataH(disabledUrl || `${curdUrl}stop`, { ids: rowIdArr }).then((res) => {
+        stopTableDataH(disabledUrl || `${curdUrl}/stop`, { ids: rowIdArr }).then((res) => {
           message.warning('已禁用')
           getTableData()
         })
