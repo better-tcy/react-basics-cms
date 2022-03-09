@@ -123,8 +123,8 @@ const OneOne = memo((props) => {
           field: 'fruit',
           placeholder: '请选择水果',
           rules: [],
-          customizeOptionsValueKey: 'id', // 自定义 options 中 label value  默认为value
-          customizeOptionsLabelKey: 'name', // 自定义 options 中 label value 默认为label
+          customizeOptionsValueKey: 'id', // 自定义options中value字段  默认为value
+          customizeOptionsLabelKey: 'name', // 自定义options中label字段 默认为label
           options: [
             {
               name: '苹果',
