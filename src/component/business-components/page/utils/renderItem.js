@@ -163,6 +163,11 @@ export function renderItem(itemConfig, renderItemCallBack) {
             style={{ width: itemConfig.width || '260px' }}
             expandTrigger={itemConfig.expandTrigger || 'click'}
             placeholder={itemConfig.placeholder || '请选择内容'}
+            fieldNames={{
+              label: itemConfig.customizeOptionsLabelKey || 'label',
+              value: itemConfig.customizeOptionsValueKey || 'value',
+              children: itemConfig.customizeOptionsChildrenKey || 'children'
+            }}
           ></Cascader>
         </Form.Item>
       )

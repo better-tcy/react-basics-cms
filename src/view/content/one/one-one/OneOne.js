@@ -239,6 +239,9 @@ const OneOne = memo((props) => {
           multiple: false, // 是否多选 默认为false
           expandTrigger: 'hover', // 次级菜单的展开方式，可选 'click' 和 'hover' 默认为click
           changeOnSelect: true, //（单选时生效）当此项为 true时，点选每级菜单选项值都会发生变化 默认为false
+          // customizeOptionsValueKey: 'id', // 默认为value
+          // customizeOptionsLabelKey: 'name', // 默认为label
+          // customizeOptionsChildrenKey:'child' // 默认为children
           rules: [],
           options: [
             {
