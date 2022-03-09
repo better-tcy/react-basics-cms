@@ -176,7 +176,6 @@ const OneOne = memo((props) => {
           type: 'tree',
           label: '学习的编程语言',
           field: 'treeVal',
-          halfCheckedKeys: true,
           customizeOptionsValueKey: 'id', // 默认为value
           customizeOptionsLabelKey: 'name', // 默认为label
           customizeOptionsChildrenKey: 'children', // 默认为children

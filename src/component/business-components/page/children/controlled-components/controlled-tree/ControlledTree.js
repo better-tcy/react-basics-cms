@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import { Tree } from 'antd'
 
 const ControlledTree = memo((props) => {
-  const { disabled, halfCheckedKeys, treeData, fieldNames, onChange, value } = props
+  const { disabled, treeData, fieldNames, onChange, value } = props
 
   if (treeData[0] && !treeData[0].key) {
     console.warn(
@@ -12,12 +12,7 @@ const ControlledTree = memo((props) => {
   }
 
   const onCheck = (checkedKeys, info) => {
-    if (halfCheckedKeys) {
-      // 携带选中节点父节点的value
-      onChange(checkedKeys.concat(info.halfCheckedKeys))
-    } else {
       onChange(checkedKeys)
-    }
   }
 
   return (
@@ -28,8 +23,8 @@ const ControlledTree = memo((props) => {
         checkedKeys={value}
         treeData={treeData}
         fieldNames={fieldNames}
-        onCheck={(checkedKeys, info) => {
-          onCheck(checkedKeys, info)
+        onCheck={(checkedKeys) => {
+          onCheck(checkedKeys)
         }}
       ></Tree>
     </div>

@@ -127,7 +127,6 @@ export function renderItem(itemConfig, renderItemCallBack) {
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <ControlledTree
             disabled={itemConfig.disabled}
-            halfCheckedKeys={itemConfig.halfCheckedKeys}
             treeData={itemConfig.options}
             fieldNames={{
               title: itemConfig.customizeOptionsLabelKey || 'label',
