@@ -104,11 +104,11 @@ export function getQuery(url, params) {
 }
 
 /**
- * get方法，对应get请求 restful
+ * get方法，对应get请求 params
  * @param {String} url [请求的url地址]
  * @param {Object} params [请求时携带的参数]
  */
-export function getRestful(url, params) {
+export function getParams(url, params) {
   const { id } = params
   return new Promise((resolve, reject) => {
     axios1

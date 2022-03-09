@@ -1,4 +1,4 @@
-import { getQuery, remove, post, getRestful, put } from '@/request/http.js'
+import { getQuery, remove, post, getParams, put } from '@/request/http.js'
 
 export function getTableDataH(url, params) {
   return getQuery(url, params)
@@ -21,7 +21,7 @@ export function addTableDataItemH(url, params) {
 }
 
 export function getTableDataItemDetailsH(url, params) {
-  return getRestful(url, params)
+  return getParams(url, params)
 }
 
 export function updateTableDataItemH(url, params) {
