@@ -12,8 +12,8 @@ const OneOne = memo((props) => {
   const pageConfig = {
     pageRequestUrl: {
       curdUrl: '/oneOne',
-      enableUrl: '/oneOne/start',
-      disabledUrl: '/oneOne/stop'
+      // enableUrl: '/oneOne/start', // 默认值/oneOne/start
+      // disabledUrl: '/oneOne/stop' // 默认值/oneOne/stop
     },
     pageTitleConfig: {
       title: '测试page'
@@ -106,7 +106,7 @@ const OneOne = memo((props) => {
           label: '姓名',
           field: 'name',
           placeholder: '请输入姓名',
-          disabled: false, // 是否禁用
+          // disabled: true, // 是否禁用 默认为false
           rules: [{ required: true, message: '请输入姓名' }]
         },
         {
@@ -119,12 +119,12 @@ const OneOne = memo((props) => {
         {
           type: 'select',
           label: '选择水果',
-          mode: '', // 设置 Select 的模式为多选或标签 可选值为 multiple | tags 不传为单选
+          mode: '', // 设置 Select 的模式为多选或标签 可选值为 multiple | tags，不传为单选
           field: 'fruit',
           placeholder: '请选择水果',
           rules: [],
-          customizeOptionsValueKey: 'id', // 默认为value
-          customizeOptionsLabelKey: 'name', // 默认为label
+          customizeOptionsValueKey: 'id', // 自定义 options 中 label value  默认为value
+          customizeOptionsLabelKey: 'name', // 自定义 options 中 label value 默认为label
           options: [
             {
               name: '苹果',
@@ -310,6 +310,7 @@ const OneOne = memo((props) => {
     // 表格中其他按钮的权限 可结合src\assets\data\menuData.js中数据 梳理逻辑
     if (btnAuthority(pageAuthorityArr, '其他按钮')) {
       return function (record) {
+        // 如果其他按钮和行信息有权限关联 可拿到record判断 是否返回按钮
         return (
           <Button
             key={1}
