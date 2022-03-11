@@ -7,13 +7,12 @@ import Page from '@/component/business-components/page/Page'
 import { btnAuthority } from 'page/utils'
 
 const OneOne = memo((props) => {
-
   // pageAuthorityArr来源于点击导航派发到页面对应的按钮权限数组
   const { pageAuthorityArr } = props.location.state
 
   const pageConfig = {
     pageRequestUrl: {
-      curdUrl: '/oneOne',
+      curdUrl: '/oneOne'
       // enableUrl: '/oneOne/start', // 默认值/oneOne/start
       // disabledUrl: '/oneOne/stop' // 默认值/oneOne/stop
     },
@@ -34,7 +33,7 @@ const OneOne = memo((props) => {
           label: '手机号',
           field: 'phone',
           placeholder: '请输入手机号'
-        },
+        }
       ]
     },
     pageTableConfig: {

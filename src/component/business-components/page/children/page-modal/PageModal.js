@@ -57,7 +57,6 @@ const PageModal = memo((props) => {
   }
 
   const preserve = async () => {
-
     await form.validateFields()
 
     let formData = form.getFieldsValue()

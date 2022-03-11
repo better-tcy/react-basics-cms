@@ -12,7 +12,7 @@ const ControlledTree = memo((props) => {
   }
 
   const onCheck = (checkedKeys) => {
-      onChange(checkedKeys)
+    onChange(checkedKeys)
   }
 
   return (
