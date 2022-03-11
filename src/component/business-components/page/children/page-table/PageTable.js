@@ -75,27 +75,21 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-        title: '操作',
-        key: 'action',
-        align: 'center',
-        render: (_, record) => (
-          <Space size="middle">
-            {tableBtnArr.map((funItem) => {
-              if (funItem instanceof Function) {
-                return (
-                  funItem(record) || (
-                    <div style={{ width: '66px' }}></div>
-                  )
-                )
-              } else {
-                return (
-                  <div style={{ width: '66px' }}></div>
-                )
-              }
-            })}
-          </Space>
-        )
-      }
+          title: '操作',
+          key: 'action',
+          align: 'center',
+          render: (_, record) => (
+            <Space size="middle">
+              {tableBtnArr.map((funItem) => {
+                if (funItem instanceof Function) {
+                  return funItem(record) || <div style={{ width: '66px' }}></div>
+                } else {
+                  return <div style={{ width: '66px' }}></div>
+                }
+              })}
+            </Space>
+          )
+        }
       : {}
   ]
 
