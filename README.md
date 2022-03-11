@@ -2,7 +2,9 @@
 
 ## 一.说明
 
-这是一个基于 create-react-app 4.0.3(react 17.0.2)搭建的一个 cms 基础模板，集成 mock.js 模拟接口，集成配置生成页面功能（view->content->one->one-one-OneOne.js 中查看，文档地址：' https://betteryourself-tcy.github.io/json-page-markdown/ '），全程使用 hooks 函数式组件，redux + redux-thunk 统一管理数据的开发模式(页面内所需数据直接在页面内进行请求和操作即可，如果是公共数据 可以使用中间件保存到 redux 中)，集成异常监控功能（基于 sentry），另外可以在 src->assets->data->themeConfig.js 或者 craco.config.js 中定制项目主题。
+这是一个基于 create-react-app 4.0.3(react 17.0.2)搭建的一个 cms 基础模板，集成 mock.js 模拟接口，集成配置生成页面功能（view->content->one->one-one-OneOne.js 中查看，文档地址：' https://betteryourself-tcy.github.io/json-page-markdown/ '），全程使用 hooks 函数式组件，redux + redux-thunk 统一管理数据的开发模式(页面内所需数据直接在页面内进行请求和操作即可，如果是公共数据 可以使用中间件保存到 redux 中)，集成异常监控功能（基于 sentry），另外可以在 src->assets->data->themeConfig.js 或者 craco.config.js 中定制项目主题 :rainbow:
+
+**模板在线展示地址：http://101.43.153.100/login**
 
 ## 二.目录
 
