@@ -7,6 +7,8 @@ import Page from '@/component/business-components/page/Page'
 import { btnAuthority } from 'page/utils'
 
 const OneOne = memo((props) => {
+
+  // pageAuthorityArr来源于点击导航派发到页面对应的按钮权限数组
   const { pageAuthorityArr } = props.location.state
 
   const pageConfig = {
@@ -28,11 +30,11 @@ const OneOne = memo((props) => {
           placeholder: '请输入姓名'
         },
         {
-          type: 'rangePicker',
-          label: '查询日期',
-          format: 'YYYY-MM-DD', // 默认为时间戳
-          field: ['startDate', 'endDate']
-        }
+          type: 'input',
+          label: '手机号',
+          field: 'phone',
+          placeholder: '请输入手机号'
+        },
       ]
     },
     pageTableConfig: {
@@ -282,7 +284,7 @@ const OneOne = memo((props) => {
   }
 
   if (pageConfig.pageTableConfig) {
-    // 表格增加按钮权限
+    // 页面增加按钮权限 pageAuthorityArr来源于点击导航派发到页面对应的按钮权限数组
     pageConfig.pageTableConfig.pageAuthorityArr = pageAuthorityArr
   }
 
@@ -309,7 +311,7 @@ const OneOne = memo((props) => {
     // 表格中其他按钮的权限 可结合src\assets\data\menuData.js中数据 梳理逻辑
     if (btnAuthority(pageAuthorityArr, '其他按钮')) {
       return function (record) {
-        // 如果其他按钮和行信息有权限关联 可拿到record判断 是否返回按钮
+        // 如果'其他按钮'和行信息有权限关联 可拿到record判断 是否返回按钮
         return (
           <Button
             key={1}
@@ -327,7 +329,7 @@ const OneOne = memo((props) => {
   }
 
   const pageBtn1 = () => {
-    // Page页其他按钮的权限
+    // Page页其他按钮的权限 如果按钮权限数组pageAuthorityArr中存在'其他按钮'则显示此按钮
     if (btnAuthority(pageAuthorityArr, '其他按钮')) {
       return function (tableSelectedRowKeys) {
         return (
@@ -345,7 +347,7 @@ const OneOne = memo((props) => {
     }
   }
 
-  // 其他按钮
+  // 添加其他按钮
   if (pageConfig.pageTableConfig) {
     // 表格中其他按钮
     pageConfig.pageTableConfig.tableMoreButtonArr = [tableBtn1()]
