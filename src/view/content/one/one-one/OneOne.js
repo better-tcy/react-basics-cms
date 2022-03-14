@@ -95,8 +95,8 @@ const OneOne = memo((props) => {
     },
     pageModalConfig: {
       // width: 500, // 弹窗宽度 默认为560
-      // labelCol:{}, // 详见antd 官网
-      // wrapperCol:{},// 详见antd 官网
+      // labelCol:{}, // 弹窗中表单label标签布局 详见antd官网 默认值 { offset: 0, span: 6 }
+      // wrapperCol:{},// 弹窗表单中需要为输入控件设置布局样式时 使用该属性，用法同 labelCol 详见antd官网 默认值 { offset: 1, span: 12 }
       // layout:'' // 表单布局 可选值 horizontal | vertical | inline, 默认值为horizontal
       // maskClosable: false, // 点击蒙层是否允许关闭 默认为true
       // okText:'完成' // 确认按钮文字 默认为确定
