@@ -10,6 +10,8 @@ const OneOne = memo((props) => {
   // pageAuthorityArr来源于点击导航派发到页面对应的按钮权限数组
   const { pageAuthorityArr } = props.location.state
 
+  const pageRef = useRef()
+
   const pageConfig = {
     pageRequestUrl: {
       curdUrl: '/oneOne'
@@ -283,8 +285,17 @@ const OneOne = memo((props) => {
   }
 
   if (pageConfig.pageTableConfig) {
-    // 页面增加按钮权限 pageAuthorityArr来源于点击导航派发到页面对应的按钮权限数组
+    // 页面 && 表格按钮权限 pageAuthorityArr来源于点击导航派发到页面对应的按钮权限数组
     pageConfig.pageTableConfig.pageAuthorityArr = pageAuthorityArr
+  }
+
+  const pageBtn1ClickFun = (tableSelectedRowKeys) => {
+    console.log('表格中多选选中的数据', tableSelectedRowKeys)
+
+    // 业务逻辑
+
+    // 更新表格数据
+    // pageRef.current.getTableData()
   }
 
   const tableBtn1ClickFun = (record) => {
@@ -297,13 +308,23 @@ const OneOne = memo((props) => {
     pageRef.current.getTableData()
   }
 
-  const pageBtn1ClickFun = (tableSelectedRowKeys) => {
-    console.log('表格中多选选中的数据', tableSelectedRowKeys)
-
-    // 业务逻辑
-
-    // 更新表格数据
-    // pageRef.current.getTableData()
+  const pageBtn1 = () => {
+    // Page页其他按钮的权限 如果按钮权限数组pageAuthorityArr中存在'其他按钮'则显示此按钮
+    if (btnAuthority(pageAuthorityArr, '其他按钮')) {
+      return function (tableSelectedRowKeys) {
+        return (
+          <Button
+            key={1}
+            type="primary"
+            onClick={() => {
+              pageBtn1ClickFun(tableSelectedRowKeys)
+            }}
+          >
+            其他按钮
+          </Button>
+        )
+      }
+    }
   }
 
   const tableBtn1 = () => {
@@ -327,35 +348,14 @@ const OneOne = memo((props) => {
     }
   }
 
-  const pageBtn1 = () => {
-    // Page页其他按钮的权限 如果按钮权限数组pageAuthorityArr中存在'其他按钮'则显示此按钮
-    if (btnAuthority(pageAuthorityArr, '其他按钮')) {
-      return function (tableSelectedRowKeys) {
-        return (
-          <Button
-            key={1}
-            type="primary"
-            onClick={() => {
-              pageBtn1ClickFun(tableSelectedRowKeys)
-            }}
-          >
-            其他按钮
-          </Button>
-        )
-      }
-    }
-  }
-
   // 添加其他按钮
   if (pageConfig.pageTableConfig) {
-    // 表格中其他按钮
-    pageConfig.pageTableConfig.tableMoreButtonArr = [tableBtn1()]
-
     // Page页中其他按钮
     pageConfig.pageTableConfig.pageMoreButtonArr = [pageBtn1()]
-  }
 
-  const pageRef = useRef()
+    // 表格中其他按钮
+    pageConfig.pageTableConfig.tableMoreButtonArr = [tableBtn1()]
+  }
 
   return (
     <div>
