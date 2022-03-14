@@ -14,7 +14,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Input
             disabled={itemConfig.disabled}
-            style={{ width: itemConfig.width || '260px' }}
+            style={{ width: '100%' }}
             placeholder={itemConfig.placeholder || '请输入内容'}
           />
         </Form.Item>
@@ -27,7 +27,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
             disabled={itemConfig.disabled}
             rows={itemConfig.rows || 2}
             maxLength={itemConfig.maxLength || 100}
-            style={{ width: itemConfig.width || '260px', maxWidth: '1000px' }}
+            style={{ width: '100%', maxWidth: '1000px' }}
             placeholder={itemConfig.placeholder || '请输入内容'}
           />
         </Form.Item>
@@ -38,7 +38,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Input.Password
             disabled={itemConfig.disabled}
-            style={{ width: itemConfig.width || '260px' }}
+            style={{ width: '100%' }}
             placeholder={itemConfig.placeholder || '请输入内容'}
           />
         </Form.Item>
@@ -51,7 +51,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
             showSearch
             disabled={itemConfig.disabled}
             optionFilterProp="children"
-            style={{ width: itemConfig.width || '260px' }}
+            style={{ width: '100%' }}
             placeholder={itemConfig.placeholder || '请选择内容'}
           >
             {itemConfig.options &&
@@ -74,7 +74,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <DatePicker
             disabled={itemConfig.disabled}
-            style={{ width: itemConfig.width || '260px' }}
+            style={{ width: '100%' }}
             placeholder={itemConfig.placeholder || '请选择日期'}
           />
         </Form.Item>
@@ -87,7 +87,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
           <RangePicker
             disabled={itemConfig.disabled}
             showTime={itemConfig.showTime}
-            style={{ width: itemConfig.width || '260px' }}
+            style={{ width: '100%' }}
             placeholder={itemConfig.placeholder || ['开始日期', '结束日期']}
           />
         </Form.Item>
@@ -159,7 +159,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
             disabled={itemConfig.disabled}
             options={itemConfig.options}
             changeOnSelect={itemConfig.changeOnSelect}
-            style={{ width: itemConfig.width || '260px' }}
+            style={{ width: '100%' }}
             expandTrigger={itemConfig.expandTrigger || 'click'}
             placeholder={itemConfig.placeholder || '请选择内容'}
             fieldNames={{

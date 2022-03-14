@@ -68,20 +68,24 @@ const PageSearch = memo((props) => {
 
   return (
     <div className={pageSearchCss.page_search}>
-      <Form name="pageSearchForm" layout="inline" autoComplete="off" form={form}>
-        {searchItemArr.map((searchItem) => {
-          return (
-            <div
-              key={searchItem.field}
-              style={{
-                marginRight: searchItemMarginRight
-              }}
-            >
-              {renderSearchItem(searchItem, renderItemCallBack)}
-            </div>
-          )
-        })}
-      </Form>
+      <div style={{ flex: 1 }}>
+        <Form name="pageSearchForm" layout="inline" autoComplete="off" form={form}>
+          {searchItemArr.map((searchItem) => {
+            return (
+              <div
+                key={searchItem.field}
+                style={{
+                  width: '20%',
+                  marginRight: searchItemMarginRight,
+                  marginBottom: '10px',
+                }}
+              >
+                {renderSearchItem(searchItem, renderItemCallBack)}
+              </div>
+            )
+          })}
+        </Form>
+      </div>
 
       <div>
         <Button
@@ -101,7 +105,7 @@ const PageSearch = memo((props) => {
           重置
         </Button>
       </div>
-    </div>
+    </div >
   )
 })
 

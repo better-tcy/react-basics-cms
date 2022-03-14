@@ -23,7 +23,7 @@ const PageModal = memo((props) => {
     cancelText = '取消',
     layout = 'horizontal',
     labelCol = { offset: 0, span: 6 },
-    wrapperCol = { offset: 1, span: 10 },
+    wrapperCol = { offset: 1, span: 12 },
     modalItemArr
   } = pageModalConfig
 

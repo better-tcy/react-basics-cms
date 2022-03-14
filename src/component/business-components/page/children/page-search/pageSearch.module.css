@@ -1,11 +1,10 @@
 .page_search {
-  height: 65px;
+  padding: 20px 36px 10px 36px;
+  box-shadow: 0px 2px 5px 0px rgb(69 69 77 / 11%);
   background-color: #fff;
+
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 36px;
-  box-shadow: 0px 2px 5px 0px rgb(69 69 77 / 11%);
 }
 
 .reset_btn {
