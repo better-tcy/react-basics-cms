@@ -77,7 +77,7 @@ const PageSearch = memo((props) => {
                 style={{
                   width: '20%',
                   marginRight: searchItemMarginRight,
-                  marginBottom: '10px',
+                  marginBottom: '10px'
                 }}
               >
                 {renderSearchItem(searchItem, renderItemCallBack)}
@@ -105,7 +105,7 @@ const PageSearch = memo((props) => {
           重置
         </Button>
       </div>
-    </div >
+    </div>
   )
 })
 
