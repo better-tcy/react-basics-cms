@@ -35,6 +35,7 @@ const PageTable = memo((props) => {
     isShowRemoveBtn = true,
     isShowEnableDisableBtn = true,
     isShowActionColumns = true,
+    actionColumnsWidth = 500,
     accordingRowIsRenderCheckBtn = () => true,
     accordingRowIsRenderUpdateBtn = () => true,
     accordingRowIsRenderRemoveBtn = () => true,
@@ -75,21 +76,23 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-          title: '操作',
-          key: 'action',
-          align: 'center',
-          render: (_, record) => (
-            <Space size="middle">
-              {tableBtnArr.map((funItem) => {
-                if (funItem instanceof Function) {
-                  return funItem(record) || <div style={{ width: '66px' }}></div>
-                } else {
-                  return <div style={{ width: '66px' }}></div>
-                }
-              })}
-            </Space>
-          )
-        }
+        title: '操作',
+        key: 'action',
+        align: 'center',
+        fixed: 'right',
+        width: actionColumnsWidth,
+        render: (_, record) => (
+          <Space size="middle">
+            {tableBtnArr.map((funItem) => {
+              if (funItem instanceof Function) {
+                return funItem(record) || <div style={{ width: '66px' }}></div>
+              } else {
+                return <div style={{ width: '66px' }}></div>
+              }
+            })}
+          </Space>
+        )
+      }
       : {}
   ]
 
@@ -343,6 +346,7 @@ const PageTable = memo((props) => {
       <Table
         size="small"
         style={{ padding: '0 36px' }}
+        scroll={{ x: 1500 }}
         columns={newColumns}
         dataSource={tableData.list}
         pagination={paginationConfig}

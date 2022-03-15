@@ -45,18 +45,19 @@ const OneOne = memo((props) => {
       // isShowRemoveBtn: false,
       // isShowEnableDisableBtn: false,
       // isShowActionColumns: false,
+      // actionColumnsWidth: 500, // 操作列的宽度 默认为500 如果表格列数较多，请给每个列添加宽度（columns中的每一项增加width属性）这样表格会增加横向滚动条，操作列悬浮固定在右侧
       columns: [
         {
           title: '角色名称',
           dataIndex: 'name',
           key: 'name',
-          align: 'center'
+          align: 'center',
         },
         {
           title: '手机号',
           dataIndex: 'iphone',
           key: 'iphone',
-          align: 'center'
+          align: 'center',
         },
         {
           title: '职务',
