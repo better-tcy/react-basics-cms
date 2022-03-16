@@ -313,6 +313,7 @@ const OneOne = memo((props) => {
     // Page页其他按钮的权限 如果按钮权限数组pageAuthorityArr中存在'其他按钮'则显示此按钮
     if (btnAuthority(pageAuthorityArr, '其他按钮')) {
       return function (tableSelectedRowKeys) {
+        // 返回的按钮 必须添加key属性
         return (
           <Button
             key={1}
@@ -333,6 +334,7 @@ const OneOne = memo((props) => {
     if (btnAuthority(pageAuthorityArr, '其他按钮')) {
       return function (record) {
         // 如果'其他按钮'和行信息有权限关联 可拿到record判断 是否返回按钮
+        // 返回的按钮 必须添加key属性 table中的其他按钮最好使用字符串作为key值 避免和组件内部按钮key冲突
         return (
           <Button
             key={'a'}
