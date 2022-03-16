@@ -335,7 +335,7 @@ const OneOne = memo((props) => {
         // 如果'其他按钮'和行信息有权限关联 可拿到record判断 是否返回按钮
         return (
           <Button
-            key={1}
+            key={'a'}
             type="text"
             style={{ color: 'rgb(250, 152, 35)' }}
             onClick={() => {
