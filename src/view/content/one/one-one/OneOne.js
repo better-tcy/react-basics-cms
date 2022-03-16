@@ -51,13 +51,13 @@ const OneOne = memo((props) => {
           title: '角色名称',
           dataIndex: 'name',
           key: 'name',
-          align: 'center',
+          align: 'center'
         },
         {
           title: '手机号',
           dataIndex: 'iphone',
           key: 'iphone',
-          align: 'center',
+          align: 'center'
         },
         {
           title: '职务',
