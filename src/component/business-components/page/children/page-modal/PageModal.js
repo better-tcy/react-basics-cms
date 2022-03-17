@@ -15,7 +15,16 @@ import {
 } from '@/request/api/content/common/page'
 
 const PageModal = memo((props) => {
-  const { curdUrl, postMoreParams, putMoreParams, modalTitle, tableItemId, pageModalConfig, closeModal, isModalVisible } = props
+  const {
+    curdUrl,
+    postMoreParams,
+    putMoreParams,
+    modalTitle,
+    tableItemId,
+    pageModalConfig,
+    closeModal,
+    isModalVisible
+  } = props
   const {
     width = 560,
     maskClosable = true,

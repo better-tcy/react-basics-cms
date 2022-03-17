@@ -121,7 +121,11 @@ export function renderItem(itemConfig, renderItemCallBack) {
       })
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
-          <Checkbox.Group style={{ width: '100%' }} disabled={itemConfig.disabled} options={newOptions} />
+          <Checkbox.Group
+            style={{ width: '100%' }}
+            disabled={itemConfig.disabled}
+            options={newOptions}
+          />
         </Form.Item>
       )
 

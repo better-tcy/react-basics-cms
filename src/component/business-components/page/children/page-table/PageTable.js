@@ -23,7 +23,8 @@ const { confirm } = Modal
 
 const PageTable = memo((props) => {
   const { pageRequestUrl, pageTableConfig, searchData, pageModalConfig } = props
-  const { curdUrl, getMoreParams, postMoreParams, putMoreParams, enableUrl, disabledUrl } = pageRequestUrl
+  const { curdUrl, getMoreParams, postMoreParams, putMoreParams, enableUrl, disabledUrl } =
+    pageRequestUrl
   const {
     columns,
     pageAuthorityArr,
@@ -76,23 +77,23 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-        title: '操作',
-        key: 'action',
-        align: 'center',
-        fixed: 'right',
-        width: actionColumnsWidth,
-        render: (_, record) => (
-          <Space size="middle">
-            {tableBtnArr.map((funItem) => {
-              if (funItem instanceof Function) {
-                return funItem(record) || <div key={record.id} style={{ width: '66px' }}></div>
-              } else {
-                return <div key={record.id} style={{ width: '66px' }}></div>
-              }
-            })}
-          </Space>
-        )
-      }
+          title: '操作',
+          key: 'action',
+          align: 'center',
+          fixed: 'right',
+          width: actionColumnsWidth,
+          render: (_, record) => (
+            <Space size="middle">
+              {tableBtnArr.map((funItem) => {
+                if (funItem instanceof Function) {
+                  return funItem(record) || <div key={record.id} style={{ width: '66px' }}></div>
+                } else {
+                  return <div key={record.id} style={{ width: '66px' }}></div>
+                }
+              })}
+            </Space>
+          )
+        }
       : {}
   ]
 
