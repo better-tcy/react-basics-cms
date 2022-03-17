@@ -15,7 +15,7 @@ import {
 } from '@/request/api/content/common/page'
 
 const PageModal = memo((props) => {
-  const { modalTitle, tableItemId, pageModalConfig, curdUrl, closeModal, isModalVisible } = props
+  const { curdUrl, postMoreParams, putMoreParams, modalTitle, tableItemId, pageModalConfig, closeModal, isModalVisible } = props
   const {
     width = 560,
     maskClosable = true,
@@ -93,14 +93,16 @@ const PageModal = memo((props) => {
     if (tableItemId) {
       // 修改
       formData.id = tableItemId
-      updateTableDataItemH(curdUrl, formData).then((res) => {
+      formData = Object.assign(formData, putMoreParams)
+      updateTableDataItemH(curdUrl, formData).then((_) => {
         message.success('修改成功')
         // true：重新请求table表格数据
         closeModal('占位参数', true)
       })
     } else {
       // 新增
-      addTableDataItemH(curdUrl, formData).then((res) => {
+      formData = Object.assign(formData, postMoreParams)
+      addTableDataItemH(curdUrl, formData).then((_) => {
         message.success('保存成功')
         // true：重新请求table表格数据
         closeModal('占位参数', true)

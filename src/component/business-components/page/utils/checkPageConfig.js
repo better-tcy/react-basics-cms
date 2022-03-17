@@ -39,7 +39,7 @@ export function checkPageConfig(pageConfig) {
   }
 
   if (!checkIsObject(pageConfig)) {
-    console.warn('pageConfig必须为对象')
+    console.warn('pageConfig必须为Object类型')
     return false
   }
 
@@ -49,7 +49,7 @@ export function checkPageConfig(pageConfig) {
   }
 
   if (!checkIsObject(pageConfig.pageRequestUrl)) {
-    console.warn('pageConfig -> pageRequestUrl必须为对象')
+    console.warn('pageConfig -> pageRequestUrl必须为Object类型')
     return false
   }
 
@@ -63,13 +63,36 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
+  const { getMoreParams, postMoreParams, putMoreParams } = pageConfig.pageRequestUrl
+
+  if (getMoreParams) {
+    if (!checkIsObject(getMoreParams)) {
+      console.warn('pageRequestUrl -> getMoreParams这项配置必须为Object类型')
+      return
+    }
+  }
+
+  if (postMoreParams) {
+    if (!checkIsObject(postMoreParams)) {
+      console.warn('pageRequestUrl -> postMoreParams这项配置必须为Object类型')
+      return
+    }
+  }
+
+  if (putMoreParams) {
+    if (!checkIsObject(putMoreParams)) {
+      console.warn('pageRequestUrl -> putMoreParams这项配置必须为Object类型')
+      return
+    }
+  }
+
   if (!pageConfig.pageTitleConfig) {
     console.warn('请传入 pageConfig -> pageTitleConfig这项配置')
     return false
   }
 
   if (!checkIsObject(pageConfig.pageTitleConfig)) {
-    console.warn('pageConfig -> pageTitleConfig必须为对象')
+    console.warn('pageConfig -> pageTitleConfig必须为Object类型')
     return false
   }
 
@@ -85,7 +108,7 @@ export function checkPageConfig(pageConfig) {
 
   if (pageConfig.pageSearchConfig) {
     if (!checkIsObject(pageConfig.pageSearchConfig)) {
-      console.warn('pageConfig -> pageSearchConfig必须为对象')
+      console.warn('pageConfig -> pageSearchConfig必须为Object类型')
       return false
     }
 
@@ -95,7 +118,7 @@ export function checkPageConfig(pageConfig) {
     }
 
     if (!checkIsArray(pageConfig.pageSearchConfig.searchItemArr)) {
-      console.warn('pageSearchConfig -> searchItemArr这项配置必须为数组')
+      console.warn('pageSearchConfig -> searchItemArr这项配置必须为Array类型')
       return false
     }
 
@@ -116,7 +139,7 @@ export function checkPageConfig(pageConfig) {
   }
 
   if (!checkIsObject(pageConfig.pageTableConfig)) {
-    console.warn('pageConfig -> pageTableConfig必须为对象')
+    console.warn('pageConfig -> pageTableConfig必须为Object类型')
     return false
   }
 
@@ -126,13 +149,13 @@ export function checkPageConfig(pageConfig) {
   }
 
   if (!checkIsArray(pageConfig.pageTableConfig.columns)) {
-    console.warn('pageTableConfig -> columns这项必须为数组')
+    console.warn('pageTableConfig -> columns这项必须为Array类型')
     return false
   }
 
   if (pageConfig.pageModalConfig) {
     if (!checkIsObject(pageConfig.pageModalConfig)) {
-      console.warn('pageConfig -> pageModalConfig必须为对象')
+      console.warn('pageConfig -> pageModalConfig必须为Object类型')
       return false
     }
 
@@ -142,7 +165,7 @@ export function checkPageConfig(pageConfig) {
     }
 
     if (!checkIsArray(pageConfig.pageModalConfig.modalItemArr)) {
-      console.warn('pageModalConfig -> modalItemArr这项配置必须为数组')
+      console.warn('pageModalConfig -> modalItemArr这项配置必须为Array类型')
       return false
     }
 

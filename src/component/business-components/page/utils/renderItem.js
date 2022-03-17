@@ -13,8 +13,9 @@ export function renderItem(itemConfig, renderItemCallBack) {
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Input
-            disabled={itemConfig.disabled}
             style={{ width: '100%' }}
+            disabled={itemConfig.disabled}
+            type={itemConfig.isNumber ? 'number' : 'string'}
             placeholder={itemConfig.placeholder || '请输入内容'}
           />
         </Form.Item>
@@ -24,10 +25,10 @@ export function renderItem(itemConfig, renderItemCallBack) {
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <TextArea
+            style={{ width: '100%', maxWidth: '1000px' }}
             disabled={itemConfig.disabled}
             rows={itemConfig.rows || 2}
             maxLength={itemConfig.maxLength || 100}
-            style={{ width: '100%', maxWidth: '1000px' }}
             placeholder={itemConfig.placeholder || '请输入内容'}
           />
         </Form.Item>
@@ -37,8 +38,9 @@ export function renderItem(itemConfig, renderItemCallBack) {
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Input.Password
-            disabled={itemConfig.disabled}
             style={{ width: '100%' }}
+            disabled={itemConfig.disabled}
+            type={itemConfig.isNumber ? 'number' : 'string'}
             placeholder={itemConfig.placeholder || '请输入内容'}
           />
         </Form.Item>
@@ -47,11 +49,11 @@ export function renderItem(itemConfig, renderItemCallBack) {
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Select
-            mode={itemConfig.mode || ''}
             showSearch
+            style={{ width: '100%' }}
             disabled={itemConfig.disabled}
             optionFilterProp="children"
-            style={{ width: '100%' }}
+            mode={itemConfig.mode || ''}
             placeholder={itemConfig.placeholder || '请选择内容'}
           >
             {itemConfig.options &&
@@ -73,8 +75,9 @@ export function renderItem(itemConfig, renderItemCallBack) {
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <DatePicker
-            disabled={itemConfig.disabled}
             style={{ width: '100%' }}
+            disabled={itemConfig.disabled}
+            showTime={itemConfig.showTime}
             placeholder={itemConfig.placeholder || '请选择日期'}
           />
         </Form.Item>
@@ -85,9 +88,9 @@ export function renderItem(itemConfig, renderItemCallBack) {
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field[0]} rules={itemConfig.rules}>
           <RangePicker
+            style={{ width: '100%' }}
             disabled={itemConfig.disabled}
             showTime={itemConfig.showTime}
-            style={{ width: '100%' }}
             placeholder={itemConfig.placeholder || ['开始日期', '结束日期']}
           />
         </Form.Item>
@@ -95,7 +98,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
     case 'radio':
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
-          <Radio.Group disabled={itemConfig.disabled}>
+          <Radio.Group style={{ width: '100%' }} disabled={itemConfig.disabled}>
             {itemConfig.options.map((option) => {
               return (
                 <Radio
@@ -118,7 +121,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
       })
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
-          <Checkbox.Group disabled={itemConfig.disabled} options={newOptions} />
+          <Checkbox.Group style={{ width: '100%' }} disabled={itemConfig.disabled} options={newOptions} />
         </Form.Item>
       )
 
@@ -126,6 +129,7 @@ export function renderItem(itemConfig, renderItemCallBack) {
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <ControlledTree
+            style={{ width: '100%' }}
             disabled={itemConfig.disabled}
             treeData={itemConfig.options}
             fieldNames={{
@@ -155,11 +159,11 @@ export function renderItem(itemConfig, renderItemCallBack) {
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Cascader
-            multiple={itemConfig.multiple}
+            style={{ width: '100%' }}
             disabled={itemConfig.disabled}
+            multiple={itemConfig.multiple}
             options={itemConfig.options}
             changeOnSelect={itemConfig.changeOnSelect}
-            style={{ width: '100%' }}
             expandTrigger={itemConfig.expandTrigger || 'click'}
             placeholder={itemConfig.placeholder || '请选择内容'}
             fieldNames={{

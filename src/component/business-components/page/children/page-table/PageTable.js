@@ -23,7 +23,7 @@ const { confirm } = Modal
 
 const PageTable = memo((props) => {
   const { pageRequestUrl, pageTableConfig, searchData, pageModalConfig } = props
-  const { curdUrl, enableUrl, disabledUrl } = pageRequestUrl
+  const { curdUrl, getMoreParams, postMoreParams, putMoreParams, enableUrl, disabledUrl } = pageRequestUrl
   const {
     columns,
     pageAuthorityArr,
@@ -216,9 +216,11 @@ const PageTable = memo((props) => {
   }
 
   const getTableData = useCallback(() => {
-    const cloneDeepSearchData = _.cloneDeep(searchData)
+    let cloneDeepSearchData = _.cloneDeep(searchData)
     cloneDeepSearchData.pageNum = pageNum.current
     cloneDeepSearchData.pageSize = pageSize.current
+    cloneDeepSearchData = Object.assign(cloneDeepSearchData, getMoreParams)
+
     getTableDataH(curdUrl, cloneDeepSearchData).then((res) => {
       setTableData(res.data)
     })
@@ -356,11 +358,13 @@ const PageTable = memo((props) => {
 
       {pageModalConfig && (
         <PageModal
+          curdUrl={curdUrl}
           isModalVisible={isModalVisible}
           modalTitle={modalTitle.current}
           tableItemId={tableItemId.current}
           pageModalConfig={pageModalConfig}
-          curdUrl={curdUrl}
+          postMoreParams={postMoreParams}
+          putMoreParams={putMoreParams}
           closeModal={closeModal}
         ></PageModal>
       )}

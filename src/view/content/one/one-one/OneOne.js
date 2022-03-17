@@ -14,7 +14,16 @@ const OneOne = memo((props) => {
 
   const pageConfig = {
     pageRequestUrl: {
-      curdUrl: '/oneOne'
+      curdUrl: '/oneOne',
+      getMoreParams: {
+        type: 1
+      },
+      postMoreParams: {
+        type: 1
+      },
+      putMoreParams: {
+        type: 1
+      }
       // enableUrl: '/oneOne/start', // 默认值/oneOne/start
       // disabledUrl: '/oneOne/stop' // 默认值/oneOne/stop
     },
@@ -114,19 +123,27 @@ const OneOne = memo((props) => {
           rules: [{ required: true, message: '请输入姓名' }]
         },
         {
+          type: 'input',
+          label: '手机号',
+          field: 'phone',
+          placeholder: '请输入手机号',
+          isNumber: true, // 是否是数字输入框 默认为false
+          rules: [{ required: true, message: '请输入手机号' }]
+        },
+        {
           type: 'password',
           label: '密码',
           field: 'password',
           placeholder: '请输入密码',
+          isNumber: true, // 是否是数字输入框 默认为false
           rules: []
         },
         {
           type: 'select',
           label: '选择水果',
-          mode: '', // 设置 Select 的模式为多选或标签 可选值为 multiple | tags，不传为单选
           field: 'fruit',
           placeholder: '请选择水果',
-          rules: [],
+          mode: '', // 设置 Select 的模式为多选或标签 可选值为 multiple | tags，不传为单选
           customizeOptionsValueKey: 'id', // 自定义options中value字段  默认为value
           customizeOptionsLabelKey: 'name', // 自定义options中label字段 默认为label
           options: [
@@ -138,7 +155,8 @@ const OneOne = memo((props) => {
               name: '香蕉',
               id: 2
             }
-          ]
+          ],
+          rules: []
         },
         {
           type: 'radio',
@@ -146,7 +164,6 @@ const OneOne = memo((props) => {
           field: 'radioVal',
           customizeOptionsValueKey: 'id', // 默认为value
           customizeOptionsLabelKey: 'name', // 默认为label
-          rules: [],
           options: [
             {
               id: 1,
@@ -156,7 +173,8 @@ const OneOne = memo((props) => {
               id: 2,
               name: '女'
             }
-          ]
+          ],
+          rules: []
         },
         {
           type: 'checkbox',
@@ -164,7 +182,6 @@ const OneOne = memo((props) => {
           field: 'checkboxVal',
           customizeOptionsValueKey: 'id', // 默认为value
           customizeOptionsLabelKey: 'name', // 默认为label
-          rules: [],
           options: [
             {
               id: 1,
@@ -174,7 +191,8 @@ const OneOne = memo((props) => {
               id: 2,
               name: '吉利'
             }
-          ]
+          ],
+          rules: []
         },
         {
           type: 'tree',
@@ -183,7 +201,6 @@ const OneOne = memo((props) => {
           customizeOptionsValueKey: 'id', // 默认为value
           customizeOptionsLabelKey: 'name', // 默认为label
           customizeOptionsChildrenKey: 'children', // 默认为children
-          rules: [],
           options: [
             {
               id: 1,
@@ -197,7 +214,8 @@ const OneOne = memo((props) => {
                 }
               ]
             }
-          ]
+          ],
+          rules: []
         },
         {
           type: 'datePicker',
@@ -245,7 +263,6 @@ const OneOne = memo((props) => {
           // customizeOptionsValueKey: 'id', // 默认为value
           // customizeOptionsLabelKey: 'name', // 默认为label
           // customizeOptionsChildrenKey:'child' // 默认为children
-          rules: [],
           options: [
             {
               label: '前端',
@@ -279,7 +296,8 @@ const OneOne = memo((props) => {
                 }
               ]
             }
-          ]
+          ],
+          rules: []
         }
       ]
     }
