@@ -58,7 +58,7 @@ const OneTwo = memo(() => {
         <PageModal
           isModalVisible={isModalVisible}
           pageModalConfig={pageModalConfig}
-          closeModal={closeModalFun}
+          onCloseModal={closeModalFun}
         ></PageModal>
       )}
     </div>

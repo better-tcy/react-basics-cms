@@ -7,7 +7,7 @@ const { TextArea } = Input
 const { Option } = Select
 const { RangePicker } = DatePicker
 
-export function renderItem(itemConfig, renderItemCallBack) {
+export function renderItemFun(itemConfig, renderItemCallBack) {
   switch (itemConfig.type) {
     case 'input':
       return (

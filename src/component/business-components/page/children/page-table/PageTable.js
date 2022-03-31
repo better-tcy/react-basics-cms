@@ -12,7 +12,7 @@ import {
   stopTableDataH
 } from '@/request/api/content/common/page'
 
-import { btnAuthority } from 'page/utils'
+import { btnAuthorityFun } from 'page/utils'
 
 import { PageModal } from 'page/children'
 
@@ -37,10 +37,10 @@ const PageTable = memo((props) => {
     isShowEnableDisableBtn = true,
     isShowActionColumns = true,
     actionColumnsWidth = 500,
-    accordingRowIsRenderCheckBtn = () => true,
-    accordingRowIsRenderUpdateBtn = () => true,
-    accordingRowIsRenderRemoveBtn = () => true,
-    accordingRowIsRenderEDBtn = () => true
+    accordingRowIsRenderCheckBtnFun = () => true,
+    accordingRowIsRenderUpdateBtnFun = () => true,
+    accordingRowIsRenderRemoveBtnFun = () => true,
+    accordingRowIsRenderEDBtnFun = () => true
   } = pageTableConfig
 
   const cloneDeepPageModalConfig = useRef(_.cloneDeep(pageModalConfig))
@@ -51,7 +51,7 @@ const PageTable = memo((props) => {
 
   useImperativeHandle(props.onRef, () => {
     return {
-      getTableData
+      getTableDataFun
     }
   })
 
@@ -65,15 +65,15 @@ const PageTable = memo((props) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const tableBtnArr = [
-    renderCheckRowDetailsBtn(),
+    renderCheckRowDetailsBtnFun(),
 
-    renderUpdateRowDataBtn(),
+    renderUpdateRowDataBtnFun(),
 
-    renderRemoveRowDataBtn(),
+    renderRemoveRowDataBtnFun(),
 
     ...tableMoreButtonArr,
 
-    renderEnableDisableBtn()
+    renderEnableDisableBtnFun()
   ]
 
   const newColumns = [
@@ -87,9 +87,9 @@ const PageTable = memo((props) => {
           width: actionColumnsWidth,
           render: (_, record) => (
             <Space size="middle">
-              {tableBtnArr.map((funItem) => {
-                if (funItem instanceof Function) {
-                  return funItem(record) || <div key={record.id} style={{ width: '66px' }}></div>
+              {tableBtnArr.map((itemFun) => {
+                if (itemFun instanceof Function) {
+                  return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
                 } else {
                   return <div key={record.id} style={{ width: '66px' }}></div>
                 }
@@ -112,7 +112,7 @@ const PageTable = memo((props) => {
     onChange: (current, pagesize) => {
       pageNum.current = current
       pageSize.current = pagesize
-      getTableData()
+      getTableDataFun()
     }
   }
 
@@ -123,17 +123,17 @@ const PageTable = memo((props) => {
     }
   }
 
-  function renderCheckRowDetailsBtn() {
-    if (isShowCheckDetailsBtn && btnAuthority(pageAuthorityArr, '查看')) {
+  function renderCheckRowDetailsBtnFun() {
+    if (isShowCheckDetailsBtn && btnAuthorityFun(pageAuthorityArr, '查看')) {
       return function (record) {
-        if (accordingRowIsRenderCheckBtn(record)) {
+        if (accordingRowIsRenderCheckBtnFun(record)) {
           return (
             <Button
               key={1}
               type="text"
               style={{ color: '#1890FF' }}
               onClick={() => {
-                showModal('查看', record.id)
+                showModalFun('查看', record.id)
               }}
             >
               查看
@@ -144,17 +144,17 @@ const PageTable = memo((props) => {
     }
   }
 
-  function renderUpdateRowDataBtn() {
-    if (isShowUpdateBtn && btnAuthority(pageAuthorityArr, '修改')) {
+  function renderUpdateRowDataBtnFun() {
+    if (isShowUpdateBtn && btnAuthorityFun(pageAuthorityArr, '修改')) {
       return function (record) {
-        if (accordingRowIsRenderUpdateBtn(record)) {
+        if (accordingRowIsRenderUpdateBtnFun(record)) {
           return (
             <Button
               key={2}
               type="text"
               style={{ color: '#48ED4B' }}
               onClick={() => {
-                showModal('修改', record.id)
+                showModalFun('修改', record.id)
               }}
             >
               修改
@@ -165,17 +165,17 @@ const PageTable = memo((props) => {
     }
   }
 
-  function renderRemoveRowDataBtn() {
-    if (isShowRemoveBtn && btnAuthority(pageAuthorityArr, '删除')) {
+  function renderRemoveRowDataBtnFun() {
+    if (isShowRemoveBtn && btnAuthorityFun(pageAuthorityArr, '删除')) {
       return function (record) {
-        if (accordingRowIsRenderRemoveBtn(record)) {
+        if (accordingRowIsRenderRemoveBtnFun(record)) {
           return (
             <Button
               key={3}
               type="text"
               style={{ color: '#EB3030' }}
               onClick={() => {
-                removeTableData(record.id)
+                removeTableDataFun(record.id)
               }}
             >
               删除
@@ -186,10 +186,10 @@ const PageTable = memo((props) => {
     }
   }
 
-  function renderEnableDisableBtn() {
-    if (isShowEnableDisableBtn && btnAuthority(pageAuthorityArr, '启用停用')) {
+  function renderEnableDisableBtnFun() {
+    if (isShowEnableDisableBtn && btnAuthorityFun(pageAuthorityArr, '启用停用')) {
       return function (record) {
-        if (accordingRowIsRenderEDBtn(record)) {
+        if (accordingRowIsRenderEDBtnFun(record)) {
           return (
             <Switch
               key={4}
@@ -197,7 +197,7 @@ const PageTable = memo((props) => {
               unCheckedChildren="禁用"
               checked={record.status === 1}
               onClick={(checked) => {
-                enableOrDisable(checked, [record.id])
+                enableOrDisableFun(checked, [record.id])
               }}
             />
           )
@@ -206,7 +206,7 @@ const PageTable = memo((props) => {
     }
   }
 
-  const commonConfirm = (title, callBackFun) => {
+  const commonConfirmFun = (title, callBackFun) => {
     confirm({
       title: title,
       icon: <ExclamationCircleOutlined />,
@@ -219,7 +219,7 @@ const PageTable = memo((props) => {
     })
   }
 
-  const getTableData = useCallback(() => {
+  const getTableDataFun = useCallback(() => {
     let cloneDeepSearchData = _.cloneDeep(searchData)
     cloneDeepSearchData.pageNum = pageNum.current
     cloneDeepSearchData.pageSize = pageSize.current
@@ -230,7 +230,7 @@ const PageTable = memo((props) => {
     })
   }, [curdUrl, searchData, getMoreParams])
 
-  const showModal = (title, rowId) => {
+  const showModalFun = (title, rowId) => {
     if (!cloneDeepPageModalConfig.current) {
       console.warn('如果想使用弹窗功能，请传入pageModalConfig这项配置')
       return
@@ -242,108 +242,108 @@ const PageTable = memo((props) => {
     setIsModalVisible(true)
   }
 
-  const closeModal = (_, isRequestTableData) => {
+  const closeModalFun = (_, isRequestTableData) => {
     if (isRequestTableData) {
-      getTableData()
+      getTableDataFun()
     }
     setIsModalVisible(false)
   }
 
-  const removeTableData = (id) => {
+  const removeTableDataFun = (id) => {
     function callBackFun() {
       removeTableDataH(curdUrl, { id }).then(() => {
         message.success('删除成功')
-        getTableData()
+        getTableDataFun()
       })
     }
 
-    commonConfirm('请确认是否删除？', callBackFun)
+    commonConfirmFun('请确认是否删除？', callBackFun)
   }
 
-  const enableRows = () => {
+  const enableRowsFun = () => {
     if (selectedRowKeys.length === 0) {
       message.warning('请至少选择一条数据')
       return
     }
-    enableOrDisable(true, selectedRowKeys)
+    enableOrDisableFun(true, selectedRowKeys)
   }
 
-  const disableRows = () => {
+  const disableRowsFun = () => {
     if (selectedRowKeys.length === 0) {
       message.warning('请至少选择一条数据')
       return
     }
 
-    enableOrDisable(false, selectedRowKeys)
+    enableOrDisableFun(false, selectedRowKeys)
   }
 
   // 启用或禁用
-  const enableOrDisable = (isEnable, rowIdArr) => {
+  const enableOrDisableFun = (isEnable, rowIdArr) => {
     if (isEnable) {
       // 启用
       function callBackFun() {
         startTableDataH(enableUrl || `${curdUrl}start/`, { ids: rowIdArr }).then((res) => {
           message.success('已启用')
-          getTableData()
+          getTableDataFun()
         })
       }
 
-      commonConfirm('是否启用数据？', callBackFun)
+      commonConfirmFun('是否启用数据？', callBackFun)
     } else {
       // 禁用
       function callBackFun() {
         stopTableDataH(disabledUrl || `${curdUrl}stop/`, { ids: rowIdArr }).then((res) => {
           message.warning('已禁用')
-          getTableData()
+          getTableDataFun()
         })
       }
 
-      commonConfirm('是否禁用数据？', callBackFun)
+      commonConfirmFun('是否禁用数据？', callBackFun)
     }
   }
 
   useEffect(() => {
-    getTableData()
-  }, [getTableData])
+    getTableDataFun()
+  }, [getTableDataFun])
 
   return (
     <div className={`${pageTableCss.page_table} page_table`}>
       <div className={pageTableCss.page_table_top}>
         <div className={pageTableCss.page_table_title}>查询表格</div>
         <div className="page_table_btns">
-          {isShowAddBtn && btnAuthority(pageAuthorityArr, '新建') && (
+          {isShowAddBtn && btnAuthorityFun(pageAuthorityArr, '新建') && (
             <Button
               type="primary"
               onClick={() => {
-                showModal('新建')
+                showModalFun('新建')
               }}
             >
               新建
             </Button>
           )}
-          {isShowEnableDisableBtn && btnAuthority(pageAuthorityArr, '启用停用') && (
+          {isShowEnableDisableBtn && btnAuthorityFun(pageAuthorityArr, '启用停用') && (
             <Button
               className={pageTableCss.start_btn}
               onClick={() => {
-                enableRows()
+                enableRowsFun()
               }}
             >
               启用
             </Button>
           )}
-          {isShowEnableDisableBtn && btnAuthority(pageAuthorityArr, '启用停用') && (
+          {isShowEnableDisableBtn && btnAuthorityFun(pageAuthorityArr, '启用停用') && (
             <Button
               className={pageTableCss.stop_btn}
               onClick={() => {
-                disableRows()
+                disableRowsFun()
               }}
             >
               停用
             </Button>
           )}
-          {pageMoreButtonArr.map((funItem) => {
-            if (funItem instanceof Function) {
-              return funItem(selectedRowKeys)
+          {pageMoreButtonArr.map((itemFun) => {
+            if (itemFun instanceof Function) {
+              return itemFun(selectedRowKeys)
             } else {
               return ''
             }
@@ -366,7 +366,7 @@ const PageTable = memo((props) => {
         <PageModal
           isModalVisible={isModalVisible}
           pageModalConfig={cloneDeepPageModalConfig.current}
-          closeModal={closeModal}
+          onCloseModal={closeModalFun}
         ></PageModal>
       )}
     </div>

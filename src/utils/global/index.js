@@ -1,4 +1,4 @@
-import { authenticationPath } from './authenticationPath'
-import { setStoreData, getDataMergeState } from './storageStateData'
+import { authenticationPathFun } from './authenticationPathFun'
+import { setStoreDataFun, getDataMergeStateFun } from './persistentData'
 
-export { authenticationPath, setStoreData, getDataMergeState }
+export { authenticationPathFun, setStoreDataFun, getDataMergeStateFun }

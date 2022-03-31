@@ -6,7 +6,7 @@ import moment from 'moment'
 
 import _ from 'lodash'
 
-import { renderItem as renderModalItem } from '../../utils'
+import { renderItemFun as renderModalItemFun } from '../../utils'
 
 import {
   addTableDataItemH,
@@ -15,7 +15,7 @@ import {
 } from '@/request/api/content/common/page'
 
 const PageModal = memo((props) => {
-  const { isModalVisible, pageModalConfig, closeModal } = props
+  const { isModalVisible, pageModalConfig, onCloseModal } = props
   const {
     saveUrl,
     postMoreParams,
@@ -52,7 +52,7 @@ const PageModal = memo((props) => {
     })
   }
 
-  const renderItemCallBack = (itemConfig) => {
+  const renderItemCallBackFun = (itemConfig) => {
     if (itemConfig.type === 'rangePicker') {
       startDateField.current = itemConfig.field[0]
       endDateField.current = itemConfig.field[1]
@@ -63,7 +63,7 @@ const PageModal = memo((props) => {
     }
   }
 
-  const preserve = async () => {
+  const preserveFun = async () => {
     await form.validateFields()
 
     let formData = form.getFieldsValue()
@@ -105,7 +105,7 @@ const PageModal = memo((props) => {
         updateTableDataItemH(saveUrl, formData).then((_) => {
           message.success('修改成功')
           // true：重新请求table表格数据
-          closeModal('占位参数', true)
+          onCloseModal('占位参数', true)
         })
       } else {
         // 新增
@@ -113,13 +113,13 @@ const PageModal = memo((props) => {
         addTableDataItemH(saveUrl, formData).then((_) => {
           message.success('保存成功')
           // true：重新请求table表格数据
-          closeModal('占位参数', true)
+          onCloseModal('占位参数', true)
         })
       }
     } else {
       if (getFormDataFun) {
         getFormDataFun(formData)
-        closeModal('占位参数', true)
+        onCloseModal('占位参数', true)
       } else {
         console.warn('缺少getFormDataFun函数')
       }
@@ -178,7 +178,7 @@ const PageModal = memo((props) => {
         width={width}
         title={modalTitle}
         visible={isModalVisible}
-        onCancel={closeModal}
+        onCancel={onCloseModal}
         footer={[]}
       >
         <Form
@@ -191,7 +191,11 @@ const PageModal = memo((props) => {
           autoComplete="off"
         >
           {(newModalItemArr || modalItemArr).map((modalItem) => {
-            return <div key={modalItem.field}>{renderModalItem(modalItem, renderItemCallBack)}</div>
+            return (
+              <div key={modalItem.field}>
+                {renderModalItemFun(modalItem, renderItemCallBackFun)}
+              </div>
+            )
           })}
         </Form>
         {!newModalItemArr && (
@@ -199,7 +203,7 @@ const PageModal = memo((props) => {
             <Button
               style={{ marginRight: '10px' }}
               onClick={() => {
-                closeModal()
+                onCloseModal()
               }}
             >
               {cancelText}
@@ -207,7 +211,7 @@ const PageModal = memo((props) => {
             <Button
               type="primary"
               onClick={() => {
-                preserve()
+                preserveFun()
               }}
             >
               {okText}

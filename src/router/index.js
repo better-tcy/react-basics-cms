@@ -1,6 +1,6 @@
 import { Redirect } from 'react-router-dom'
 
-import { authenticationPath } from '@/utils/global'
+import { authenticationPathFun } from '@/utils/global'
 
 import FrameWork from '@/component/frame/frame-work/FrameWork'
 
@@ -26,7 +26,7 @@ const routes = [
   {
     path: '/content',
     render: ({ route, location }) => {
-      return authenticationPath(route, location)
+      return authenticationPathFun(route, location)
     },
     component: FrameWork,
     routes: [

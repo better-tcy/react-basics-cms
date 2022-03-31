@@ -2,19 +2,19 @@ import React, { memo, useState, useRef, useImperativeHandle } from 'react'
 
 import { PageTitle, PageSearch, PageTable } from 'page/children'
 
-import { checkPageConfig } from 'page/utils'
+import { checkPageConfigFun } from 'page/utils'
 
 const Page = memo((props) => {
   const { pageConfig } = props
 
-  const newPageConfig = checkPageConfig(pageConfig)
+  const newPageConfig = checkPageConfigFun(pageConfig)
 
   const { pageRequestUrl, pageTitleConfig, pageSearchConfig, pageTableConfig, pageModalConfig } =
     newPageConfig
 
   useImperativeHandle(props.onRef, () => {
     return {
-      getTableData: pageTableRef.current?.getTableData
+      getTableDataFun: pageTableRef.current?.getTableDataFun
     }
   })
 
@@ -24,10 +24,10 @@ const Page = memo((props) => {
 
   const newPageSearchConfig = {
     ...pageSearchConfig,
-    getSearchValues(searchData) {
+    getSearchValuesFun(searchData) {
       setSearchData(searchData)
     },
-    resetSearchValues() {
+    resetSearchValuesFun() {
       setSearchData({})
     }
   }

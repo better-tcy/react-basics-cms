@@ -14,11 +14,11 @@ const ControlledUpload = memo((props) => {
 
   const [fileList, setFileList] = useState([])
 
-  const beforeUpload = (file) => {
+  const beforeUploadFun = (file) => {
     id.current = file.uid
   }
 
-  const customRequest = async (option) => {
+  const customRequestFun = async (option) => {
     const formData = new FormData()
     formData.append('attach', option.file)
 
@@ -38,7 +38,7 @@ const ControlledUpload = memo((props) => {
     onChange(newFileList)
   }
 
-  const removeFile = (file) => {
+  const removeFileFun = (file) => {
     let newFileList = [...fileList]
 
     newFileList = newFileList.filter((item) => {
@@ -63,13 +63,13 @@ const ControlledUpload = memo((props) => {
         accept={accept}
         fileList={fileList}
         beforeUpload={(file) => {
-          beforeUpload(file)
+          beforeUploadFun(file)
         }}
         customRequest={(option) => {
-          customRequest(option)
+          customRequestFun(option)
         }}
         onRemove={(file) => {
-          removeFile(file)
+          removeFileFun(file)
         }}
       >
         <Button icon={<UploadOutlined />}>Upload</Button>

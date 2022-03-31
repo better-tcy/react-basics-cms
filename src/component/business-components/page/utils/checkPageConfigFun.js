@@ -1,4 +1,4 @@
-const checkFormItemConfig = (arrName, arr) => {
+const checkFormItemConfigFun = (arrName, arr) => {
   for (let item of arr) {
     if (!item.type || !item.label || !item.field) {
       console.warn(`${arrName}的每一项配置必须要包含 type label field字段`)
@@ -8,7 +8,7 @@ const checkFormItemConfig = (arrName, arr) => {
   return true
 }
 
-const checkIsObject = (obj) => {
+const checkIsObjectFun = (obj) => {
   if (Object.prototype.toString.call(obj) === '[object Object]') {
     return true
   } else {
@@ -16,7 +16,7 @@ const checkIsObject = (obj) => {
   }
 }
 
-const checkIsString = (str) => {
+const checkIsStringFun = (str) => {
   if (Object.prototype.toString.call(str) === '[object String]') {
     return true
   } else {
@@ -24,7 +24,7 @@ const checkIsString = (str) => {
   }
 }
 
-const checkIsArray = (arr) => {
+const checkIsArrayFun = (arr) => {
   if (Object.prototype.toString.call(arr) === '[object Array]') {
     return true
   } else {
@@ -32,13 +32,13 @@ const checkIsArray = (arr) => {
   }
 }
 
-export function checkPageConfig(pageConfig) {
+export function checkPageConfigFun(pageConfig) {
   if (!pageConfig) {
     console.warn('请给Page组件传入pageConfig配置')
     return false
   }
 
-  if (!checkIsObject(pageConfig)) {
+  if (!checkIsObjectFun(pageConfig)) {
     console.warn('pageConfig必须为Object类型')
     return false
   }
@@ -48,7 +48,7 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
-  if (!checkIsObject(pageConfig.pageRequestUrl)) {
+  if (!checkIsObjectFun(pageConfig.pageRequestUrl)) {
     console.warn('pageConfig -> pageRequestUrl必须为Object类型')
     return false
   }
@@ -58,7 +58,7 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
-  if (!checkIsString(pageConfig.pageRequestUrl.curdUrl)) {
+  if (!checkIsStringFun(pageConfig.pageRequestUrl.curdUrl)) {
     console.warn('pageRequestUrl -> curdUrl这项配置必须为String类型')
     return false
   }
@@ -66,21 +66,21 @@ export function checkPageConfig(pageConfig) {
   const { getMoreParams, postMoreParams, putMoreParams } = pageConfig.pageRequestUrl
 
   if (getMoreParams) {
-    if (!checkIsObject(getMoreParams)) {
+    if (!checkIsObjectFun(getMoreParams)) {
       console.warn('pageRequestUrl -> getMoreParams这项配置必须为Object类型')
       return
     }
   }
 
   if (postMoreParams) {
-    if (!checkIsObject(postMoreParams)) {
+    if (!checkIsObjectFun(postMoreParams)) {
       console.warn('pageRequestUrl -> postMoreParams这项配置必须为Object类型')
       return
     }
   }
 
   if (putMoreParams) {
-    if (!checkIsObject(putMoreParams)) {
+    if (!checkIsObjectFun(putMoreParams)) {
       console.warn('pageRequestUrl -> putMoreParams这项配置必须为Object类型')
       return
     }
@@ -91,7 +91,7 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
-  if (!checkIsObject(pageConfig.pageTitleConfig)) {
+  if (!checkIsObjectFun(pageConfig.pageTitleConfig)) {
     console.warn('pageConfig -> pageTitleConfig必须为Object类型')
     return false
   }
@@ -101,13 +101,13 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
-  if (!checkIsString(pageConfig.pageTitleConfig.title)) {
+  if (!checkIsStringFun(pageConfig.pageTitleConfig.title)) {
     console.warn('pageTitleConfig -> title这项配置必须为String类型')
     return false
   }
 
   if (pageConfig.pageSearchConfig) {
-    if (!checkIsObject(pageConfig.pageSearchConfig)) {
+    if (!checkIsObjectFun(pageConfig.pageSearchConfig)) {
       console.warn('pageConfig -> pageSearchConfig必须为Object类型')
       return false
     }
@@ -117,7 +117,7 @@ export function checkPageConfig(pageConfig) {
       return false
     }
 
-    if (!checkIsArray(pageConfig.pageSearchConfig.searchItemArr)) {
+    if (!checkIsArrayFun(pageConfig.pageSearchConfig.searchItemArr)) {
       console.warn('pageSearchConfig -> searchItemArr这项配置必须为Array类型')
       return false
     }
@@ -127,7 +127,7 @@ export function checkPageConfig(pageConfig) {
       return false
     }
 
-    const res = checkFormItemConfig('searchItemArr', pageConfig.pageSearchConfig.searchItemArr)
+    const res = checkFormItemConfigFun('searchItemArr', pageConfig.pageSearchConfig.searchItemArr)
     if (!res) {
       return false
     }
@@ -138,7 +138,7 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
-  if (!checkIsObject(pageConfig.pageTableConfig)) {
+  if (!checkIsObjectFun(pageConfig.pageTableConfig)) {
     console.warn('pageConfig -> pageTableConfig必须为Object类型')
     return false
   }
@@ -148,13 +148,13 @@ export function checkPageConfig(pageConfig) {
     return false
   }
 
-  if (!checkIsArray(pageConfig.pageTableConfig.columns)) {
+  if (!checkIsArrayFun(pageConfig.pageTableConfig.columns)) {
     console.warn('pageTableConfig -> columns这项必须为Array类型')
     return false
   }
 
   if (pageConfig.pageModalConfig) {
-    if (!checkIsObject(pageConfig.pageModalConfig)) {
+    if (!checkIsObjectFun(pageConfig.pageModalConfig)) {
       console.warn('pageConfig -> pageModalConfig必须为Object类型')
       return false
     }
@@ -164,7 +164,7 @@ export function checkPageConfig(pageConfig) {
       return false
     }
 
-    if (!checkIsArray(pageConfig.pageModalConfig.modalItemArr)) {
+    if (!checkIsArrayFun(pageConfig.pageModalConfig.modalItemArr)) {
       console.warn('pageModalConfig -> modalItemArr这项配置必须为Array类型')
       return false
     }
@@ -174,7 +174,7 @@ export function checkPageConfig(pageConfig) {
       return false
     }
 
-    const res = checkFormItemConfig('modalItemArr', pageConfig.pageModalConfig.modalItemArr)
+    const res = checkFormItemConfigFun('modalItemArr', pageConfig.pageModalConfig.modalItemArr)
     if (!res) {
       return false
     }

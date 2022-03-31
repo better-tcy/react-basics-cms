@@ -13,7 +13,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import routes from '@/router/index'
 
-import { setStoreData, getDataMergeState } from '@/utils/global'
+import { setStoreDataFun, getDataMergeStateFun } from '@/utils/global'
 
 import themeConfig from '@/assets/data/themeConfig'
 
@@ -21,10 +21,10 @@ export const ThemeContext = createContext()
 
 const App = memo(() => {
   // 监听浏览器刷新 缓存部分redux数据
-  setStoreData()
+  setStoreDataFun()
 
   // 获取缓存中的数据 并保存到redux中
-  getDataMergeState()
+  getDataMergeStateFun()
 
   return (
     <ConfigProvider locale={zhCN}>

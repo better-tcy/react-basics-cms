@@ -11,7 +11,7 @@ const ControlledTree = memo((props) => {
     )
   }
 
-  const onCheck = (checkedKeys) => {
+  const checkFun = (checkedKeys) => {
     onChange(checkedKeys)
   }
 
@@ -24,7 +24,7 @@ const ControlledTree = memo((props) => {
         treeData={treeData}
         fieldNames={fieldNames}
         onCheck={(checkedKeys) => {
-          onCheck(checkedKeys)
+          checkFun(checkedKeys)
         }}
       ></Tree>
     </div>

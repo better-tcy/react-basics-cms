@@ -6,7 +6,7 @@ import moment from 'moment'
 
 import pageSearchCss from './pageSearch.module.css'
 
-import { renderItem as renderSearchItem } from '../../utils'
+import { renderItemFun as renderSearchItemFun } from '../../utils'
 
 const PageSearch = memo((props) => {
   const { pageSearchConfig } = props
@@ -19,13 +19,13 @@ const PageSearch = memo((props) => {
   const endDateField = useRef('')
   const rangePickerFormat = useRef('')
 
-  const renderItemCallBack = (itemConfig) => {
+  const renderItemCallBackFun = (itemConfig) => {
     startDateField.current = itemConfig.field[0]
     endDateField.current = itemConfig.field[1]
     rangePickerFormat.current = itemConfig.format
   }
 
-  const search = () => {
+  const searchFun = () => {
     let searchData = form.getFieldsValue()
 
     let isRequestData = false
@@ -58,12 +58,12 @@ const PageSearch = memo((props) => {
       }
     }
 
-    pageSearchConfig.getSearchValues(searchData)
+    pageSearchConfig.getSearchValuesFun(searchData)
   }
 
-  const reset = () => {
+  const resetFun = () => {
     form.resetFields()
-    pageSearchConfig.resetSearchValues()
+    pageSearchConfig.resetSearchValuesFun()
   }
 
   return (
@@ -80,7 +80,7 @@ const PageSearch = memo((props) => {
                   marginBottom: '10px'
                 }}
               >
-                {renderSearchItem(searchItem, renderItemCallBack)}
+                {renderSearchItemFun(searchItem, renderItemCallBackFun)}
               </div>
             )
           })}
@@ -91,7 +91,7 @@ const PageSearch = memo((props) => {
         <Button
           type="primary"
           onClick={() => {
-            search()
+            searchFun()
           }}
         >
           查询
@@ -99,7 +99,7 @@ const PageSearch = memo((props) => {
         <Button
           className={pageSearchCss.reset_btn}
           onClick={() => {
-            reset()
+            resetFun()
           }}
         >
           重置

@@ -4,7 +4,7 @@ import { Button, Tag } from 'antd'
 
 import Page from '@/component/business-components/page/Page'
 
-import { btnAuthority } from 'page/utils'
+import { btnAuthorityFun } from 'page/utils'
 
 const OneOne = memo((props) => {
   // pageAuthorityArr来源于点击导航派发到页面对应的按钮权限数组
@@ -84,16 +84,16 @@ const OneOne = memo((props) => {
       ],
       // 如果按钮权限不具体到表格行信息的时候 下面函数可不传 默认按钮都显示
       // 根据行数据 是否渲染 查看按钮
-      // accordingRowIsRenderCheckBtn(record) {
+      // accordingRowIsRenderCheckBtnFun(record) {
       //   // 返回值必须为true && false
 
       // },
       // 根据行数据 是否渲染 修改按钮
-      // accordingRowIsRenderUpdateBtn(record) {
+      // accordingRowIsRenderUpdateBtnFun(record) {
 
       // },
       // 根据行数据 是否渲染 删除按钮
-      accordingRowIsRenderRemoveBtn(record) {
+      accordingRowIsRenderRemoveBtnFun(record) {
         if (record.id === 1) {
           return false
         } else {
@@ -101,7 +101,7 @@ const OneOne = memo((props) => {
         }
       }
       // 根据行数据 是否渲染 启用停用
-      // accordingRowIsRenderEDBtn(record) {
+      // accordingRowIsRenderEDBtnFun(record) {
 
       // }
     },
@@ -314,7 +314,7 @@ const OneOne = memo((props) => {
     // 业务逻辑
 
     // 更新表格数据
-    // pageRef.current.getTableData()
+    // pageRef.current.getTableDataFun()
   }
 
   const tableBtn1ClickFun = (record) => {
@@ -324,12 +324,12 @@ const OneOne = memo((props) => {
     // 业务逻辑
 
     // 更新表格数据
-    pageRef.current.getTableData()
+    pageRef.current.getTableDataFun()
   }
 
-  const pageBtn1 = () => {
+  const renderPageBtn1Fun = () => {
     // Page页其他按钮的权限 如果按钮权限数组pageAuthorityArr中存在'其他按钮'则显示此按钮
-    if (btnAuthority(pageAuthorityArr, '其他按钮')) {
+    if (btnAuthorityFun(pageAuthorityArr, '其他按钮')) {
       return function (tableSelectedRowKeys) {
         // 返回的按钮 必须添加key属性
         return (
@@ -347,9 +347,9 @@ const OneOne = memo((props) => {
     }
   }
 
-  const tableBtn1 = () => {
+  const renderTableBtn1Fun = () => {
     // 表格中其他按钮的权限 可结合src\assets\data\menuData.js中数据 梳理逻辑
-    if (btnAuthority(pageAuthorityArr, '其他按钮')) {
+    if (btnAuthorityFun(pageAuthorityArr, '其他按钮')) {
       return function (record) {
         // 如果'其他按钮'和行信息有权限关联 可拿到record判断 是否返回按钮
         // 返回的按钮 必须添加key属性 table中的其他按钮最好使用字符串作为key值 避免和组件内部按钮key冲突
@@ -372,10 +372,10 @@ const OneOne = memo((props) => {
   // 添加其他按钮
   if (pageConfig.pageTableConfig) {
     // Page页中其他按钮
-    pageConfig.pageTableConfig.pageMoreButtonArr = [pageBtn1()]
+    pageConfig.pageTableConfig.pageMoreButtonArr = [renderPageBtn1Fun()]
 
     // 表格中其他按钮
-    pageConfig.pageTableConfig.tableMoreButtonArr = [tableBtn1()]
+    pageConfig.pageTableConfig.tableMoreButtonArr = [renderTableBtn1Fun()]
   }
 
   return (

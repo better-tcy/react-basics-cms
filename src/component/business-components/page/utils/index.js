@@ -1,4 +1,4 @@
-import { renderItem } from './renderItem'
-import { checkPageConfig } from './checkPageConfig'
-import { btnAuthority } from './btnAuthority'
-export { renderItem, checkPageConfig, btnAuthority }
+import { renderItemFun } from './renderItemFun'
+import { checkPageConfigFun } from './checkPageConfigFun'
+import { btnAuthorityFun } from './btnAuthorityFun'
+export { renderItemFun, checkPageConfigFun, btnAuthorityFun }

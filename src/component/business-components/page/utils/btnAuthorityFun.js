@@ -1,4 +1,4 @@
-export function btnAuthority(pageAuthorityArr, btnAuthorityName) {
+export function btnAuthorityFun(pageAuthorityArr, btnAuthorityName) {
   if (!pageAuthorityArr || pageAuthorityArr.length === 0) {
     return false
   }

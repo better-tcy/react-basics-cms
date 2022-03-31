@@ -1,7 +1,7 @@
 import store from '@/store'
 import { resetFrameWorkStateA } from '@/store/createAction/frameWork'
 
-export function setStoreData() {
+export function setStoreDataFun() {
   // 在页面刷新时将redux里的部分信息保存到sessionStorage里
   window.addEventListener('beforeunload', () => {
     const state = store.getState()
@@ -18,7 +18,7 @@ export function setStoreData() {
 }
 
 //获取缓存数据 合并redux frameWork state数据
-export function getDataMergeState() {
+export function getDataMergeStateFun() {
   if (sessionStorage.getItem('frameWorkState')) {
     store.dispatch(
       resetFrameWorkStateA({

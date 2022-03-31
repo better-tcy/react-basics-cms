@@ -4,7 +4,7 @@ import { message } from 'antd'
 
 import store from '@/store'
 
-export function authenticationPath(route, location) {
+export function authenticationPathFun(route, location) {
   const state = store.getState()
   const menuPathArr = state.get('frameWork').get('menuPathArrR')
 
