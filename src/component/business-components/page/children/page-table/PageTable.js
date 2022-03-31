@@ -45,9 +45,11 @@ const PageTable = memo((props) => {
 
   const cloneDeepPageModalConfig = useRef(_.cloneDeep(pageModalConfig))
 
-  cloneDeepPageModalConfig.current.saveUrl = curdUrl
-  cloneDeepPageModalConfig.current.postMoreParams = postMoreParams
-  cloneDeepPageModalConfig.current.putMoreParams = putMoreParams
+  if (cloneDeepPageModalConfig.current) {
+    cloneDeepPageModalConfig.current.saveUrl = curdUrl
+    cloneDeepPageModalConfig.current.postMoreParams = postMoreParams
+    cloneDeepPageModalConfig.current.putMoreParams = putMoreParams
+  }
 
   useImperativeHandle(props.onRef, () => {
     return {
@@ -80,23 +82,23 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-          title: '操作',
-          key: 'action',
-          align: 'center',
-          fixed: 'right',
-          width: actionColumnsWidth,
-          render: (_, record) => (
-            <Space size="middle">
-              {tableBtnArr.map((itemFun) => {
-                if (itemFun instanceof Function) {
-                  return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
-                } else {
-                  return <div key={record.id} style={{ width: '66px' }}></div>
-                }
-              })}
-            </Space>
-          )
-        }
+        title: '操作',
+        key: 'action',
+        align: 'center',
+        fixed: 'right',
+        width: actionColumnsWidth,
+        render: (_, record) => (
+          <Space size="middle">
+            {tableBtnArr.map((itemFun) => {
+              if (itemFun instanceof Function) {
+                return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
+              } else {
+                return <div key={record.id} style={{ width: '66px' }}></div>
+              }
+            })}
+          </Space>
+        )
+      }
       : {}
   ]
 
