@@ -112,7 +112,7 @@ export function getParams(url, params) {
   const { id } = params
   return new Promise((resolve, reject) => {
     axios1
-      .get(`${url}/${id}`)
+      .get(`${url}${id}`)
       .then((res) => {
         resolve(res.data)
       })
@@ -150,7 +150,7 @@ export function post(url, params) {
 export function put(url, params) {
   const id = params.id
   if (id) {
-    url = `${url}/${id}`
+    url = `${url}${id}`
     delete params.id
   }
   return new Promise((resolve, reject) => {
@@ -174,7 +174,7 @@ export function put(url, params) {
 export function remove(url, params) {
   const id = params.id
   if (id) {
-    url = `${url}/${id}`
+    url = `${url}${id}`
     delete params.id
   }
 

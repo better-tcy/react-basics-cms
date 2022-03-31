@@ -33,11 +33,6 @@
     "prepare": "husky install",
     "commit": "cz"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",

@@ -14,7 +14,7 @@ const OneOne = memo((props) => {
 
   const pageConfig = {
     pageRequestUrl: {
-      curdUrl: '/oneOne',
+      curdUrl: '/oneOne/',
       getMoreParams: {
         type: 1
       },
@@ -28,7 +28,7 @@ const OneOne = memo((props) => {
       // disabledUrl: '/oneOne/stop' // 默认值/oneOne/stop
     },
     pageTitleConfig: {
-      title: '测试page'
+      title: '配置生成页面'
     },
     pageSearchConfig: {
       // searchItemMarginRight: '50px',
@@ -57,7 +57,7 @@ const OneOne = memo((props) => {
       // actionColumnsWidth: 500, // 操作列的宽度 默认为500 如果表格列数较多，请给每个列添加宽度（columns中的每一项增加width属性）这样表格会增加横向滚动条，操作列悬浮固定在右侧
       columns: [
         {
-          title: '角色名称',
+          title: '用户名称',
           dataIndex: 'name',
           key: 'name',
           align: 'center'

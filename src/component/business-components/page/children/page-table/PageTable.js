@@ -43,6 +43,12 @@ const PageTable = memo((props) => {
     accordingRowIsRenderEDBtn = () => true
   } = pageTableConfig
 
+  const cloneDeepPageModalConfig = useRef(_.cloneDeep(pageModalConfig))
+
+  cloneDeepPageModalConfig.current.saveUrl = curdUrl
+  cloneDeepPageModalConfig.current.postMoreParams = postMoreParams
+  cloneDeepPageModalConfig.current.putMoreParams = putMoreParams
+
   useImperativeHandle(props.onRef, () => {
     return {
       getTableData
@@ -55,9 +61,6 @@ const PageTable = memo((props) => {
   const [tableData, setTableData] = useState({})
 
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
-
-  const modalTitle = useRef('')
-  const tableItemId = useRef()
 
   const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -225,15 +228,17 @@ const PageTable = memo((props) => {
     getTableDataH(curdUrl, cloneDeepSearchData).then((res) => {
       setTableData(res.data)
     })
-  }, [curdUrl, searchData])
+  }, [curdUrl, searchData, getMoreParams])
 
   const showModal = (title, rowId) => {
-    if (!pageModalConfig) {
+    if (!cloneDeepPageModalConfig.current) {
       console.warn('如果想使用弹窗功能，请传入pageModalConfig这项配置')
       return
     }
-    modalTitle.current = title
-    rowId ? (tableItemId.current = rowId) : (tableItemId.current = '')
+    cloneDeepPageModalConfig.current.modalTitle = title
+    rowId
+      ? (cloneDeepPageModalConfig.current.itemId = rowId)
+      : (cloneDeepPageModalConfig.current.itemId = '')
     setIsModalVisible(true)
   }
 
@@ -277,7 +282,7 @@ const PageTable = memo((props) => {
     if (isEnable) {
       // 启用
       function callBackFun() {
-        startTableDataH(enableUrl || `${curdUrl}/start`, { ids: rowIdArr }).then((res) => {
+        startTableDataH(enableUrl || `${curdUrl}start/`, { ids: rowIdArr }).then((res) => {
           message.success('已启用')
           getTableData()
         })
@@ -287,7 +292,7 @@ const PageTable = memo((props) => {
     } else {
       // 禁用
       function callBackFun() {
-        stopTableDataH(disabledUrl || `${curdUrl}/stop`, { ids: rowIdArr }).then((res) => {
+        stopTableDataH(disabledUrl || `${curdUrl}stop/`, { ids: rowIdArr }).then((res) => {
           message.warning('已禁用')
           getTableData()
         })
@@ -359,13 +364,8 @@ const PageTable = memo((props) => {
 
       {pageModalConfig && (
         <PageModal
-          curdUrl={curdUrl}
           isModalVisible={isModalVisible}
-          modalTitle={modalTitle.current}
-          tableItemId={tableItemId.current}
-          pageModalConfig={pageModalConfig}
-          postMoreParams={postMoreParams}
-          putMoreParams={putMoreParams}
+          pageModalConfig={cloneDeepPageModalConfig.current}
           closeModal={closeModal}
         ></PageModal>
       )}

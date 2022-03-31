@@ -1,12 +1,18 @@
 import { lazy } from 'react'
 
-const One = lazy(() => import('@/view/content/one/one-one/OneOne'))
+const OneOne = lazy(() => import('@/view/content/one/one-one/OneOne'))
+const OneTwo = lazy(() => import('@/view/content/one/one-two/OneTwo'))
 
 const oneRouter = [
   {
     path: '/content/one/OneOne',
     exact: true,
-    component: One
+    component: OneOne
+  },
+  {
+    path: '/content/one/OneTwo',
+    exact: true,
+    component: OneTwo
   }
 ]
 

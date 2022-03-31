@@ -15,17 +15,15 @@ import {
 } from '@/request/api/content/common/page'
 
 const PageModal = memo((props) => {
+  const { isModalVisible, pageModalConfig, closeModal } = props
   const {
-    curdUrl,
+    saveUrl,
     postMoreParams,
     putMoreParams,
+    itemId,
+    formData,
     modalTitle,
-    tableItemId,
-    pageModalConfig,
-    closeModal,
-    isModalVisible
-  } = props
-  const {
+    modalItemArr,
     width = 560,
     maskClosable = true,
     okText = '确定',
@@ -33,7 +31,7 @@ const PageModal = memo((props) => {
     layout = 'horizontal',
     labelCol = { offset: 0, span: 6 },
     wrapperCol = { offset: 1, span: 12 },
-    modalItemArr
+    getFormDataFun
   } = pageModalConfig
 
   const [form] = Form.useForm()
@@ -99,29 +97,42 @@ const PageModal = memo((props) => {
       }
     }
 
-    if (tableItemId) {
-      // 修改
-      formData.id = tableItemId
-      formData = Object.assign(formData, putMoreParams)
-      updateTableDataItemH(curdUrl, formData).then((_) => {
-        message.success('修改成功')
-        // true：重新请求table表格数据
-        closeModal('占位参数', true)
-      })
+    if (saveUrl) {
+      if (itemId) {
+        // 修改
+        formData.id = itemId
+        formData = Object.assign(formData, putMoreParams)
+        updateTableDataItemH(saveUrl, formData).then((_) => {
+          message.success('修改成功')
+          // true：重新请求table表格数据
+          closeModal('占位参数', true)
+        })
+      } else {
+        // 新增
+        formData = Object.assign(formData, postMoreParams)
+        addTableDataItemH(saveUrl, formData).then((_) => {
+          message.success('保存成功')
+          // true：重新请求table表格数据
+          closeModal('占位参数', true)
+        })
+      }
     } else {
-      // 新增
-      formData = Object.assign(formData, postMoreParams)
-      addTableDataItemH(curdUrl, formData).then((_) => {
-        message.success('保存成功')
-        // true：重新请求table表格数据
+      if (getFormDataFun) {
+        getFormDataFun(formData)
         closeModal('占位参数', true)
-      })
+      } else {
+        console.warn('缺少getFormDataFun函数')
+      }
     }
   }
-
   useEffect(() => {
-    if (tableItemId) {
-      getTableDataItemDetailsH(curdUrl, { id: tableItemId }).then((res) => {
+    if (formData) {
+      form.setFieldsValue(formData)
+      return
+    }
+
+    if (itemId) {
+      getTableDataItemDetailsH(saveUrl, { id: itemId }).then((res) => {
         // 是否存在日期区间选择器
         if (startDateField.current && endDateField.current) {
           const startDate = res.data[startDateField.current]
