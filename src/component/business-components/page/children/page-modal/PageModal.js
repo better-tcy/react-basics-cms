@@ -119,7 +119,6 @@ const PageModal = memo((props) => {
     } else {
       if (getFormDataFun) {
         getFormDataFun(formData)
-        onCloseModal('占位参数', true)
       } else {
         console.warn('缺少getFormDataFun函数')
       }
