@@ -7,7 +7,7 @@ const { TextArea } = Input
 const { Option } = Select
 const { RangePicker } = DatePicker
 
-export function renderItemFun(itemConfig, renderItemCallBack) {
+export function renderItemFun(itemConfig, renderItemCallBackFun) {
   switch (itemConfig.type) {
     case 'input':
       return (
@@ -71,7 +71,7 @@ export function renderItemFun(itemConfig, renderItemCallBack) {
         </Form.Item>
       )
     case 'datePicker':
-      renderItemCallBack(itemConfig)
+      renderItemCallBackFun(itemConfig)
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <DatePicker
@@ -84,7 +84,7 @@ export function renderItemFun(itemConfig, renderItemCallBack) {
       )
 
     case 'rangePicker':
-      renderItemCallBack(itemConfig)
+      renderItemCallBackFun(itemConfig)
       return (
         <Form.Item label={itemConfig.label} name={itemConfig.field[0]} rules={itemConfig.rules}>
           <RangePicker
