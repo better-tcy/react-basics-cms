@@ -43,7 +43,12 @@ const PageTable = memo((props) => {
     accordingRowIsRenderEDBtnFun = () => true
   } = pageTableConfig
 
-  const cloneDeepPageModalConfig = useRef(_.cloneDeep(pageModalConfig))
+  const cloneDeepPageModalConfig = useRef({})
+
+  // 为防止再次render的时候 重置cloneDeepPageModalConfig的值
+  if (cloneDeepPageModalConfig.current.modalTitle) {
+    cloneDeepPageModalConfig.current = _.cloneDeep(pageModalConfig)
+  }
 
   if (cloneDeepPageModalConfig.current) {
     cloneDeepPageModalConfig.current.saveUrl = curdUrl
@@ -82,23 +87,23 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-          title: '操作',
-          key: 'action',
-          align: 'center',
-          fixed: 'right',
-          width: actionColumnsWidth,
-          render: (_, record) => (
-            <Space size="middle">
-              {tableBtnArr.map((itemFun) => {
-                if (itemFun instanceof Function) {
-                  return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
-                } else {
-                  return <div key={record.id} style={{ width: '66px' }}></div>
-                }
-              })}
-            </Space>
-          )
-        }
+        title: '操作',
+        key: 'action',
+        align: 'center',
+        fixed: 'right',
+        width: actionColumnsWidth,
+        render: (_, record) => (
+          <Space size="middle">
+            {tableBtnArr.map((itemFun) => {
+              if (itemFun instanceof Function) {
+                return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
+              } else {
+                return <div key={record.id} style={{ width: '66px' }}></div>
+              }
+            })}
+          </Space>
+        )
+      }
       : {}
   ]
 
