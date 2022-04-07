@@ -43,14 +43,13 @@ const PageTable = memo((props) => {
     accordingRowIsRenderEDBtnFun = () => true
   } = pageTableConfig
 
-  const cloneDeepPageModalConfig = useRef({})
-
-  // 为防止再次render的时候 重置cloneDeepPageModalConfig的值
-  if (cloneDeepPageModalConfig.current.modalTitle) {
-    cloneDeepPageModalConfig.current = _.cloneDeep(pageModalConfig)
-  }
+  const cloneDeepPageModalConfig = useRef(null)
 
   if (cloneDeepPageModalConfig.current) {
+    cloneDeepPageModalConfig.current = Object.assign(
+      cloneDeepPageModalConfig.current,
+      _.cloneDeep(pageModalConfig)
+    )
     cloneDeepPageModalConfig.current.saveUrl = curdUrl
     cloneDeepPageModalConfig.current.postMoreParams = postMoreParams
     cloneDeepPageModalConfig.current.putMoreParams = putMoreParams
@@ -87,23 +86,23 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-        title: '操作',
-        key: 'action',
-        align: 'center',
-        fixed: 'right',
-        width: actionColumnsWidth,
-        render: (_, record) => (
-          <Space size="middle">
-            {tableBtnArr.map((itemFun) => {
-              if (itemFun instanceof Function) {
-                return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
-              } else {
-                return <div key={record.id} style={{ width: '66px' }}></div>
-              }
-            })}
-          </Space>
-        )
-      }
+          title: '操作',
+          key: 'action',
+          align: 'center',
+          fixed: 'right',
+          width: actionColumnsWidth,
+          render: (_, record) => (
+            <Space size="middle">
+              {tableBtnArr.map((itemFun) => {
+                if (itemFun instanceof Function) {
+                  return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
+                } else {
+                  return <div key={record.id} style={{ width: '66px' }}></div>
+                }
+              })}
+            </Space>
+          )
+        }
       : {}
   ]
 
@@ -238,10 +237,11 @@ const PageTable = memo((props) => {
   }, [curdUrl, searchData, getMoreParams])
 
   const showModalFun = (title, rowId) => {
-    if (!cloneDeepPageModalConfig.current) {
+    if (!pageModalConfig) {
       console.warn('如果想使用弹窗功能，请传入pageModalConfig这项配置')
       return
     }
+    cloneDeepPageModalConfig.current = {}
     cloneDeepPageModalConfig.current.modalTitle = title
     rowId
       ? (cloneDeepPageModalConfig.current.itemId = rowId)
