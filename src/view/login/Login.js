@@ -63,14 +63,11 @@ const Login = memo(() => {
           <Form
             style={{ width: '100%' }}
             name="basic"
-            labelCol={{ span: 5 }}
-            wrapperCol={{ span: 18 }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
           >
             <Form.Item
-              label="Username"
               name="username"
               rules={[{ required: true, message: 'Please input your username!' }]}
             >
@@ -81,7 +78,6 @@ const Login = memo(() => {
             </Form.Item>
 
             <Form.Item
-              label="Password"
               name="password"
               rules={[{ required: true, message: 'Please input your password!' }]}
             >
@@ -91,7 +87,7 @@ const Login = memo(() => {
               />
             </Form.Item>
 
-            <Form.Item wrapperCol={{ offset: 5, span: 18 }}>
+            <Form.Item>
               <Button type="primary" htmlType="submit" block>
                 登录
               </Button>
