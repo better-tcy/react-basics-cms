@@ -7,9 +7,9 @@ import _ from 'lodash'
 
 import {
   getTableDataH,
-  removeTableDataH,
-  startTableDataH,
-  stopTableDataH
+  removeTableItemDataH,
+  startTableItemDataH,
+  stopTableItemDataH
 } from '@/request/api/content/common/page'
 
 import { btnAuthorityFun } from 'page/utils'
@@ -258,7 +258,7 @@ const PageTable = memo((props) => {
 
   const removeTableDataFun = (id) => {
     function callBackFun() {
-      removeTableDataH(curdUrl, { id }).then(() => {
+      removeTableItemDataH(curdUrl, { id }).then(() => {
         message.success('删除成功')
         getTableDataFun()
       })
@@ -289,7 +289,7 @@ const PageTable = memo((props) => {
     if (isEnable) {
       // 启用
       function callBackFun() {
-        startTableDataH(enableUrl || `${curdUrl}start/`, { ids: rowIdArr }).then((res) => {
+        startTableItemDataH(enableUrl || `${curdUrl}start/`, { ids: rowIdArr }).then((res) => {
           message.success('已启用')
           getTableDataFun()
         })
@@ -299,7 +299,7 @@ const PageTable = memo((props) => {
     } else {
       // 禁用
       function callBackFun() {
-        stopTableDataH(disabledUrl || `${curdUrl}stop/`, { ids: rowIdArr }).then((res) => {
+        stopTableItemDataH(disabledUrl || `${curdUrl}stop/`, { ids: rowIdArr }).then((res) => {
           message.warning('已禁用')
           getTableDataFun()
         })

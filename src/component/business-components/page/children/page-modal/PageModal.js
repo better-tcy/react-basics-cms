@@ -9,9 +9,9 @@ import _ from 'lodash'
 import { renderItemFun as renderModalItemFun } from '../../utils'
 
 import {
-  addTableDataItemH,
-  getTableDataItemDetailsH,
-  updateTableDataItemH
+  addTableItemDataH,
+  getTableItemDataDetailsH,
+  updateTableItemDataH
 } from '@/request/api/content/common/page'
 
 const PageModal = memo((props) => {
@@ -102,7 +102,7 @@ const PageModal = memo((props) => {
         // 修改
         formData.id = itemId
         formData = Object.assign(formData, putMoreParams)
-        updateTableDataItemH(saveUrl, formData).then((_) => {
+        updateTableItemDataH(saveUrl, formData).then((_) => {
           message.success('修改成功')
           // true：重新请求table表格数据
           onCloseModal('占位参数', true)
@@ -110,7 +110,7 @@ const PageModal = memo((props) => {
       } else {
         // 新增
         formData = Object.assign(formData, postMoreParams)
-        addTableDataItemH(saveUrl, formData).then((_) => {
+        addTableItemDataH(saveUrl, formData).then((_) => {
           message.success('保存成功')
           // true：重新请求table表格数据
           onCloseModal('占位参数', true)
@@ -131,7 +131,7 @@ const PageModal = memo((props) => {
     }
 
     if (itemId) {
-      getTableDataItemDetailsH(saveUrl, { id: itemId }).then((res) => {
+      getTableItemDataDetailsH(saveUrl, { id: itemId }).then((res) => {
         // 是否存在日期区间选择器
         if (startDateField.current && endDateField.current) {
           const startDate = res.data[startDateField.current]

@@ -4,26 +4,26 @@ export function getTableDataH(url, params) {
   return getQuery(url, params)
 }
 
-export function removeTableDataH(url, params) {
+export function removeTableItemDataH(url, params) {
   return remove(url, params)
 }
 
-export function startTableDataH(url, params) {
+export function startTableItemDataH(url, params) {
   return post(url, params)
 }
 
-export function stopTableDataH(url, params) {
+export function stopTableItemDataH(url, params) {
   return post(url, params)
 }
 
-export function addTableDataItemH(url, params) {
+export function addTableItemDataH(url, params) {
   return post(url, params)
 }
 
-export function getTableDataItemDetailsH(url, params) {
+export function getTableItemDataDetailsH(url, params) {
   return getParams(url, params)
 }
 
-export function updateTableDataItemH(url, params) {
+export function updateTableItemDataH(url, params) {
   return put(url, params)
 }
