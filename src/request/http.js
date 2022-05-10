@@ -13,12 +13,8 @@ import {
 // 创建axios实例
 const axios1 = axios.create()
 
-// 环境的切换
-if (process.env.NODE_ENV === 'development') {
-  axios1.defaults.baseURL = 'http://localhost:3001'
-} else if (process.env.NODE_ENV === 'production') {
-  axios1.defaults.baseURL = 'http://localhost:3001'
-}
+axios1.defaults.baseURL = process.env.REACT_APP_REQUEST_BASE_URL
+
 axios1.defaults.timeout = 10000
 axios1.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded;charset=UTF-8;multipart/form-data'
