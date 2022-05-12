@@ -86,23 +86,23 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-          title: '操作',
-          key: 'action',
-          align: 'center',
-          fixed: 'right',
-          width: actionColumnsWidth,
-          render: (_, record) => (
-            <Space size="middle">
-              {tableBtnArr.map((itemFun) => {
-                if (itemFun instanceof Function) {
-                  return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
-                } else {
-                  return <div key={record.id} style={{ width: '66px' }}></div>
-                }
-              })}
-            </Space>
-          )
-        }
+        title: '操作',
+        key: 'action',
+        align: 'center',
+        fixed: 'right',
+        width: actionColumnsWidth,
+        render: (_, record) => (
+          <Space size="middle">
+            {tableBtnArr.map((itemFun) => {
+              if (itemFun instanceof Function) {
+                return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
+              } else {
+                return <div key={record.id} style={{ width: '66px' }}></div>
+              }
+            })}
+          </Space>
+        )
+      }
       : {}
   ]
 
@@ -127,6 +127,30 @@ const PageTable = memo((props) => {
     onChange: (selectedRowKeys) => {
       setSelectedRowKeys(selectedRowKeys)
     }
+  }
+
+  const getTableDataFun = useCallback(() => {
+    let cloneDeepSearchData = _.cloneDeep(searchData)
+    cloneDeepSearchData.pageNum = pageNum.current
+    cloneDeepSearchData.pageSize = pageSize.current
+    cloneDeepSearchData = Object.assign(cloneDeepSearchData, getMoreParams)
+
+    getTableDataH(curdUrl, cloneDeepSearchData).then((res) => {
+      setTableData(res.data)
+    })
+  }, [curdUrl, searchData, getMoreParams])
+
+  const commonConfirmFun = (title, callBackFun) => {
+    confirm({
+      title: title,
+      icon: <ExclamationCircleOutlined />,
+      onOk() {
+        callBackFun && callBackFun()
+      },
+      onCancel() {
+        console.log('Cancel')
+      }
+    })
   }
 
   function renderCheckRowDetailsBtnFun() {
@@ -181,7 +205,7 @@ const PageTable = memo((props) => {
               type="text"
               style={{ color: '#EB3030' }}
               onClick={() => {
-                removeTableDataFun(record.id)
+                removeTableItemDataFun(record.id)
               }}
             >
               删除
@@ -212,30 +236,6 @@ const PageTable = memo((props) => {
     }
   }
 
-  const commonConfirmFun = (title, callBackFun) => {
-    confirm({
-      title: title,
-      icon: <ExclamationCircleOutlined />,
-      onOk() {
-        callBackFun && callBackFun()
-      },
-      onCancel() {
-        console.log('Cancel')
-      }
-    })
-  }
-
-  const getTableDataFun = useCallback(() => {
-    let cloneDeepSearchData = _.cloneDeep(searchData)
-    cloneDeepSearchData.pageNum = pageNum.current
-    cloneDeepSearchData.pageSize = pageSize.current
-    cloneDeepSearchData = Object.assign(cloneDeepSearchData, getMoreParams)
-
-    getTableDataH(curdUrl, cloneDeepSearchData).then((res) => {
-      setTableData(res.data)
-    })
-  }, [curdUrl, searchData, getMoreParams])
-
   const showModalFun = (title, rowId) => {
     if (!pageModalConfig) {
       console.warn('如果想使用弹窗功能，请传入pageModalConfig这项配置')
@@ -256,7 +256,7 @@ const PageTable = memo((props) => {
     setIsModalVisible(false)
   }
 
-  const removeTableDataFun = (id) => {
+  const removeTableItemDataFun = (id) => {
     function callBackFun() {
       removeTableItemDataH(curdUrl, { id }).then(() => {
         message.success('删除成功')
@@ -366,7 +366,7 @@ const PageTable = memo((props) => {
         dataSource={tableData.list}
         pagination={paginationConfig}
         rowSelection={rowSelection}
-        rowKey={(record) => record.id}
+        rowKey={record => record.id}
       />
 
       {cloneDeepPageModalConfig.current && (
