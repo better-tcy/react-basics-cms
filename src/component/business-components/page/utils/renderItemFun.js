@@ -50,9 +50,9 @@ export function renderItemFun(itemConfig, renderItemCallBackFun) {
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Select
             showSearch
+            optionFilterProp="children"
             style={{ width: '100%' }}
             disabled={itemConfig.disabled}
-            optionFilterProp="children"
             mode={itemConfig.mode || ''}
             placeholder={itemConfig.placeholder || '请选择内容'}
           >

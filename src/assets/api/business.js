@@ -129,3 +129,73 @@ Mock.mock(RegExp(`http://localhost:3001/upload.*`), 'post', function (options) {
     data: 'http://101.43.153.100/images/image.jpg'
   })
 })
+
+/**
+ * 联动下拉框数据
+ */
+
+Mock.mock(RegExp(`http://localhost:3001/firstSelectData.*`), 'get', function (options) {
+  console.log(options)
+  return Mock.mock({
+    code: 0,
+    msg: '',
+    data: [
+      {
+        id: 1,
+        name: 'JavaScript'
+      },
+      {
+        id: 2,
+        name: 'Go'
+      },
+      {
+        id: 3,
+        name: 'Java'
+      }
+    ]
+  })
+})
+
+Mock.mock(RegExp(`http://localhost:3001/secondSelectData.*`), 'get', function (options) {
+  console.log(options)
+  return Mock.mock({
+    code: 0,
+    msg: '',
+    data: [
+      {
+        id: 1,
+        name: 'React'
+      },
+      {
+        id: 2,
+        name: 'Vue'
+      },
+      {
+        id: 3,
+        name: 'Angular'
+      }
+    ]
+  })
+})
+
+Mock.mock(RegExp(`http://localhost:3001/thirdSelectData.*`), 'get', function (options) {
+  console.log(options)
+  return Mock.mock({
+    code: 0,
+    msg: '',
+    data: [
+      {
+        id: 1,
+        name: '深入React技术栈'
+      },
+      {
+        id: 2,
+        name: '深入浅出React和Redux'
+      },
+      {
+        id: 3,
+        name: 'React 进阶之路'
+      }
+    ]
+  })
+})

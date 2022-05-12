@@ -27,3 +27,7 @@ export function getTableItemDataDetailsH(url, params) {
 export function updateTableItemDataH(url, params) {
   return put(url, params)
 }
+
+export function getSelectDataH(url, params) {
+  return getQuery(url, params)
+}

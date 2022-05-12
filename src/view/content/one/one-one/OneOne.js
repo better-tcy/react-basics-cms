@@ -45,6 +45,38 @@ const OneOne = memo((props) => {
           field: 'phone',
           placeholder: '请输入手机号'
         }
+      ],
+      connectedSelectArr: [
+        {
+          label: '选择编程语言',
+          field: 'programmingLanguage',
+          placeholder: '请选择语言',
+          customizeOptionsValueKey: 'id',
+          customizeOptionsLabelKey: 'name',
+          url: '/firstSelectData/',
+          requestKey: 'programmingLanguage',
+          rules: []
+        },
+        {
+          label: '选择一门框架',
+          field: 'frame',
+          placeholder: '请选择框架',
+          customizeOptionsValueKey: 'id',
+          customizeOptionsLabelKey: 'name',
+          url: '/secondSelectData/',
+          requestKey: 'frame',
+          rules: []
+        },
+        {
+          label: '选择框架书籍',
+          field: 'book',
+          placeholder: '请选择书籍',
+          customizeOptionsValueKey: 'id',
+          customizeOptionsLabelKey: 'name',
+          url: '/thirdSelectData/',
+          requestKey: 'book',
+          rules: []
+        }
       ]
     },
     pageTableConfig: {
