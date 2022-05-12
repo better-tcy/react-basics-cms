@@ -6,11 +6,10 @@ import { ExclamationCircleOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 
 import {
-  getTableDataH,
-  removeTableItemDataH,
-  startTableItemDataH,
-  stopTableItemDataH
-} from '@/request/api/content/common/page'
+  getQuery,
+  remove,
+  post
+} from '@/request/http'
 
 import { btnAuthorityFun } from 'page/utils'
 
@@ -86,23 +85,23 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-          title: '操作',
-          key: 'action',
-          align: 'center',
-          fixed: 'right',
-          width: actionColumnsWidth,
-          render: (_, record) => (
-            <Space size="middle">
-              {tableBtnArr.map((itemFun) => {
-                if (itemFun instanceof Function) {
-                  return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
-                } else {
-                  return <div key={record.id} style={{ width: '66px' }}></div>
-                }
-              })}
-            </Space>
-          )
-        }
+        title: '操作',
+        key: 'action',
+        align: 'center',
+        fixed: 'right',
+        width: actionColumnsWidth,
+        render: (_, record) => (
+          <Space size="middle">
+            {tableBtnArr.map((itemFun) => {
+              if (itemFun instanceof Function) {
+                return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
+              } else {
+                return <div key={record.id} style={{ width: '66px' }}></div>
+              }
+            })}
+          </Space>
+        )
+      }
       : {}
   ]
 
@@ -135,7 +134,7 @@ const PageTable = memo((props) => {
     cloneDeepSearchData.pageSize = pageSize.current
     cloneDeepSearchData = Object.assign(cloneDeepSearchData, getMoreParams)
 
-    getTableDataH(curdUrl, cloneDeepSearchData).then((res) => {
+    getQuery(curdUrl, cloneDeepSearchData).then((res) => {
       setTableData(res.data)
     })
   }, [curdUrl, searchData, getMoreParams])
@@ -258,7 +257,7 @@ const PageTable = memo((props) => {
 
   const removeTableItemDataFun = (id) => {
     function callBackFun() {
-      removeTableItemDataH(curdUrl, { id }).then(() => {
+      remove(curdUrl, { id }).then(() => {
         message.success('删除成功')
         getTableDataFun()
       })
@@ -289,7 +288,7 @@ const PageTable = memo((props) => {
     if (isEnable) {
       // 启用
       function callBackFun() {
-        startTableItemDataH(enableUrl || `${curdUrl}start/`, { ids: rowIdArr }).then((res) => {
+        post(enableUrl || `${curdUrl}start/`, { ids: rowIdArr }).then((res) => {
           message.success('已启用')
           getTableDataFun()
         })
@@ -299,7 +298,7 @@ const PageTable = memo((props) => {
     } else {
       // 禁用
       function callBackFun() {
-        stopTableItemDataH(disabledUrl || `${curdUrl}stop/`, { ids: rowIdArr }).then((res) => {
+        post(disabledUrl || `${curdUrl}stop/`, { ids: rowIdArr }).then((res) => {
           message.warning('已禁用')
           getTableDataFun()
         })

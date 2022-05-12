@@ -4,6 +4,6 @@ import { getCommonDataOneA } from '../createAction/business'
 
 export const getCommonDataOneM = (dispatch, getState) => {
   getCommonDataOneH().then((res) => {
-    dispatch(getCommonDataOneA(res.result))
+    dispatch(getCommonDataOneA(res.data))
   })
 }

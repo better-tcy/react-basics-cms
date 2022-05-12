@@ -6,11 +6,11 @@ Mock.setup({
 })
 
 // 公共数据
-Mock.mock('http://localhost:3001/commonData', 'get', function () {
+Mock.mock('http://localhost:3001/commonData/', 'get', function () {
   return Mock.mock({
     code: 0,
     msg: '',
-    result: '我是公共的数据 哈哈哈，配置生成页面 请去OneOne目录'
+    data: '我是公共的数据 哈哈哈，配置生成页面 请去OneOne目录'
   })
 })
 

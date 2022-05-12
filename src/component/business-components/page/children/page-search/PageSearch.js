@@ -4,7 +4,7 @@ import { Form, Button, message, Select } from 'antd'
 
 import moment from 'moment'
 
-import { getSelectDataH } from '@/request/api/content/common/page'
+import { getQuery } from '@/request/http'
 
 import pageSearchCss from './pageSearch.module.css'
 
@@ -42,7 +42,7 @@ const PageSearch = memo((props) => {
   }
 
   const getFirstSelectData = useCallback(() => {
-    getSelectDataH(connectedSelectArr[0].url).then((res) => {
+    getQuery(connectedSelectArr[0].url).then((res) => {
       connectedDataSource.current[0] = res.data
       setAgainRender([])
     })
@@ -62,7 +62,7 @@ const PageSearch = memo((props) => {
     // 1.根据当前触发输入框 获取下一个联动输入框的配置项
     const nextConfig = connectedSelectArr[index + 1]
     // 2.获取数据
-    getSelectDataH(nextConfig.url, { [nextConfig.requestKey]: selectedValue }).then((res) => {
+    getQuery(nextConfig.url, { [nextConfig.requestKey]: selectedValue }).then((res) => {
       connectedDataSource.current[index + 1] = res.data
       setAgainRender([])
     })
