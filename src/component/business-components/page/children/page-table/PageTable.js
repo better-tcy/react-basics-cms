@@ -86,23 +86,23 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-        title: '操作',
-        key: 'action',
-        align: 'center',
-        fixed: 'right',
-        width: actionColumnsWidth,
-        render: (_, record) => (
-          <Space size="middle">
-            {tableBtnArr.map((itemFun) => {
-              if (itemFun instanceof Function) {
-                return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
-              } else {
-                return <div key={record.id} style={{ width: '66px' }}></div>
-              }
-            })}
-          </Space>
-        )
-      }
+          title: '操作',
+          key: 'action',
+          align: 'center',
+          fixed: 'right',
+          width: actionColumnsWidth,
+          render: (_, record) => (
+            <Space size="middle">
+              {tableBtnArr.map((itemFun) => {
+                if (itemFun instanceof Function) {
+                  return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
+                } else {
+                  return <div key={record.id} style={{ width: '66px' }}></div>
+                }
+              })}
+            </Space>
+          )
+        }
       : {}
   ]
 
@@ -366,7 +366,7 @@ const PageTable = memo((props) => {
         dataSource={tableData.list}
         pagination={paginationConfig}
         rowSelection={rowSelection}
-        rowKey={record => record.id}
+        rowKey={(record) => record.id}
       />
 
       {cloneDeepPageModalConfig.current && (

@@ -104,7 +104,7 @@ const FrameWork = memo((props) => {
             defaultOpenKeys={[currentOneMenuPath]}
             onOpenChange={onOpenChange}
           >
-            {menuData &&
+            {
               menuData.map((oneMenu) => {
                 if (!oneMenu.children || oneMenu.children.length === 0) {
                   return (
