@@ -104,40 +104,39 @@ const FrameWork = memo((props) => {
             defaultOpenKeys={[currentOneMenuPath]}
             onOpenChange={onOpenChange}
           >
-            {
-              menuData.map((oneMenu) => {
-                if (!oneMenu.children || oneMenu.children.length === 0) {
-                  return (
-                    <Menu.Item
-                      key={oneMenu.path}
-                      icon={<HomeOutlined />}
-                      onClick={() => {
-                        getSelectedPath(oneMenu)
-                      }}
-                    >
-                      {oneMenu.name}
-                    </Menu.Item>
-                  )
-                } else {
-                  return (
-                    <SubMenu key={oneMenu.path} title={oneMenu.name} icon={<SmileOutlined />}>
-                      {oneMenu.children.map((twoMenu) => {
-                        return (
-                          <Menu.Item
-                            key={twoMenu.path}
-                            icon={<TeamOutlined />}
-                            onClick={() => {
-                              getSelectedPath(twoMenu, oneMenu.path)
-                            }}
-                          >
-                            {twoMenu.name}
-                          </Menu.Item>
-                        )
-                      })}
-                    </SubMenu>
-                  )
-                }
-              })}
+            {menuData.map((oneMenu) => {
+              if (!oneMenu.children || oneMenu.children.length === 0) {
+                return (
+                  <Menu.Item
+                    key={oneMenu.path}
+                    icon={<HomeOutlined />}
+                    onClick={() => {
+                      getSelectedPath(oneMenu)
+                    }}
+                  >
+                    {oneMenu.name}
+                  </Menu.Item>
+                )
+              } else {
+                return (
+                  <SubMenu key={oneMenu.path} title={oneMenu.name} icon={<SmileOutlined />}>
+                    {oneMenu.children.map((twoMenu) => {
+                      return (
+                        <Menu.Item
+                          key={twoMenu.path}
+                          icon={<TeamOutlined />}
+                          onClick={() => {
+                            getSelectedPath(twoMenu, oneMenu.path)
+                          }}
+                        >
+                          {twoMenu.name}
+                        </Menu.Item>
+                      )
+                    })}
+                  </SubMenu>
+                )
+              }
+            })}
           </Menu>
         </Sider>
 

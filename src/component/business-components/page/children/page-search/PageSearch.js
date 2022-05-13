@@ -104,8 +104,7 @@ const PageSearch = memo((props) => {
     if (startDateField.current && endDateField.current) {
       // 日期选择器 是否选择了值
       if (searchData[startDateField.current]) {
-        const startDate = searchData[startDateField.current][0]
-        const endDate = searchData[startDateField.current][1]
+        const [startDate, endDate] = searchData[startDateField.current]
 
         // 给传给后端的数据 添加开始日期和结束日期的key val
         searchData[startDateField.current] = rangePickerFormat.current

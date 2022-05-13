@@ -5,11 +5,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons'
 
 import _ from 'lodash'
 
-import {
-  getQuery,
-  remove,
-  post
-} from '@/request/http'
+import { getQuery, remove, post } from '@/request/http'
 
 import { btnAuthorityFun } from 'page/utils'
 
@@ -85,23 +81,22 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-        title: '操作',
-        key: 'action',
-        align: 'center',
-        fixed: 'right',
-        width: actionColumnsWidth,
-        render: (_, record) => (
-          <Space size="middle">
-            {tableBtnArr.map((itemFun) => {
-              if (itemFun instanceof Function) {
-                return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
-              } else {
+          title: '操作',
+          key: 'action',
+          align: 'center',
+          fixed: 'right',
+          width: actionColumnsWidth,
+          render: (_, record) => (
+            <Space size="middle">
+              {tableBtnArr.map((itemFun) => {
+                if (itemFun instanceof Function) {
+                  return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
+                }
                 return <div key={record.id} style={{ width: '66px' }}></div>
-              }
-            })}
-          </Space>
-        )
-      }
+              })}
+            </Space>
+          )
+        }
       : {}
   ]
 
@@ -285,9 +280,10 @@ const PageTable = memo((props) => {
 
   // 启用或禁用
   const enableOrDisableFun = (isEnable, rowIdArr) => {
+    let callBackFun = null
     if (isEnable) {
       // 启用
-      function callBackFun() {
+      callBackFun = () => {
         post(enableUrl || `${curdUrl}start/`, { ids: rowIdArr }).then((res) => {
           message.success('已启用')
           getTableDataFun()
@@ -297,7 +293,7 @@ const PageTable = memo((props) => {
       commonConfirmFun('是否启用数据？', callBackFun)
     } else {
       // 禁用
-      function callBackFun() {
+      callBackFun = () => {
         post(disabledUrl || `${curdUrl}stop/`, { ids: rowIdArr }).then((res) => {
           message.warning('已禁用')
           getTableDataFun()

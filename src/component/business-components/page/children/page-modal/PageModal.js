@@ -8,11 +8,7 @@ import _ from 'lodash'
 
 import { renderItemFun as renderModalItemFun } from '../../utils'
 
-import {
-  post,
-  getParams,
-  put
-} from '@/request/http'
+import { post, getParams, put } from '@/request/http'
 
 const PageModal = memo((props) => {
   const { isModalVisible, pageModalConfig, onCloseModal } = props
@@ -72,8 +68,7 @@ const PageModal = memo((props) => {
     if (startDateField.current && endDateField.current) {
       // 日期区间选择器 是否选择了值
       if (formData[startDateField.current]) {
-        const startDate = formData[startDateField.current][0]
-        const endDate = formData[startDateField.current][1]
+        const [startDate, endDate] = formData[startDateField.current]
 
         // 给传给后端的数据 添加开始日期和结束日期的key val
         formData[startDateField.current] = rangePickerFormat.current
