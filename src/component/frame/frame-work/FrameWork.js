@@ -10,7 +10,7 @@ import { ThemeContext } from '@/App'
 import {
   setCurrentOneMenuPathA,
   setCurrentTwoMenuPathA,
-  setMenuDataA
+  setMenuDataA,
 } from '@/store/createAction/frameWork.js'
 
 // 样式
@@ -23,7 +23,7 @@ import {
   MenuFoldOutlined,
   HomeOutlined,
   SmileOutlined,
-  TeamOutlined
+  TeamOutlined,
 } from '@ant-design/icons'
 
 const { Header, Sider, Content } = Layout
@@ -43,7 +43,7 @@ const FrameWork = memo((props) => {
     return {
       currentOneMenuPath: state.get('frameWork').get('currentOneMenuPathR'),
       currentTwoMenuPath: state.get('frameWork').get('currentTwoMenuPathR'),
-      menuData: state.get('frameWork').get('menuDataR')
+      menuData: state.get('frameWork').get('menuDataR'),
     }
   }, shallowEqual)
 
@@ -60,8 +60,8 @@ const FrameWork = memo((props) => {
       history.push({
         pathname: twoMenu.path,
         state: {
-          pageAuthorityArr: twoMenu.children || []
-        }
+          pageAuthorityArr: twoMenu.children || [],
+        },
       })
 
       // 派发(把选中的一级菜单 二级菜单path保存到redux中)
@@ -145,7 +145,7 @@ const FrameWork = memo((props) => {
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               style: { color: '#000000', fontSize: '20px' },
-              onClick: toggle
+              onClick: toggle,
             })}
 
             <div className={frameWorkCss.header_right}>
@@ -163,7 +163,7 @@ const FrameWork = memo((props) => {
           <Content
             className={frameWorkCss.content}
             style={{
-              background: theme.mainBgColor
+              background: theme.mainBgColor,
             }}
           >
             <Suspense fallback={<div>Loading...</div>}>{renderRoutes(route.routes)}</Suspense>

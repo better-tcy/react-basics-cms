@@ -1,6 +1,6 @@
 import {
   createStore,
-  applyMiddleware // applyMiddleware应用中间件
+  applyMiddleware, // applyMiddleware应用中间件
 } from 'redux'
 
 import thunkMiddleware from 'redux-thunk'

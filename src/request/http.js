@@ -7,7 +7,7 @@ import store from '@/store'
 import {
   setCurrentOneMenuPathA,
   setCurrentTwoMenuPathA,
-  setMenuDataA
+  setMenuDataA,
 } from '@/store/createAction/frameWork.js'
 
 // 创建axios实例
@@ -87,7 +87,7 @@ export function getQuery(url, params) {
   return new Promise((resolve, reject) => {
     axios1
       .get(url, {
-        params
+        params,
       })
       .then((res) => {
         resolve(res.data)
@@ -177,7 +177,7 @@ export function remove(url, params) {
   return new Promise((resolve, reject) => {
     axios1
       .delete(url, {
-        data: Object.keys(params).length !== 0 ? params : null
+        data: Object.keys(params).length !== 0 ? params : null,
       })
       .then((res) => {
         resolve(res.data)

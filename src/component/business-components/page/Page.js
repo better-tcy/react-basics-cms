@@ -14,7 +14,7 @@ const Page = memo((props) => {
 
   useImperativeHandle(props.onRef, () => {
     return {
-      getTableDataFun: pageTableRef.current?.getTableDataFun
+      getTableDataFun: pageTableRef.current?.getTableDataFun,
     }
   })
 
@@ -29,7 +29,7 @@ const Page = memo((props) => {
     },
     resetSearchValuesFun() {
       setSearchData({})
-    }
+    },
   }
 
   if (!newPageConfig) {

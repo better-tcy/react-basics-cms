@@ -16,19 +16,19 @@ const OneOne = memo((props) => {
     pageRequestUrl: {
       curdUrl: '/oneOne/',
       getMoreParams: {
-        type: 1
+        type: 1,
       },
       postMoreParams: {
-        type: 1
+        type: 1,
       },
       putMoreParams: {
-        type: 1
-      }
+        type: 1,
+      },
       // enableUrl: '/oneOne/start', // 默认值/oneOne/start
       // disabledUrl: '/oneOne/stop' // 默认值/oneOne/stop
     },
     pageTitleConfig: {
-      title: '配置生成页面'
+      title: '配置生成页面',
     },
     pageSearchConfig: {
       // searchItemMarginRight: '50px',
@@ -37,14 +37,14 @@ const OneOne = memo((props) => {
           type: 'input',
           label: '姓名',
           field: 'name',
-          placeholder: '请输入姓名'
+          placeholder: '请输入姓名',
         },
         {
           type: 'input',
           label: '手机号',
           field: 'phone',
-          placeholder: '请输入手机号'
-        }
+          placeholder: '请输入手机号',
+        },
       ],
       connectedSelectArr: [
         {
@@ -55,7 +55,7 @@ const OneOne = memo((props) => {
           customizeOptionsLabelKey: 'name',
           url: '/firstSelectData/',
           requestKey: 'programmingLanguage',
-          rules: []
+          rules: [],
         },
         {
           label: '选择一门框架',
@@ -65,7 +65,7 @@ const OneOne = memo((props) => {
           customizeOptionsLabelKey: 'name',
           url: '/secondSelectData/',
           requestKey: 'frame',
-          rules: []
+          rules: [],
         },
         {
           label: '选择框架书籍',
@@ -75,9 +75,9 @@ const OneOne = memo((props) => {
           customizeOptionsLabelKey: 'name',
           url: '/thirdSelectData/',
           requestKey: 'book',
-          rules: []
-        }
-      ]
+          rules: [],
+        },
+      ],
     },
     pageTableConfig: {
       // isShowAddBtn: false, // 默认都为true
@@ -92,13 +92,13 @@ const OneOne = memo((props) => {
           title: '用户名称',
           dataIndex: 'name',
           key: 'name',
-          align: 'center'
+          align: 'center',
         },
         {
           title: '手机号',
           dataIndex: 'iphone',
           key: 'iphone',
-          align: 'center'
+          align: 'center',
         },
         {
           title: '职务',
@@ -111,8 +111,8 @@ const OneOne = memo((props) => {
             } else if (text === 2) {
               return <Tag color="processing">测试员</Tag>
             }
-          }
-        }
+          },
+        },
       ],
       // 如果按钮权限不具体到表格行信息的时候 下面函数可不传 默认按钮都显示
       // 根据行数据 是否渲染 查看按钮
@@ -131,7 +131,7 @@ const OneOne = memo((props) => {
         } else {
           return true
         }
-      }
+      },
       // 根据行数据 是否渲染 启用停用
       // accordingRowIsRenderEDBtnFun(record) {
 
@@ -152,7 +152,7 @@ const OneOne = memo((props) => {
           field: 'name',
           placeholder: '请输入姓名',
           // disabled: true, // 是否禁用 默认为false
-          rules: [{ required: true, message: '请输入姓名' }]
+          rules: [{ required: true, message: '请输入姓名' }],
         },
         {
           type: 'input',
@@ -160,7 +160,7 @@ const OneOne = memo((props) => {
           field: 'phone',
           placeholder: '请输入手机号',
           isNumber: true, // 是否是数字输入框 默认为false
-          rules: [{ required: true, message: '请输入手机号' }]
+          rules: [{ required: true, message: '请输入手机号' }],
         },
         {
           type: 'password',
@@ -168,7 +168,7 @@ const OneOne = memo((props) => {
           field: 'password',
           placeholder: '请输入密码',
           isNumber: true, // 是否是数字输入框 默认为false
-          rules: []
+          rules: [],
         },
         {
           type: 'select',
@@ -181,14 +181,14 @@ const OneOne = memo((props) => {
           options: [
             {
               name: '苹果',
-              id: 1
+              id: 1,
             },
             {
               name: '香蕉',
-              id: 2
-            }
+              id: 2,
+            },
           ],
-          rules: []
+          rules: [],
         },
         {
           type: 'radio',
@@ -199,14 +199,14 @@ const OneOne = memo((props) => {
           options: [
             {
               id: 1,
-              name: '男'
+              name: '男',
             },
             {
               id: 2,
-              name: '女'
-            }
+              name: '女',
+            },
           ],
-          rules: []
+          rules: [],
         },
         {
           type: 'checkbox',
@@ -217,14 +217,14 @@ const OneOne = memo((props) => {
           options: [
             {
               id: 1,
-              name: '红旗'
+              name: '红旗',
             },
             {
               id: 2,
-              name: '吉利'
-            }
+              name: '吉利',
+            },
           ],
-          rules: []
+          rules: [],
         },
         {
           type: 'tree',
@@ -242,19 +242,19 @@ const OneOne = memo((props) => {
                 {
                   id: 2,
                   key: 2,
-                  name: 'JavaScript'
-                }
-              ]
-            }
+                  name: 'JavaScript',
+                },
+              ],
+            },
           ],
-          rules: []
+          rules: [],
         },
         {
           type: 'datePicker',
           label: '选择日期',
           field: 'datePickerVal',
           format: '', // 默认为时间戳
-          rules: []
+          rules: [],
         },
         {
           type: 'rangePicker',
@@ -262,7 +262,7 @@ const OneOne = memo((props) => {
           field: ['startDate', 'endDate'],
           format: '', // 默认为时间戳
           showTime: true,
-          rules: []
+          rules: [],
         },
         {
           type: 'upload',
@@ -273,7 +273,7 @@ const OneOne = memo((props) => {
           accept: '', // 接受上传的文件类型, 详见 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept
           data: {}, // 上传所需额外参数或返回上传额外参数的方法
           listType: '', //	上传列表的内建样式，支持三种基本样式 text, picture 和 picture-card
-          rules: []
+          rules: [],
         },
         {
           type: 'textArea',
@@ -282,7 +282,7 @@ const OneOne = memo((props) => {
           placeholder: '请输入内容',
           rows: 3, // 文本域行数 默认为2
           maxLength: 10, // 输入内容最大长度 默认为100
-          rules: []
+          rules: [],
         },
         {
           type: 'cascader',
@@ -302,13 +302,13 @@ const OneOne = memo((props) => {
               children: [
                 {
                   label: 'Vue',
-                  value: 2
+                  value: 2,
                 },
                 {
                   label: 'React',
-                  value: 3
-                }
-              ]
+                  value: 3,
+                },
+              ],
             },
             {
               label: '后端',
@@ -316,23 +316,23 @@ const OneOne = memo((props) => {
               children: [
                 {
                   label: 'Java',
-                  value: 8
+                  value: 8,
                 },
                 {
                   label: 'Golang',
-                  value: 9
+                  value: 9,
                 },
                 {
                   label: 'Python',
-                  value: 10
-                }
-              ]
-            }
+                  value: 10,
+                },
+              ],
+            },
           ],
-          rules: []
-        }
-      ]
-    }
+          rules: [],
+        },
+      ],
+    },
   }
 
   if (pageConfig.pageTableConfig) {

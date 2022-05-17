@@ -6,28 +6,28 @@ import * as types from '../const/frameWork'
 export const resetFrameWorkStateA = (state) => {
   return {
     type: types.RESET_FRAMEWORK_STATE,
-    state: Map(state)
+    state: Map(state),
   }
 }
 
 export const setCurrentOneMenuPathA = (currentOneMenuPath) => {
   return {
     type: types.SET_CURRENT_ONE_MENU_PATH,
-    currentOneMenuPath
+    currentOneMenuPath,
   }
 }
 
 export const setCurrentTwoMenuPathA = (currentTwoMenuPath) => {
   return {
     type: types.SET_CURRENT_TWO_MENU_PATH,
-    currentTwoMenuPath
+    currentTwoMenuPath,
   }
 }
 
 export const setMenuDataA = (menuData) => {
   return {
     type: types.SET_MENU_DATA,
-    menuData
+    menuData,
   }
 }
 
@@ -35,6 +35,6 @@ export const setMenuDataA = (menuData) => {
 export const setMenuPathArrA = (menuPathArr) => {
   return {
     type: types.SET_MENU_PATH_ARR,
-    menuPathArr
+    menuPathArr,
   }
 }

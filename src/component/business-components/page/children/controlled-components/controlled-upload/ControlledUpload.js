@@ -28,7 +28,7 @@ const ControlledUpload = memo((props) => {
       uid: id.current,
       name: option.file.name,
       status: 'done',
-      url: res.data.data
+      url: res.data.data,
     }
 
     const newFileList = [...fileList, fileObj]

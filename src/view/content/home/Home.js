@@ -15,7 +15,7 @@ const Home = memo(() => {
 
   const { commonDataOne } = useSelector((state) => {
     return {
-      commonDataOne: state.get('business').get('commonDataOneR')
+      commonDataOne: state.get('business').get('commonDataOneR'),
     }
   }, shallowEqual)
 

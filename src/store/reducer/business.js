@@ -3,7 +3,7 @@ import { Map } from 'immutable'
 import { GET_COMMON_DATA_ONE } from '../const/business'
 
 const defaultReducer = Map({
-  commonDataOneR: ''
+  commonDataOneR: '',
 })
 
 function reducer(state = defaultReducer, action) {

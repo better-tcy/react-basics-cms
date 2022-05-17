@@ -8,15 +8,15 @@ const homeRouter = [
   {
     path: '/content/home',
     exact: true,
-    component: Home
+    component: Home,
   },
   {
     path: '/content/home/Test',
     exact: true,
     component: Test,
     // 是否有token后就可以访问的页面 （和导航权限无关的页面）
-    allowAccess: true
-  }
+    allowAccess: true,
+  },
 ]
 
 export default homeRouter

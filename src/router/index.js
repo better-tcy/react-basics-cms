@@ -18,7 +18,7 @@ const routes = [
     render: () => {
       //跳转到这个路径
       return <Redirect to="/login" />
-    }
+    },
   },
 
   ...loginRouter,
@@ -37,21 +37,21 @@ const routes = [
         render: () => {
           // 跳转到这个路径
           return <Redirect to="/content/home" />
-        }
+        },
       },
 
       ...homeRouter,
       ...oneRouter,
-      ...notFoundRouter
-    ]
+      ...notFoundRouter,
+    ],
   },
 
   {
     path: '**',
     render: () => {
       return <Redirect to="/login" />
-    }
-  }
+    },
+  },
 ]
 
 export default routes
