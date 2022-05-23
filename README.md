@@ -7,7 +7,7 @@
 3. 定制项目主题（src->assets->data->themeConfig.js 或者 craco.config.js）
 4. mock.js 模拟接口
 5. 异常监控功能（基于 sentry）
-6. 配置生成页面（OneOne.js 组件中查看，文档地址：https://betteryourself-tcy.github.io/json-page-markdown/）
+6. 配置生成页面（OneOne.js 组件中查看，文档地址： https://betteryourself-tcy.github.io/json-page-markdown/ ）
 
 - 传入配置即可生成一套基础页面（增 删 改 查 启用 停用）
 - 组件自动校验传入配置项是否正确
