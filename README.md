@@ -3,17 +3,17 @@
 
 #### 这是一个基于 create-react-app 4.0.3(react 17.0.2)搭建的CMS基础模板 :rainbow:
 1. 全程使用 hooks 函数式组件
-1. redux + redux-thunk全局状态管理
-1. 定制项目主题（src->assets->data->themeConfig.js 或者 craco.config.js）
-1. 集成 mock.js 模拟接口
-1. 集成异常监控功能（基于 sentry）
-1. 集成配置生成页面（OneOne.js组件中查看，文档地址：**https://betteryourself-tcy.github.io/json-page-markdown/**）
-  1. 传入配置即可生成一套基础页面（增 删 改 查 启用 停用）
-  1. 组件自动校验传入配置项是否正确
-  1. 页面上所渲染的功能都可灵活配置
-  1. 根据权限动态渲染按钮
-  1. 根据业务需求自定义表格及页面按钮
-  1. 支持搜索区域多个下拉框联动功能
+2. redux + redux-thunk全局状态管理
+3. 定制项目主题（src->assets->data->themeConfig.js 或者 craco.config.js）
+4. 集成 mock.js 模拟接口
+5. 集成异常监控功能（基于 sentry）
+6. 集成配置生成页面（OneOne.js组件中查看，文档地址：**https://betteryourself-tcy.github.io/json-page-markdown/**）
+  - 传入配置即可生成一套基础页面（增 删 改 查 启用 停用）
+  - 组件自动校验传入配置项是否正确
+  - 页面上所渲染的功能都可灵活配置
+  - 根据权限动态渲染按钮
+  - 根据业务需求自定义表格及页面按钮
+  - 支持搜索区域多个下拉框联动功能
 
 **模板在线展示地址：http://101.43.153.100/login**
 
@@ -23,15 +23,15 @@
 
 #### 2 src：项目资源
 
-- assets：项目资源(mock模拟接口,css初始化,模拟导航数据,项目使用图片)
-- components：组件(页面公共组件,cms 框架组件)
-- request：网络请求(api 文件夹：接口统一维护，http.js：基于 axios 封装的网络请求)
-- router：路由(index.js 主路由，content 中每个文件对应的是每个一级菜单下所有的路由)
-- store：redux 统一数据管理
-- utils：工具文件夹(业务工具，框架层工具)
-- view：项目所有页面(content 文件中最外层为一级菜单，依次延伸 最后一层.js 文件为具体页面)
-- Appjs：项目主组件
-- index.js：项目入口文件
+  - assets：项目资源(mock模拟接口,css初始化,模拟导航数据,项目使用图片)
+  - components：组件(页面公共组件,cms 框架组件)
+  - request：网络请求(api 文件夹：接口统一维护，http.js：基于 axios 封装的网络请求)
+  - router：路由(index.js 主路由，content 中每个文件对应的是每个一级菜单下所有的路由)
+  - store：redux 统一数据管理
+  - utils：工具文件夹(业务工具，框架层工具)
+  - view：项目所有页面(content 文件中最外层为一级菜单，依次延伸 最后一层.js 文件为具体页面)
+  - Appjs：项目主组件
+  - index.js：项目入口文件
 
 #### 3  .editorconfig：设置多个编辑器统一编码风格
 
@@ -65,24 +65,24 @@
 6. 层级解耦 request router redux（middleware action reducer）
 7. view 和 request 目录结构一一对应（层级明了）
 8. router 目录中 index.js 主路由，content 中每个文件对应的是每个一级菜单下所有的路由
-9. store下的每个frameWork 文件是操作及保存框架所需公共数据的， 每个business 文件是操作及保存业务所需公共数据的
+9. store下的每个frameWork文件是操作及保存框架所需公共数据的，每个business文件是操作及保存业务所需公共数据的
 10. 大写字母结尾含义：
-  1. Fun：普通函数或方法 
-  1. H：定义请求接口函数 
-  1. M：redux中间件 
-  1. A：redux派发action函数 
-  1. R：reducer数据 
-  1. C：模块内公共组件  
+  - Fun：普通函数或方法
+  - H：定义请求接口函数
+  - M：redux中间件
+  - A：redux派发action函数
+  - R：reducer数据
+  - C：模块内公共组件
 11. 编写组件从上到下结构顺序：
-  1. 获取 props 数据
-  1. 用 useImperativeHandle 暴露一些外部 ref 能访问的属性
-  1. 声明 history 及 dispatch
-  1. 获取所用到的全局数据(缓存，redux，context 等)
-  1. 定义 useRef 及 useState 数据(按照页面所需数据从上到下顺序定义)
-  1. 其他 let 及 const 变量(按照页面所需数据从上到下顺序定义，函数也同样)
-  1. 定义页面所需函数(页面公共函数 放到函数区最开始，例如 getTableData 函数)
-  1. useEffect()
-  1. jsx 代码
+  - 获取 props 数据
+  - 用 useImperativeHandle 暴露一些外部 ref 能访问的属性
+  - 声明 history 及 dispatch
+  - 获取所用到的全局数据(缓存，redux，context 等)
+  - 定义 useRef 及 useState 数据(按照页面所需数据从上到下顺序定义)
+  - 其他 let 及 const 变量(按照页面所需数据从上到下顺序定义，函数也同样)
+  - 定义页面所需函数(页面公共函数 放到函数区最开始，例如 getTableData 函数)
+  - useEffect()
+  - jsx 代码
 
 ## 四.git 提交规范
 
