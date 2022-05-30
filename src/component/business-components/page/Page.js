@@ -38,7 +38,7 @@ const Page = memo((props) => {
 
   return (
     <div>
-      <PageTitle pageTitleConfig={pageTitleConfig}></PageTitle>
+      {pageTitleConfig && <PageTitle pageTitleConfig={pageTitleConfig}></PageTitle>}
 
       <div style={{ padding: '18px' }}>
         {pageSearchConfig && <PageSearch pageSearchConfig={newPageSearchConfig}></PageSearch>}

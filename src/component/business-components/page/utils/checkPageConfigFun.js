@@ -89,24 +89,21 @@ export function checkPageConfigFun(pageConfig) {
     }
   }
 
-  if (!pageTitleConfig) {
-    console.warn('请传入 pageConfig -> pageTitleConfig这项配置')
-    return false
-  }
+  if (pageTitleConfig) {
+    if (!checkIsObjectFun(pageTitleConfig)) {
+      console.warn('pageConfig -> pageTitleConfig必须为Object类型')
+      return false
+    }
 
-  if (!checkIsObjectFun(pageTitleConfig)) {
-    console.warn('pageConfig -> pageTitleConfig必须为Object类型')
-    return false
-  }
+    if (!pageTitleConfig.title) {
+      console.warn('请传入pageTitleConfig -> title这项配置')
+      return false
+    }
 
-  if (!pageTitleConfig.title) {
-    console.warn('请传入pageTitleConfig -> title这项配置')
-    return false
-  }
-
-  if (!checkIsStringFun(pageTitleConfig.title)) {
-    console.warn('pageTitleConfig -> title这项配置必须为String类型')
-    return false
+    if (!checkIsStringFun(pageTitleConfig.title)) {
+      console.warn('pageTitleConfig -> title这项配置必须为String类型')
+      return false
+    }
   }
 
   if (pageSearchConfig) {
