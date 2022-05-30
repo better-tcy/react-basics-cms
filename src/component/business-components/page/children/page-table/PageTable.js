@@ -90,12 +90,9 @@ const PageTable = memo((props) => {
             <Space size="middle">
               {tableBtnArr.map((itemFun) => {
                 if (itemFun instanceof Function && itemFun(record)) {
-                  return (
-                    <div key={record.id} style={{ width: '100px' }}>
-                      {itemFun(record)}
-                    </div>
-                  )
+                  return itemFun(record)
                 }
+                return ''
               })}
             </Space>
           ),
@@ -346,6 +343,7 @@ const PageTable = memo((props) => {
               停用
             </Button>
           )}
+          {console.log(pageMoreButtonArr)}
           {pageMoreButtonArr.map((itemFun) => {
             if (itemFun instanceof Function) {
               return itemFun(selectedRowKeys)
