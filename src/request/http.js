@@ -51,7 +51,7 @@ axios1.interceptors.response.use(
         // token失效
         case 401:
           localStorage.clear()
-          store.dispatch(setCurrentTwoMenuPathA('/content/home'))
+          store.dispatch(setCurrentTwoMenuPathA(''))
           store.dispatch(setCurrentOneMenuPathA(''))
           store.dispatch(setMenuDataA([]))
 

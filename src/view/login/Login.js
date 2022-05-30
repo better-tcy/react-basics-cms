@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
-import { setMenuDataA, setMenuPathArrA } from '@/store/createAction/frameWork'
+import { setMenuDataA, setMenuPathArrA, setCurrentOneMenuPathA, setCurrentTwoMenuPathA } from '@/store/createAction/frameWork'
 
 import { ThemeContext } from '@/App'
 
@@ -26,7 +26,7 @@ const Login = memo(() => {
 
   const onFinish = () => {
     localStorage.setItem('token', 'token')
-
+    // 将导航数据保存到redux中
     dispatch(setMenuDataA(menuData))
 
     // 递归把导航菜单转成一维数组（path）
@@ -42,8 +42,22 @@ const Login = memo(() => {
     }
 
     recurseArr(menuData)
-
+    // 将导航的一维数组 保存到redux中
     dispatch(setMenuPathArrA(menuPathArr))
+
+    let oneMenuPath = ''
+    let twoMenuPath = ''
+    const firstMenu = menuData[0]
+
+    if (firstMenu?.children && firstMenu.children.length !== 0) {
+      oneMenuPath = firstMenu?.path
+      twoMenuPath = firstMenu.children[0]?.path
+    } else {
+      twoMenuPath = firstMenu?.path
+    }
+    // 将选中或展开的导航保存到redux中
+    dispatch(setCurrentOneMenuPathA(oneMenuPath))
+    dispatch(setCurrentTwoMenuPathA(twoMenuPath))
 
     history.replace('/content')
   }

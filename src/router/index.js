@@ -1,5 +1,7 @@
 import { Redirect } from 'react-router-dom'
 
+import store from '@/store'
+
 import { authenticationPathFun } from '@/utils/global'
 
 import FrameWork from '@/component/frame/frame-work/FrameWork'
@@ -12,8 +14,8 @@ import notFoundRouter from './content/not-found'
 
 const routes = [
   {
-    //重定向
-    path: '/', //一旦匹配到是这个路径 就会执行render函数
+    // 重定向 一旦匹配到是这个路径 就会执行render函数
+    path: '/',
     exact: true,
     render: () => {
       //跳转到这个路径
@@ -31,12 +33,12 @@ const routes = [
     component: FrameWork,
     routes: [
       {
-        // 重定向
-        path: '/content', // 一旦匹配到是这个路径 就会执行render函数
+        path: '/content',
         exact: true,
         render: () => {
-          // 跳转到这个路径
-          return <Redirect to="/content/home" />
+          const state = store.getState()
+          const redirectPath = state.get('frameWork').get('currentTwoMenuPathR')
+          return <Redirect to={redirectPath} />
         },
       },
 
