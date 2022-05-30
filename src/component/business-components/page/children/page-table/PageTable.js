@@ -343,7 +343,6 @@ const PageTable = memo((props) => {
               停用
             </Button>
           )}
-          {console.log(pageMoreButtonArr)}
           {pageMoreButtonArr.map((itemFun) => {
             if (itemFun instanceof Function) {
               return itemFun(selectedRowKeys)
