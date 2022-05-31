@@ -23,11 +23,11 @@ import './loginResetAntd.css'
 import menuData from '@/assets/data/menuData'
 
 const Login = memo(() => {
+  const theme = useContext(ThemeContext)
+
   const history = useHistory()
 
   const dispatch = useDispatch()
-
-  const theme = useContext(ThemeContext)
 
   const onFinish = () => {
     localStorage.setItem('token', 'token')

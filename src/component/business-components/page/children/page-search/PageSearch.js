@@ -23,10 +23,10 @@ const PageSearch = memo((props) => {
     searchItemMarginRight = '28px',
   } = pageSearchConfig
 
+  const [form] = Form.useForm()
+
   // 设置重新渲染
   const [againRender, setAgainRender] = useState([])
-
-  const [form] = Form.useForm()
 
   const startDateField = useRef('')
   const endDateField = useRef('')

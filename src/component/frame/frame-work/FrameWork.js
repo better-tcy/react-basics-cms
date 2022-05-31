@@ -33,10 +33,6 @@ const { SubMenu } = Menu
 const FrameWork = memo((props) => {
   const { route } = props
 
-  const history = useHistory()
-
-  const dispatch = useDispatch()
-
   const theme = useContext(ThemeContext)
 
   const { currentOneMenuPath, currentTwoMenuPath, menuData } = useSelector((state) => {
@@ -46,6 +42,10 @@ const FrameWork = memo((props) => {
       menuData: state.get('frameWork').get('menuDataR'),
     }
   }, shallowEqual)
+
+  const history = useHistory()
+
+  const dispatch = useDispatch()
 
   const [collapsed, setCollapsed] = useState(false)
 
