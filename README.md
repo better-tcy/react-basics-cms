@@ -84,7 +84,7 @@
 - 用 useImperativeHandle 暴露一些外部 ref 能访问的属性
 - 获取所用到的全局数据(缓存，redux，context 等)
 - 声明 history 及 dispatch
-- 定义 useRef 及 useState 数据(第三方非react内部hook和自定义hook再最上面 其他按照页面所需数据从上到下顺序定义)
+- 定义 useRef 及 useState 数据(第三方非 react 内部 hook 和自定义 hook 再最上面 其他按照页面所需数据从上到下顺序定义)
 - 其他 let 及 const 变量(按照页面所需数据从上到下顺序定义，函数也同样)
 - 定义页面所需函数(页面公共函数 放到函数区最开始，例如 getTableData 函数)
 - useEffect()

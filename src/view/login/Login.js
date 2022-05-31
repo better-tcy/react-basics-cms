@@ -7,7 +7,12 @@ import { useDispatch } from 'react-redux'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
-import { setMenuDataA, setMenuPathArrA, setCurrentOneMenuPathA, setCurrentTwoMenuPathA } from '@/store/createAction/frameWork'
+import {
+  setMenuDataA,
+  setMenuPathArrA,
+  setCurrentOneMenuPathA,
+  setCurrentTwoMenuPathA,
+} from '@/store/createAction/frameWork'
 
 import { ThemeContext } from '@/App'
 
