@@ -42,7 +42,8 @@ const PageSearch = memo((props) => {
   }
 
   const getFirstSelectData = useCallback(() => {
-    getQuery(connectedSelectArr[0].url).then((res) => {
+    const firstSelectConfig = connectedSelectArr[0]
+    getQuery(firstSelectConfig.url, { [firstSelectConfig.requestKey]: firstSelectConfig.requestValue }).then((res) => {
       connectedDataSource.current[0] = res.data
       setAgainRender([])
     })

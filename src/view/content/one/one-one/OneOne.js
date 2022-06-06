@@ -54,7 +54,8 @@ const OneOne = memo((props) => {
           customizeOptionsValueKey: 'id',
           customizeOptionsLabelKey: 'name',
           url: '/firstSelectData/',
-          requestKey: 'programmingLanguage',
+          // requestKey: 'programmingLanguage',
+          // requestValue: 10,
           rules: [],
         },
         {
