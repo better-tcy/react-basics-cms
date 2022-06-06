@@ -17,7 +17,7 @@ import './pageTableResetAntd.css'
 const { confirm } = Modal
 
 const PageTable = memo((props) => {
-  const { pageRequestUrl, pageTableConfig, searchData, pageModalConfig } = props
+  const { pageRequestUrl, pageTableConfig, pageModalConfig, searchData } = props
   const { curdUrl, getMoreParams, postMoreParams, putMoreParams, enableUrl, disabledUrl } =
     pageRequestUrl
   const {
@@ -81,22 +81,22 @@ const PageTable = memo((props) => {
     ...columns,
     isShowActionColumns
       ? {
-          title: '操作',
-          key: 'action',
-          align: 'center',
-          fixed: 'right',
-          width: actionColumnsWidth,
-          render: (_, record) => (
-            <Space size="middle">
-              {tableBtnArr.map((itemFun) => {
-                if (itemFun instanceof Function && itemFun(record)) {
-                  return itemFun(record)
-                }
-                return ''
-              })}
-            </Space>
-          ),
-        }
+        title: '操作',
+        key: 'action',
+        align: 'center',
+        fixed: 'right',
+        width: actionColumnsWidth,
+        render: (_, record) => (
+          <Space size="middle">
+            {tableBtnArr.map((itemFun) => {
+              if (itemFun instanceof Function && itemFun(record)) {
+                return itemFun(record)
+              }
+              return ''
+            })}
+          </Space>
+        ),
+      }
       : {},
   ]
 
@@ -125,7 +125,13 @@ const PageTable = memo((props) => {
 
   const getTableDataFun = useCallback(() => {
     let cloneDeepSearchData = _.cloneDeep(searchData)
-    cloneDeepSearchData.pageNum = pageNum.current
+
+    if (cloneDeepSearchData.isSearch) {
+      cloneDeepSearchData.pageNum = 1
+    } else {
+      cloneDeepSearchData.pageNum = pageNum.current
+    }
+
     cloneDeepSearchData.pageSize = pageSize.current
     cloneDeepSearchData = Object.assign(cloneDeepSearchData, getMoreParams)
 

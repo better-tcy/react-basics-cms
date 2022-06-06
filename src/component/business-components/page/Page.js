@@ -25,7 +25,7 @@ const Page = memo((props) => {
   const newPageSearchConfig = {
     ...pageSearchConfig,
     getSearchValuesFun(searchData) {
-      setSearchData(searchData)
+      setSearchData({ ...searchData, isSearch: true })
     },
     resetSearchValuesFun() {
       setSearchData({})
