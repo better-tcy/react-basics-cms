@@ -18,7 +18,9 @@ const PageSearch = memo((props) => {
   const {
     searchItemArr,
     connectedSelectArr,
+    getSearchDataFun,
     getSearchValuesFun,
+    resetSearchDataFun,
     resetSearchValuesFun,
     searchItemMarginRight = '28px',
   } = pageSearchConfig
@@ -118,13 +120,18 @@ const PageSearch = memo((props) => {
           : moment(endDate).valueOf()
       }
     }
-
-    getSearchValuesFun(searchData)
+    // 使用者获取搜索栏数据的方法
+    getSearchDataFun?.(searchData)
+    // 框架内部获取搜索栏数据的方法
+    getSearchValuesFun?.(searchData)
   }
 
   const resetFun = () => {
     form.resetFields()
-    resetSearchValuesFun()
+    // 使用者重置搜索栏数据的方法
+    resetSearchDataFun?.()
+    // 框架内部重置搜索栏数据的方法
+    resetSearchValuesFun?.()
   }
 
   useEffect(() => {
