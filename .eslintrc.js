@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['react-app'],
   rules: {
-    'comma-dangle': ["error", "never"]
+    'comma-dangle': ['error', 'never']
   }
 }
