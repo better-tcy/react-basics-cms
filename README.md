@@ -65,7 +65,7 @@
 3. 所有具体组件使用大驼峰命名
 4. 变量 函数 文件名 使用小驼峰命名
 5. 图片 样式 class 以 cms_name 格式命名
-6. 使用on开头的形式作为props中用于回调的属性名称
+6. 使用 on 开头的形式作为 props 中用于回调的属性名称
 7. 层级解耦 request router redux（middleware action reducer）
 8. view 和 request 目录结构一一对应（层级明了）
 9. router 目录中 index.js 为主路由，content 中每个文件对应的是每个一级菜单下所有的路由
