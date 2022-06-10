@@ -11,7 +11,7 @@ import {
   setMenuDataA,
   setMenuPathArrA,
   setCurrentOneMenuPathA,
-  setCurrentTwoMenuPathA,
+  setCurrentTwoMenuPathA
 } from '@/store/createAction/frameWork'
 
 import { ThemeContext } from '@/App'

@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 
 // 模拟延迟
 Mock.setup({
-  timeout: 200,
+  timeout: 200
 })
 
 // 公共数据
@@ -10,7 +10,7 @@ Mock.mock('http://localhost:3001/commonData/', 'get', function () {
   return Mock.mock({
     code: 0,
     msg: '',
-    data: '我是公共的数据 哈哈哈，配置生成页面 请去OneOne目录',
+    data: '我是公共的数据 哈哈哈，配置生成页面 请去OneOne目录'
   })
 })
 
@@ -29,17 +29,17 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
             name: 'tom',
             iphone: '13230975666',
             jobTitle: 1,
-            status: 1,
+            status: 1
           },
           {
             id: 6,
             name: 'jerry',
             iphone: '13230975888',
             jobTitle: 2,
-            status: 0,
-          },
-        ],
-      },
+            status: 0
+          }
+        ]
+      }
     })
   } else {
     return Mock.mock({
@@ -60,12 +60,12 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
             uid: 1,
             name: 'image.jpg',
             status: 'done',
-            url: 'http://101.43.153.100/images/image.jpg',
-          },
+            url: 'http://101.43.153.100/images/image.jpg'
+          }
         ],
         textAreaVal: '回显数据',
-        cascaderVal: [1, 2],
-      },
+        cascaderVal: [1, 2]
+      }
     })
   }
 })
@@ -76,7 +76,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'delete', function (options)
   return Mock.mock({
     code: 0,
     msg: '',
-    data: '删除成功',
+    data: '删除成功'
   })
 })
 
@@ -86,7 +86,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne/start.*`), 'post', function (opti
   return Mock.mock({
     code: 0,
     msg: '',
-    data: '已启用',
+    data: '已启用'
   })
 })
 
@@ -96,7 +96,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne/stop.*`), 'post', function (optio
   return Mock.mock({
     code: 0,
     msg: '',
-    data: '已禁用',
+    data: '已禁用'
   })
 })
 
@@ -106,7 +106,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'post', function (options) {
   return Mock.mock({
     code: 0,
     msg: '',
-    data: '添加成功',
+    data: '添加成功'
   })
 })
 
@@ -116,7 +116,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'put', function (options) {
   return Mock.mock({
     code: 0,
     msg: '',
-    data: '修改成功',
+    data: '修改成功'
   })
 })
 
@@ -126,7 +126,7 @@ Mock.mock(RegExp(`http://localhost:3001/upload.*`), 'post', function (options) {
   return Mock.mock({
     code: 0,
     msg: '',
-    data: 'http://101.43.153.100/images/image.jpg',
+    data: 'http://101.43.153.100/images/image.jpg'
   })
 })
 
@@ -142,17 +142,17 @@ Mock.mock(RegExp(`http://localhost:3001/firstSelectData.*`), 'get', function (op
     data: [
       {
         id: 1,
-        name: 'JavaScript',
+        name: 'JavaScript'
       },
       {
         id: 2,
-        name: 'Go',
+        name: 'Go'
       },
       {
         id: 3,
-        name: 'Java',
-      },
-    ],
+        name: 'Java'
+      }
+    ]
   })
 })
 
@@ -164,17 +164,17 @@ Mock.mock(RegExp(`http://localhost:3001/secondSelectData.*`), 'get', function (o
     data: [
       {
         id: 1,
-        name: 'React',
+        name: 'React'
       },
       {
         id: 2,
-        name: 'Vue',
+        name: 'Vue'
       },
       {
         id: 3,
-        name: 'Angular',
-      },
-    ],
+        name: 'Angular'
+      }
+    ]
   })
 })
 
@@ -186,16 +186,16 @@ Mock.mock(RegExp(`http://localhost:3001/thirdSelectData.*`), 'get', function (op
     data: [
       {
         id: 1,
-        name: '深入React技术栈',
+        name: '深入React技术栈'
       },
       {
         id: 2,
-        name: '深入浅出React和Redux',
+        name: '深入浅出React和Redux'
       },
       {
         id: 3,
-        name: 'React 进阶之路',
-      },
-    ],
+        name: 'React 进阶之路'
+      }
+    ]
   })
 })

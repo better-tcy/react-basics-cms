@@ -22,7 +22,7 @@ const PageSearch = memo((props) => {
     getSearchValuesFun,
     resetSearchDataFun,
     resetSearchValuesFun,
-    searchItemMarginRight = '28px',
+    searchItemMarginRight = '28px'
   } = pageSearchConfig
 
   const [form] = Form.useForm()
@@ -46,7 +46,7 @@ const PageSearch = memo((props) => {
   const getFirstSelectData = useCallback(() => {
     const firstSelectConfig = connectedSelectArr[0]
     getQuery(firstSelectConfig.url, {
-      [firstSelectConfig.requestKey]: firstSelectConfig.requestValue,
+      [firstSelectConfig.requestKey]: firstSelectConfig.requestValue
     }).then((res) => {
       connectedDataSource.current[0] = res.data
       setAgainRender([])
@@ -82,7 +82,7 @@ const PageSearch = memo((props) => {
     // 删除当前及子联动框的默认值
     for (let i = index; i < connectedSelectArr.length; i++) {
       form.setFieldsValue({
-        [connectedSelectArr[i].field]: undefined,
+        [connectedSelectArr[i].field]: undefined
       })
     }
 
@@ -150,7 +150,7 @@ const PageSearch = memo((props) => {
                 style={{
                   width: '20%',
                   marginRight: searchItemMarginRight,
-                  marginBottom: '10px',
+                  marginBottom: '10px'
                 }}
               >
                 {renderSearchItemFun(searchItem, renderItemCallBackFun)}
@@ -166,7 +166,7 @@ const PageSearch = memo((props) => {
                   style={{
                     width: '20%',
                     marginRight: searchItemMarginRight,
-                    marginBottom: '10px',
+                    marginBottom: '10px'
                   }}
                 >
                   <Form.Item

@@ -7,7 +7,7 @@ import businessReducer from './business'
 // 合并多个reducer 第一次编译combineReducers的时候传入的state是一个空对象
 const allReducer = combineReducers({
   frameWork: frameWorkReducer, // frameWork本质上是一个immutable对象了
-  business: businessReducer,
+  business: businessReducer
 })
 
 export default allReducer

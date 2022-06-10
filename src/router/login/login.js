@@ -4,8 +4,8 @@ const loginRouter = [
   {
     path: '/login',
     exact: true,
-    component: Login,
-  },
+    component: Login
+  }
 ]
 
 export default loginRouter

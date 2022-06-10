@@ -11,7 +11,7 @@ export function setStoreDataFun() {
         currentOneMenuPathR: state.get('frameWork').get('currentOneMenuPathR'),
         currentTwoMenuPathR: state.get('frameWork').get('currentTwoMenuPathR'),
         menuDataR: state.get('frameWork').get('menuDataR'),
-        menuPathArrR: state.get('frameWork').get('menuPathArrR'),
+        menuPathArrR: state.get('frameWork').get('menuPathArrR')
       })
     )
   })
@@ -23,7 +23,7 @@ export function getDataMergeStateFun() {
     store.dispatch(
       resetFrameWorkStateA({
         ...store.getState().get('frameWork'),
-        ...JSON.parse(sessionStorage.getItem('frameWorkState')),
+        ...JSON.parse(sessionStorage.getItem('frameWorkState'))
       })
     )
 

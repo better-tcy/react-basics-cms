@@ -20,7 +20,7 @@ const routes = [
     render: () => {
       //跳转到这个路径
       return <Redirect to="/login" />
-    },
+    }
   },
 
   ...loginRouter,
@@ -39,21 +39,21 @@ const routes = [
           const state = store.getState()
           const redirectPath = state.get('frameWork').get('currentTwoMenuPathR')
           return <Redirect to={redirectPath} />
-        },
+        }
       },
 
       ...homeRouter,
       ...oneRouter,
-      ...notFoundRouter,
-    ],
+      ...notFoundRouter
+    ]
   },
 
   {
     path: '**',
     render: () => {
       return <Redirect to="/login" />
-    },
-  },
+    }
+  }
 ]
 
 export default routes

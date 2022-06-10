@@ -7,7 +7,7 @@ const themeConfig = {
   // head 背景颜色
   headBgColor: '#ffffff',
   // main背景色
-  mainBgColor: '',
+  mainBgColor: ''
 }
 
 export default themeConfig

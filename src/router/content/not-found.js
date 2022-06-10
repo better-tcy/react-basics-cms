@@ -8,8 +8,8 @@ const notFoundRouter = [
     exact: true,
     component: NotFound,
     // 是否有token后 就可以访问的页面
-    allowAccess: true,
-  },
+    allowAccess: true
+  }
 ]
 
 export default notFoundRouter

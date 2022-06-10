@@ -35,7 +35,7 @@ const PageTable = memo((props) => {
     accordingRowIsRenderCheckBtnFun = () => true,
     accordingRowIsRenderUpdateBtnFun = () => true,
     accordingRowIsRenderRemoveBtnFun = () => true,
-    accordingRowIsRenderEDBtnFun = () => true,
+    accordingRowIsRenderEDBtnFun = () => true
   } = pageTableConfig
 
   const cloneDeepPageModalConfig = useRef(null)
@@ -52,7 +52,7 @@ const PageTable = memo((props) => {
 
   useImperativeHandle(props.onRef, () => {
     return {
-      getTableDataFun,
+      getTableDataFun
     }
   })
 
@@ -74,7 +74,7 @@ const PageTable = memo((props) => {
 
     ...tableMoreButtonArr,
 
-    renderEnableDisableBtnFun(),
+    renderEnableDisableBtnFun()
   ]
 
   const newColumns = [
@@ -95,9 +95,9 @@ const PageTable = memo((props) => {
                 return ''
               })}
             </Space>
-          ),
+          )
         }
-      : {},
+      : {}
   ]
 
   const paginationConfig = {
@@ -113,14 +113,14 @@ const PageTable = memo((props) => {
       pageNum.current = current
       pageSize.current = pagesize
       getTableDataFun()
-    },
+    }
   }
 
   const rowSelection = {
     selectedRowKeys: selectedRowKeys,
     onChange: (selectedRowKeys) => {
       setSelectedRowKeys(selectedRowKeys)
-    },
+    }
   }
 
   const getTableDataFun = useCallback(() => {
@@ -149,7 +149,7 @@ const PageTable = memo((props) => {
       },
       onCancel() {
         console.log('Cancel')
-      },
+      }
     })
   }
 

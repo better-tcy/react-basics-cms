@@ -29,15 +29,15 @@ const OneTwo = memo(() => {
         type: 'input',
         label: '姓名',
         field: 'name',
-        placeholder: '请输入姓名',
-      },
+        placeholder: '请输入姓名'
+      }
     ],
     formData: {
-      name: '哈哈哈',
+      name: '哈哈哈'
     },
     getFormDataFun(formData) {
       console.log(formData)
-    },
+    }
   }
 
   const showModalFun = () => {

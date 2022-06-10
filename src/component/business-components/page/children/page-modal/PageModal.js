@@ -27,7 +27,7 @@ const PageModal = memo((props) => {
     layout = 'horizontal',
     labelCol = { offset: 0, span: 6 },
     wrapperCol = { offset: 1, span: 12 },
-    getFormDataFun,
+    getFormDataFun
   } = pageModalConfig
 
   const [form] = Form.useForm()
@@ -139,7 +139,7 @@ const PageModal = memo((props) => {
             } else {
               res.data[startDateField.current] = [
                 moment(startDate, rangePickerFormat.current),
-                moment(endDate, rangePickerFormat.current),
+                moment(endDate, rangePickerFormat.current)
               ]
             }
           }

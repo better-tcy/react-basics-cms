@@ -12,8 +12,8 @@ module.exports = {
     //配置别名
     alias: {
       '@': resolve('src'),
-      page: resolve('src/component/business-components/page'),
-    },
+      page: resolve('src/component/business-components/page')
+    }
   },
   babel: {
     plugins: [
@@ -22,10 +22,10 @@ module.exports = {
         {
           libraryName: 'antd',
           libraryDirectory: 'es',
-          style: true,
-        },
-      ],
-    ],
+          style: true
+        }
+      ]
+    ]
   },
   plugins: [
     {
@@ -42,10 +42,10 @@ module.exports = {
             //   dark: true, // 开启暗黑模式
             //   compact: true, // 开启紧凑模式
             // }),
-            javascriptEnabled: true,
-          },
-        },
-      },
-    },
-  ],
+            javascriptEnabled: true
+          }
+        }
+      }
+    }
+  ]
 }

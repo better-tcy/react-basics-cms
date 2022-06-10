@@ -116,7 +116,7 @@ export function renderItemFun(itemConfig, renderItemCallBackFun) {
       const newOptions = itemConfig.options.map((item) => {
         return {
           label: item[itemConfig.customizeOptionsLabelKey || 'label'],
-          value: item[itemConfig.customizeOptionsValueKey || 'value'],
+          value: item[itemConfig.customizeOptionsValueKey || 'value']
         }
       })
       return (
@@ -139,7 +139,7 @@ export function renderItemFun(itemConfig, renderItemCallBackFun) {
             fieldNames={{
               title: itemConfig.customizeOptionsLabelKey || 'label',
               key: itemConfig.customizeOptionsValueKey || 'value',
-              children: itemConfig.customizeOptionsChildrenKey || 'children',
+              children: itemConfig.customizeOptionsChildrenKey || 'children'
             }}
           ></ControlledTree>
         </Form.Item>
@@ -173,7 +173,7 @@ export function renderItemFun(itemConfig, renderItemCallBackFun) {
             fieldNames={{
               label: itemConfig.customizeOptionsLabelKey || 'label',
               value: itemConfig.customizeOptionsValueKey || 'value',
-              children: itemConfig.customizeOptionsChildrenKey || 'children',
+              children: itemConfig.customizeOptionsChildrenKey || 'children'
             }}
           ></Cascader>
         </Form.Item>

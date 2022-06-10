@@ -8,18 +8,18 @@ const oneRouter = [
   {
     path: '/content/one/OneOne',
     exact: true,
-    component: OneOne,
+    component: OneOne
   },
   {
     path: '/content/one/OneTwo',
     exact: true,
-    component: OneTwo,
+    component: OneTwo
   },
   {
     path: '/content/one/OneThree',
     exact: true,
-    component: OneThree,
-  },
+    component: OneThree
+  }
 ]
 
 export default oneRouter
