@@ -65,11 +65,12 @@
 3. 所有具体组件使用大驼峰命名
 4. 变量 函数 文件名 使用小驼峰命名
 5. 图片 样式 class 以 cms_name 格式命名
-6. 层级解耦 request router redux（middleware action reducer）
-7. view 和 request 目录结构一一对应（层级明了）
-8. router 目录中 index.js 为主路由，content 中每个文件对应的是每个一级菜单下所有的路由
-9. store 下的每个 frameWork 文件是操作及保存框架所需公共数据的，每个 business 文件是操作及保存业务所需公共数据的
-10. 大写字母结尾含义：
+6. 使用on开头的形式作为props中用于回调的属性名称
+7. 层级解耦 request router redux（middleware action reducer）
+8. view 和 request 目录结构一一对应（层级明了）
+9. router 目录中 index.js 为主路由，content 中每个文件对应的是每个一级菜单下所有的路由
+10. store 下的每个 frameWork 文件是操作及保存框架所需公共数据的，每个 business 文件是操作及保存业务所需公共数据的
+11. 大写字母结尾含义：
 
 - Fun：普通函数或方法
 - H：定义请求接口函数
@@ -78,7 +79,7 @@
 - R：reducer 数据
 - C：模块内公共组件
 
-11. 编写组件从上到下结构顺序：
+12. 编写组件从上到下结构顺序：
 
 - 获取 props 数据
 - 用 useImperativeHandle 暴露一些外部 ref 能访问的属性
