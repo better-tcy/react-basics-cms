@@ -78,7 +78,10 @@ const OneOne = memo((props) => {
           requestKey: 'book',
           rules: []
         }
-      ]
+      ],
+      defaultData: {
+        name: '哈哈哈'
+      }
     },
     pageTableConfig: {
       // isShowAddBtn: false, // 默认都为true

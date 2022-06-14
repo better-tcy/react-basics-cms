@@ -18,6 +18,7 @@ const PageSearch = memo((props) => {
   const {
     searchItemArr,
     connectedSelectArr,
+    defaultData,
     getSearchDataFun,
     getSearchValuesFun,
     resetSearchDataFun,
@@ -135,8 +136,9 @@ const PageSearch = memo((props) => {
   }
 
   useEffect(() => {
+    form.setFieldsValue(defaultData)
     connectedSelectArr && getFirstSelectData()
-  }, [connectedSelectArr, getFirstSelectData])
+  }, [form, defaultData, connectedSelectArr, getFirstSelectData])
 
   return (
     <div className={pageSearchCss.page_search}>

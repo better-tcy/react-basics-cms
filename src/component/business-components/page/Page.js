@@ -7,10 +7,10 @@ import { checkPageConfigFun } from 'page/utils'
 const Page = memo((props) => {
   const { pageConfig } = props
 
-  const newPageConfig = checkPageConfigFun(pageConfig)
+  const successPageConfig = checkPageConfigFun(pageConfig)
 
   const { pageRequestUrl, pageTitleConfig, pageSearchConfig, pageTableConfig, pageModalConfig } =
-    newPageConfig
+    successPageConfig
 
   useImperativeHandle(props.onRef, () => {
     return {
@@ -32,7 +32,7 @@ const Page = memo((props) => {
     }
   }
 
-  if (!newPageConfig) {
+  if (!successPageConfig) {
     return <h2>传入配置不正确，无法生成页面，详情请查看控制台</h2>
   }
 
