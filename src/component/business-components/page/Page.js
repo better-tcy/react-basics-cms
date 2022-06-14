@@ -20,7 +20,7 @@ const Page = memo((props) => {
 
   const pageTableRef = useRef()
 
-  const [searchData, setSearchData] = useState({})
+  const [searchData, setSearchData] = useState((pageSearchConfig?.defaultSearchData) || {})
 
   const newPageSearchConfig = {
     ...pageSearchConfig,
@@ -46,9 +46,9 @@ const Page = memo((props) => {
         <PageTable
           onRef={pageTableRef}
           pageRequestUrl={pageRequestUrl}
-          searchData={searchData}
           pageTableConfig={pageTableConfig}
           pageModalConfig={pageModalConfig}
+          searchData={searchData}
         ></PageTable>
       </div>
     </div>

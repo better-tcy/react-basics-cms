@@ -79,8 +79,8 @@ const OneOne = memo((props) => {
           rules: []
         }
       ],
-      defaultData: {
-        name: '哈哈哈'
+      defaultSearchData: {
+        name: 'tom'
       }
     },
     pageTableConfig: {
