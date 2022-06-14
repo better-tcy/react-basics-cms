@@ -7,7 +7,7 @@ const { TextArea } = Input
 const { Option } = Select
 const { RangePicker } = DatePicker
 
-export function renderItemFun(itemConfig, renderItemCallBackFun) {
+const renderItemFun = (itemConfig, renderItemCallBackFun) => {
   switch (itemConfig.type) {
     case 'input':
       return (
@@ -183,3 +183,5 @@ export function renderItemFun(itemConfig, renderItemCallBackFun) {
       console.warn('未找到对应组件')
   }
 }
+
+export default renderItemFun

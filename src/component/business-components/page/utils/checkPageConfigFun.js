@@ -32,7 +32,7 @@ const checkIsArrayFun = (arr) => {
   }
 }
 
-export function checkPageConfigFun(pageConfig) {
+const checkPageConfigFun = (pageConfig) => {
   const { pageRequestUrl, pageTitleConfig, pageModalConfig, pageSearchConfig, pageTableConfig } =
     pageConfig
 
@@ -195,3 +195,5 @@ export function checkPageConfigFun(pageConfig) {
 
   return pageConfig
 }
+
+export default checkPageConfigFun
