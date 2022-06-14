@@ -16,8 +16,8 @@ const OneTwo = memo(() => {
    *
    *  二.手动交互
    *   1.新增：传入getFormDataFun函数 点击确定时回调 参数为表单获取数据
-   *   2.修改：传入getFormDataFun函数 传入formData回显数据
-   *   3.传入formData回显数据 modalTitle修改为查看
+   *   2.修改：传入getFormDataFun函数 传入defaultFormData回显数据
+   *   3.传入defaultFormData回显数据 modalTitle修改为查看
    **/
 
   const pageModalConfig = {
@@ -32,7 +32,7 @@ const OneTwo = memo(() => {
         placeholder: '请输入姓名'
       }
     ],
-    formData: {
+    defaultFormData: {
       name: '哈哈哈'
     },
     getFormDataFun(formData) {

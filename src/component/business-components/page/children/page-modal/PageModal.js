@@ -17,7 +17,7 @@ const PageModal = memo((props) => {
     postMoreParams,
     putMoreParams,
     itemId,
-    formData,
+    defaultFormData,
     modalTitle,
     modalItemArr,
     width = 560,
@@ -119,9 +119,10 @@ const PageModal = memo((props) => {
       }
     }
   }
+
   useEffect(() => {
-    if (formData) {
-      form.setFieldsValue(formData)
+    if (defaultFormData) {
+      form.setFieldsValue(defaultFormData)
       return
     }
 
@@ -164,6 +165,7 @@ const PageModal = memo((props) => {
       })
     }
   })
+
   return (
     <div>
       <Modal
