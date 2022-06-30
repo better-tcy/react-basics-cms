@@ -65,6 +65,9 @@ const PageSearch = memo((props) => {
       return
     }
 
+    // 切换联动输入框数据时 其他子联动输入框清空默认值及当前数据源
+    clearConnectedSelectFun(index, false)
+
     // 1.根据当前触发输入框 获取下一个联动输入框的配置项
     const nextConfig = connectedSelectArr[index + 1]
     // 2.获取数据
@@ -74,14 +77,23 @@ const PageSearch = memo((props) => {
     })
   }
 
-  const clearConnectedSelectFun = (index) => {
+  /**
+   *
+   * @param {Number} index  [点击的是第几个联动输入框的删除]
+   * @param {Boolean} isRemoveCurrentDefault [是否删除当前及子联动框的默认值]
+   */
+
+  const clearConnectedSelectFun = (index, isRemoveCurrentDefault = true) => {
+    let next = index + 1
+
     // 删除子联动框数据源
-    for (let i = index + 1; i < connectedDataSource.current.length; i++) {
+    for (let i = next; i < connectedDataSource.current.length; i++) {
       connectedDataSource.current[i] = []
     }
 
-    // 删除当前及子联动框的默认值
-    for (let i = index; i < connectedSelectArr.length; i++) {
+    // let i = index时 删除当前及子联动框的默认值（点击的联动框的删除）
+    // let i = next时 删除子联动框的默认值（联动框换选）
+    for (let i = isRemoveCurrentDefault ? index : next; i < connectedSelectArr.length; i++) {
       form.setFieldsValue({
         [connectedSelectArr[i].field]: undefined
       })
