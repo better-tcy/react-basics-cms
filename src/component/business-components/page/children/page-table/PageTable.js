@@ -80,26 +80,29 @@ const PageTable = memo((props) => {
 
   const newColumns = [
     ...columns,
-    isShowActionColumns
-      ? {
-          title: '操作',
-          key: 'action',
-          align: 'center',
-          fixed: 'right',
-          width: actionColumnsWidth,
-          render: (_, record) => (
-            <Space size="middle">
-              {tableBtnArr.map((itemFun) => {
-                if (itemFun instanceof Function && itemFun(record)) {
-                  return itemFun(record)
-                }
-                return ''
-              })}
-            </Space>
-          )
-        }
-      : {}
+    {
+      title: '操作',
+      key: 'action',
+      align: 'center',
+      fixed: 'right',
+      width: actionColumnsWidth,
+      render: (_, record) => (
+        <Space size="middle">
+          {tableBtnArr.map((itemFun) => {
+            if (itemFun instanceof Function && itemFun(record)) {
+              return itemFun(record)
+            }
+            return ''
+          })}
+        </Space>
+      )
+    }
   ]
+
+  // 如果isShowActionColumns为false 那么则删掉newColumns数组中最后一项（操作列）
+  if (!isShowActionColumns) {
+    newColumns.splice(newColumns.length - 1, 1)
+  }
 
   const paginationConfig = {
     pageSizeOptions: [5, 10, 15, 20],
