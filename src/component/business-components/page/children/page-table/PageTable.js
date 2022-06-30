@@ -32,6 +32,7 @@ const PageTable = memo((props) => {
     isShowActionColumns = true,
     tableMoreButtonArr = [],
     pageMoreButtonArr = [],
+    scroll = { x: 1500, y: 490 },
     accordingRowIsRenderCheckBtnFun = () => true,
     accordingRowIsRenderUpdateBtnFun = () => true,
     accordingRowIsRenderRemoveBtnFun = () => true,
@@ -134,8 +135,6 @@ const PageTable = memo((props) => {
 
     cloneDeepSearchData.pageSize = pageSize.current
     cloneDeepSearchData = Object.assign(cloneDeepSearchData, getMoreParams)
-
-    console.log(cloneDeepSearchData)
 
     getQuery(curdUrl, cloneDeepSearchData).then((res) => {
       setTableData(res.data)
@@ -363,7 +362,7 @@ const PageTable = memo((props) => {
       <Table
         size="small"
         style={{ padding: '0 36px' }}
-        scroll={{ x: 1500 }}
+        scroll={scroll}
         columns={newColumns}
         dataSource={tableData.list}
         pagination={paginationConfig}
