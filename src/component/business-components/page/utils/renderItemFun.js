@@ -7,7 +7,7 @@ const { TextArea } = Input
 const { Option } = Select
 const { RangePicker } = DatePicker
 
-export function renderItemFun(itemConfig, renderItemCallBackFun) {
+const renderItemFun = (itemConfig, renderItemCallBackFun) => {
   switch (itemConfig.type) {
     case 'input':
       return (
@@ -50,9 +50,9 @@ export function renderItemFun(itemConfig, renderItemCallBackFun) {
         <Form.Item label={itemConfig.label} name={itemConfig.field} rules={itemConfig.rules}>
           <Select
             showSearch
+            optionFilterProp="children"
             style={{ width: '100%' }}
             disabled={itemConfig.disabled}
-            optionFilterProp="children"
             mode={itemConfig.mode || ''}
             placeholder={itemConfig.placeholder || '请选择内容'}
           >
@@ -183,3 +183,5 @@ export function renderItemFun(itemConfig, renderItemCallBackFun) {
       console.warn('未找到对应组件')
   }
 }
+
+export default renderItemFun

@@ -32,7 +32,10 @@ const checkIsArrayFun = (arr) => {
   }
 }
 
-export function checkPageConfigFun(pageConfig) {
+const checkPageConfigFun = (pageConfig) => {
+  const { pageRequestUrl, pageTitleConfig, pageModalConfig, pageSearchConfig, pageTableConfig } =
+    pageConfig
+
   if (!pageConfig) {
     console.warn('请给Page组件传入pageConfig配置')
     return false
@@ -43,27 +46,27 @@ export function checkPageConfigFun(pageConfig) {
     return false
   }
 
-  if (!pageConfig.pageRequestUrl) {
+  if (!pageRequestUrl) {
     console.warn('请传入pageConfig -> pageRequestUrl这项配置')
     return false
   }
 
-  if (!checkIsObjectFun(pageConfig.pageRequestUrl)) {
+  if (!checkIsObjectFun(pageRequestUrl)) {
     console.warn('pageConfig -> pageRequestUrl必须为Object类型')
     return false
   }
 
-  if (!pageConfig.pageRequestUrl.curdUrl) {
+  if (!pageRequestUrl.curdUrl) {
     console.warn('请传入 pageRequestUrl -> curdUrl这项配置')
     return false
   }
 
-  if (!checkIsStringFun(pageConfig.pageRequestUrl.curdUrl)) {
+  if (!checkIsStringFun(pageRequestUrl.curdUrl)) {
     console.warn('pageRequestUrl -> curdUrl这项配置必须为String类型')
     return false
   }
 
-  const { getMoreParams, postMoreParams, putMoreParams } = pageConfig.pageRequestUrl
+  const { getMoreParams, postMoreParams, putMoreParams } = pageRequestUrl
 
   if (getMoreParams) {
     if (!checkIsObjectFun(getMoreParams)) {
@@ -86,95 +89,105 @@ export function checkPageConfigFun(pageConfig) {
     }
   }
 
-  if (!pageConfig.pageTitleConfig) {
-    console.warn('请传入 pageConfig -> pageTitleConfig这项配置')
-    return false
+  if (pageTitleConfig) {
+    if (!checkIsObjectFun(pageTitleConfig)) {
+      console.warn('pageConfig -> pageTitleConfig必须为Object类型')
+      return false
+    }
+
+    if (!pageTitleConfig.title) {
+      console.warn('请传入pageTitleConfig -> title这项配置')
+      return false
+    }
+
+    if (!checkIsStringFun(pageTitleConfig.title)) {
+      console.warn('pageTitleConfig -> title这项配置必须为String类型')
+      return false
+    }
   }
 
-  if (!checkIsObjectFun(pageConfig.pageTitleConfig)) {
-    console.warn('pageConfig -> pageTitleConfig必须为Object类型')
-    return false
-  }
-
-  if (!pageConfig.pageTitleConfig.title) {
-    console.warn('请传入pageTitleConfig -> title这项配置')
-    return false
-  }
-
-  if (!checkIsStringFun(pageConfig.pageTitleConfig.title)) {
-    console.warn('pageTitleConfig -> title这项配置必须为String类型')
-    return false
-  }
-
-  if (pageConfig.pageSearchConfig) {
-    if (!checkIsObjectFun(pageConfig.pageSearchConfig)) {
+  if (pageSearchConfig) {
+    if (!checkIsObjectFun(pageSearchConfig)) {
       console.warn('pageConfig -> pageSearchConfig必须为Object类型')
       return false
     }
 
-    if (!pageConfig.pageSearchConfig.searchItemArr) {
+    if (!pageSearchConfig.searchItemArr) {
       console.warn('请传入pageSearchConfig -> searchItemArr这项配置')
       return false
     }
 
-    if (!checkIsArrayFun(pageConfig.pageSearchConfig.searchItemArr)) {
+    if (!checkIsArrayFun(pageSearchConfig.searchItemArr)) {
       console.warn('pageSearchConfig -> searchItemArr这项配置必须为Array类型')
       return false
     }
 
-    if (pageConfig.pageSearchConfig.searchItemArr.length === 0) {
+    if (pageSearchConfig.searchItemArr.length === 0) {
       console.warn('pageSearchConfig -> searchItemArr中至少包含一个元素')
       return false
     }
 
-    const res = checkFormItemConfigFun('searchItemArr', pageConfig.pageSearchConfig.searchItemArr)
+    const res = checkFormItemConfigFun('searchItemArr', pageSearchConfig.searchItemArr)
     if (!res) {
+      return false
+    }
+
+    if (
+      pageSearchConfig.connectedSelectArr &&
+      !checkIsArrayFun(pageSearchConfig.connectedSelectArr)
+    ) {
+      console.warn('pageSearchConfig -> connectedSelectArr这项配置必须为Array类型')
+      return false
+    }
+
+    if (pageSearchConfig.connectedSelectArr && pageSearchConfig.connectedSelectArr.length < 2) {
+      console.warn('pageSearchConfig -> connectedSelectArr这项配置必须包含2+元素')
       return false
     }
   }
 
-  if (!pageConfig.pageTableConfig) {
+  if (!pageTableConfig) {
     console.warn('请传入pageTableConfig这项配置')
     return false
   }
 
-  if (!checkIsObjectFun(pageConfig.pageTableConfig)) {
+  if (!checkIsObjectFun(pageTableConfig)) {
     console.warn('pageConfig -> pageTableConfig必须为Object类型')
     return false
   }
 
-  if (!pageConfig.pageTableConfig.columns) {
+  if (!pageTableConfig.columns) {
     console.warn('请传入pageTableConfig -> columns这项配置')
     return false
   }
 
-  if (!checkIsArrayFun(pageConfig.pageTableConfig.columns)) {
+  if (!checkIsArrayFun(pageTableConfig.columns)) {
     console.warn('pageTableConfig -> columns这项必须为Array类型')
     return false
   }
 
-  if (pageConfig.pageModalConfig) {
-    if (!checkIsObjectFun(pageConfig.pageModalConfig)) {
+  if (pageModalConfig) {
+    if (!checkIsObjectFun(pageModalConfig)) {
       console.warn('pageConfig -> pageModalConfig必须为Object类型')
       return false
     }
 
-    if (!pageConfig.pageModalConfig.modalItemArr) {
+    if (!pageModalConfig.modalItemArr) {
       console.warn('请传入pageModalConfig -> modalItemArr这项配置')
       return false
     }
 
-    if (!checkIsArrayFun(pageConfig.pageModalConfig.modalItemArr)) {
+    if (!checkIsArrayFun(pageModalConfig.modalItemArr)) {
       console.warn('pageModalConfig -> modalItemArr这项配置必须为Array类型')
       return false
     }
 
-    if (pageConfig.pageModalConfig.modalItemArr.length === 0) {
+    if (pageModalConfig.modalItemArr.length === 0) {
       console.warn('pageModalConfig -> modalItemArr中至少包含一个元素')
       return false
     }
 
-    const res = checkFormItemConfigFun('modalItemArr', pageConfig.pageModalConfig.modalItemArr)
+    const res = checkFormItemConfigFun('modalItemArr', pageModalConfig.modalItemArr)
     if (!res) {
       return false
     }
@@ -182,3 +195,5 @@ export function checkPageConfigFun(pageConfig) {
 
   return pageConfig
 }
+
+export default checkPageConfigFun

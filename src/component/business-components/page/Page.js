@@ -7,10 +7,10 @@ import { checkPageConfigFun } from 'page/utils'
 const Page = memo((props) => {
   const { pageConfig } = props
 
-  const newPageConfig = checkPageConfigFun(pageConfig)
+  const successPageConfig = checkPageConfigFun(pageConfig)
 
   const { pageRequestUrl, pageTitleConfig, pageSearchConfig, pageTableConfig, pageModalConfig } =
-    newPageConfig
+    successPageConfig
 
   useImperativeHandle(props.onRef, () => {
     return {
@@ -20,25 +20,25 @@ const Page = memo((props) => {
 
   const pageTableRef = useRef()
 
-  const [searchData, setSearchData] = useState({})
+  const [searchData, setSearchData] = useState(pageSearchConfig?.defaultSearchData || {})
 
   const newPageSearchConfig = {
     ...pageSearchConfig,
     getSearchValuesFun(searchData) {
-      setSearchData(searchData)
+      setSearchData({ ...searchData, isSearch: true })
     },
     resetSearchValuesFun() {
       setSearchData({})
     }
   }
 
-  if (!newPageConfig) {
+  if (!successPageConfig) {
     return <h2>传入配置不正确，无法生成页面，详情请查看控制台</h2>
   }
 
   return (
     <div>
-      <PageTitle pageTitleConfig={pageTitleConfig}></PageTitle>
+      {pageTitleConfig && <PageTitle pageTitleConfig={pageTitleConfig}></PageTitle>}
 
       <div style={{ padding: '18px' }}>
         {pageSearchConfig && <PageSearch pageSearchConfig={newPageSearchConfig}></PageSearch>}
@@ -46,9 +46,9 @@ const Page = memo((props) => {
         <PageTable
           onRef={pageTableRef}
           pageRequestUrl={pageRequestUrl}
-          searchData={searchData}
           pageTableConfig={pageTableConfig}
           pageModalConfig={pageModalConfig}
+          searchData={searchData}
         ></PageTable>
       </div>
     </div>

@@ -7,7 +7,12 @@ import { useDispatch } from 'react-redux'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
-import { setMenuDataA, setMenuPathArrA } from '@/store/createAction/frameWork'
+import {
+  setMenuDataA,
+  setMenuPathArrA,
+  setCurrentOneMenuPathA,
+  setCurrentTwoMenuPathA
+} from '@/store/createAction/frameWork'
 
 import { ThemeContext } from '@/App'
 
@@ -18,15 +23,15 @@ import './loginResetAntd.css'
 import menuData from '@/assets/data/menuData'
 
 const Login = memo(() => {
+  const theme = useContext(ThemeContext)
+
   const history = useHistory()
 
   const dispatch = useDispatch()
 
-  const theme = useContext(ThemeContext)
-
   const onFinish = () => {
     localStorage.setItem('token', 'token')
-
+    // 将导航数据保存到redux中
     dispatch(setMenuDataA(menuData))
 
     // 递归把导航菜单转成一维数组（path）
@@ -42,8 +47,22 @@ const Login = memo(() => {
     }
 
     recurseArr(menuData)
-
+    // 将导航的一维数组 保存到redux中
     dispatch(setMenuPathArrA(menuPathArr))
+
+    let oneMenuPath = ''
+    let twoMenuPath = ''
+    const firstMenu = menuData[0]
+
+    if (firstMenu?.children && firstMenu.children.length !== 0) {
+      oneMenuPath = firstMenu?.path
+      twoMenuPath = firstMenu.children[0]?.path
+    } else {
+      twoMenuPath = firstMenu?.path
+    }
+    // 将选中或展开的导航保存到redux中
+    dispatch(setCurrentOneMenuPathA(oneMenuPath))
+    dispatch(setCurrentTwoMenuPathA(twoMenuPath))
 
     history.replace('/content')
   }
@@ -63,14 +82,11 @@ const Login = memo(() => {
           <Form
             style={{ width: '100%' }}
             name="basic"
-            labelCol={{ span: 5 }}
-            wrapperCol={{ span: 18 }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
           >
             <Form.Item
-              label="Username"
               name="username"
               rules={[{ required: true, message: 'Please input your username!' }]}
             >
@@ -81,7 +97,6 @@ const Login = memo(() => {
             </Form.Item>
 
             <Form.Item
-              label="Password"
               name="password"
               rules={[{ required: true, message: 'Please input your password!' }]}
             >
@@ -91,7 +106,7 @@ const Login = memo(() => {
               />
             </Form.Item>
 
-            <Form.Item wrapperCol={{ offset: 5, span: 18 }}>
+            <Form.Item>
               <Button type="primary" htmlType="submit" block>
                 登录
               </Button>

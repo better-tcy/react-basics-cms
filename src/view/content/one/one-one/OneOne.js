@@ -45,16 +45,58 @@ const OneOne = memo((props) => {
           field: 'phone',
           placeholder: '请输入手机号'
         }
-      ]
+      ],
+      connectedSelectArr: [
+        {
+          label: '选择编程语言',
+          field: 'programmingLanguage',
+          placeholder: '请选择语言',
+          customizeOptionsValueKey: 'id',
+          customizeOptionsLabelKey: 'name',
+          url: '/firstSelectData/',
+          // requestKey: 'programmingLanguage',
+          // requestValue: 10,
+          rules: []
+        },
+        {
+          label: '选择一门框架',
+          field: 'frame',
+          placeholder: '请选择框架',
+          customizeOptionsValueKey: 'id',
+          customizeOptionsLabelKey: 'name',
+          url: '/secondSelectData/',
+          requestKey: 'frame',
+          rules: []
+        },
+        {
+          label: '选择框架书籍',
+          field: 'book',
+          placeholder: '请选择书籍',
+          customizeOptionsValueKey: 'id',
+          customizeOptionsLabelKey: 'name',
+          url: '/thirdSelectData/',
+          requestKey: 'book',
+          rules: []
+        }
+      ],
+      defaultSearchData: {
+        name: 'tom'
+      }
     },
     pageTableConfig: {
-      // isShowAddBtn: false, // 默认都为true
+      // 默认都为true
+      // isShowAddBtn: false,
       // isShowCheckDetailsBtn: false,
       // isShowUpdateBtn: false,
       // isShowRemoveBtn: false,
       // isShowEnableDisableBtn: false,
       // isShowActionColumns: false,
-      // actionColumnsWidth: 500, // 操作列的宽度 默认为500 如果表格列数较多，请给每个列添加宽度（columns中的每一项增加width属性）这样表格会增加横向滚动条，操作列悬浮固定在右侧
+      // 操作列的宽度 默认为500 如果表格列数较多，
+      // 请给每个列添加宽度（columns中的每一项增加width属性）这样表格会增加横向滚动条，操作列悬浮固定在右侧
+      // 如果isShowActionColumns为false又想出现横向滚动条的话 可以给columns中其他属性添加fixed属性（详见antd官网）
+      // actionColumnsWidth: 500,
+      // 表格是否可滚动，也可以指定滚动区域的宽、高（详见antd官网）
+      scroll: { y: 360 },
       columns: [
         {
           title: '用户名称',

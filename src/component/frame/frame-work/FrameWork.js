@@ -33,10 +33,6 @@ const { SubMenu } = Menu
 const FrameWork = memo((props) => {
   const { route } = props
 
-  const history = useHistory()
-
-  const dispatch = useDispatch()
-
   const theme = useContext(ThemeContext)
 
   const { currentOneMenuPath, currentTwoMenuPath, menuData } = useSelector((state) => {
@@ -46,6 +42,10 @@ const FrameWork = memo((props) => {
       menuData: state.get('frameWork').get('menuDataR')
     }
   }, shallowEqual)
+
+  const history = useHistory()
+
+  const dispatch = useDispatch()
 
   const [collapsed, setCollapsed] = useState(false)
 
@@ -78,7 +78,7 @@ const FrameWork = memo((props) => {
   const exit = useCallback(() => {
     // 需要清空缓存数据以及重置redux frameWork state数据
     localStorage.clear()
-    dispatch(setCurrentTwoMenuPathA('/content/home'))
+    dispatch(setCurrentTwoMenuPathA(''))
     dispatch(setCurrentOneMenuPathA(''))
     dispatch(setMenuDataA([]))
 
@@ -100,44 +100,42 @@ const FrameWork = memo((props) => {
             mode="inline"
             style={{ color: theme.menuTextColor }}
             openKeys={openKeys.length === 0 ? [currentOneMenuPath] : openKeys}
-            defaultSelectedKeys={[currentTwoMenuPath ? currentTwoMenuPath : '/content/home']}
-            defaultOpenKeys={[currentOneMenuPath]}
+            selectedKeys={[currentTwoMenuPath]}
             onOpenChange={onOpenChange}
           >
-            {menuData &&
-              menuData.map((oneMenu) => {
-                if (!oneMenu.children || oneMenu.children.length === 0) {
-                  return (
-                    <Menu.Item
-                      key={oneMenu.path}
-                      icon={<HomeOutlined />}
-                      onClick={() => {
-                        getSelectedPath(oneMenu)
-                      }}
-                    >
-                      {oneMenu.name}
-                    </Menu.Item>
-                  )
-                } else {
-                  return (
-                    <SubMenu key={oneMenu.path} title={oneMenu.name} icon={<SmileOutlined />}>
-                      {oneMenu.children.map((twoMenu) => {
-                        return (
-                          <Menu.Item
-                            key={twoMenu.path}
-                            icon={<TeamOutlined />}
-                            onClick={() => {
-                              getSelectedPath(twoMenu, oneMenu.path)
-                            }}
-                          >
-                            {twoMenu.name}
-                          </Menu.Item>
-                        )
-                      })}
-                    </SubMenu>
-                  )
-                }
-              })}
+            {menuData.map((oneMenu) => {
+              if (!oneMenu.children || oneMenu.children.length === 0) {
+                return (
+                  <Menu.Item
+                    key={oneMenu.path}
+                    icon={<HomeOutlined />}
+                    onClick={() => {
+                      getSelectedPath(oneMenu)
+                    }}
+                  >
+                    {oneMenu.name}
+                  </Menu.Item>
+                )
+              } else {
+                return (
+                  <SubMenu key={oneMenu.path} title={oneMenu.name} icon={<SmileOutlined />}>
+                    {oneMenu.children.map((twoMenu) => {
+                      return (
+                        <Menu.Item
+                          key={twoMenu.path}
+                          icon={<TeamOutlined />}
+                          onClick={() => {
+                            getSelectedPath(twoMenu, oneMenu.path)
+                          }}
+                        >
+                          {twoMenu.name}
+                        </Menu.Item>
+                      )
+                    })}
+                  </SubMenu>
+                )
+              }
+            })}
           </Menu>
         </Sider>
 

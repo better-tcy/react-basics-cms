@@ -6,11 +6,11 @@ Mock.setup({
 })
 
 // 公共数据
-Mock.mock('http://localhost:3001/commonData', 'get', function () {
+Mock.mock('http://localhost:3001/commonData/', 'get', function () {
   return Mock.mock({
     code: 0,
     msg: '',
-    result: '我是公共的数据 哈哈哈，配置生成页面 请去OneOne目录'
+    data: '我是公共的数据 哈哈哈，配置生成页面 请去OneOne目录'
   })
 })
 
@@ -22,18 +22,88 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
       code: 0,
       msg: '',
       data: {
-        total: 2,
+        total: 12,
         list: [
           {
             id: 1,
-            name: 'tom',
+            name: 'one',
             iphone: '13230975666',
             jobTitle: 1,
             status: 1
           },
           {
             id: 2,
-            name: 'jerry',
+            name: 'two',
+            iphone: '13230975888',
+            jobTitle: 2,
+            status: 0
+          },
+          {
+            id: 3,
+            name: 'three',
+            iphone: '13230975888',
+            jobTitle: 2,
+            status: 0
+          },
+          {
+            id: 4,
+            name: 'four',
+            iphone: '13230975888',
+            jobTitle: 2,
+            status: 0
+          },
+          {
+            id: 5,
+            name: 'five',
+            iphone: '13230975888',
+            jobTitle: 2,
+            status: 0
+          },
+          {
+            id: 6,
+            name: 'six',
+            iphone: '13230975888',
+            jobTitle: 2,
+            status: 0
+          },
+          {
+            id: 7,
+            name: 'seven',
+            iphone: '13230975888',
+            jobTitle: 2,
+            status: 0
+          },
+          {
+            id: 8,
+            name: 'eight',
+            iphone: '13230975888',
+            jobTitle: 2,
+            status: 0
+          },
+          {
+            id: 9,
+            name: 'nine',
+            iphone: '13230975888',
+            jobTitle: 2,
+            status: 0
+          },
+          {
+            id: 10,
+            name: 'ten',
+            iphone: '13230975888',
+            jobTitle: 2,
+            status: 0
+          },
+          {
+            id: 11,
+            name: 'eleven',
+            iphone: '13230975888',
+            jobTitle: 2,
+            status: 0
+          },
+          {
+            id: 12,
+            name: 'twelve',
             iphone: '13230975888',
             jobTitle: 2,
             status: 0
@@ -127,5 +197,75 @@ Mock.mock(RegExp(`http://localhost:3001/upload.*`), 'post', function (options) {
     code: 0,
     msg: '',
     data: 'http://101.43.153.100/images/image.jpg'
+  })
+})
+
+/**
+ * 联动下拉框数据
+ */
+
+Mock.mock(RegExp(`http://localhost:3001/firstSelectData.*`), 'get', function (options) {
+  console.log(options)
+  return Mock.mock({
+    code: 0,
+    msg: '',
+    data: [
+      {
+        id: 1,
+        name: 'JavaScript'
+      },
+      {
+        id: 2,
+        name: 'Go'
+      },
+      {
+        id: 3,
+        name: 'Java'
+      }
+    ]
+  })
+})
+
+Mock.mock(RegExp(`http://localhost:3001/secondSelectData.*`), 'get', function (options) {
+  console.log(options)
+  return Mock.mock({
+    code: 0,
+    msg: '',
+    data: [
+      {
+        id: 1,
+        name: 'React'
+      },
+      {
+        id: 2,
+        name: 'Vue'
+      },
+      {
+        id: 3,
+        name: 'Angular'
+      }
+    ]
+  })
+})
+
+Mock.mock(RegExp(`http://localhost:3001/thirdSelectData.*`), 'get', function (options) {
+  console.log(options)
+  return Mock.mock({
+    code: 0,
+    msg: '',
+    data: [
+      {
+        id: 1,
+        name: '深入React技术栈'
+      },
+      {
+        id: 2,
+        name: '深入浅出React和Redux'
+      },
+      {
+        id: 3,
+        name: 'React 进阶之路'
+      }
+    ]
   })
 })

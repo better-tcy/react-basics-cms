@@ -1,4 +1,4 @@
-export function btnAuthorityFun(pageAuthorityArr, btnAuthorityName) {
+const btnAuthorityFun = (pageAuthorityArr, btnAuthorityName) => {
   if (!pageAuthorityArr || pageAuthorityArr.length === 0) {
     return false
   }
@@ -12,3 +12,5 @@ export function btnAuthorityFun(pageAuthorityArr, btnAuthorityName) {
   }
   return isShowBtn
 }
+
+export default btnAuthorityFun

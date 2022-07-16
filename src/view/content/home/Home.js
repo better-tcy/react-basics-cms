@@ -9,15 +9,15 @@ import { Button } from 'antd'
 import { getCommonDataOneM } from '@/store/middleware/business'
 
 const Home = memo(() => {
-  const history = useHistory()
-
-  const dispatch = useDispatch()
-
   const { commonDataOne } = useSelector((state) => {
     return {
       commonDataOne: state.get('business').get('commonDataOneR')
     }
   }, shallowEqual)
+
+  const history = useHistory()
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getCommonDataOneM)

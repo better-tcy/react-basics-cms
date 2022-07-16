@@ -8,7 +8,7 @@ import { UploadOutlined } from '@ant-design/icons'
 import './controlledUpladResetAntd.css'
 
 const ControlledUpload = memo((props) => {
-  const { onChange, value, actionUrl, accept, data, listType, headers } = props
+  const { actionUrl, accept, data, listType, headers, value, onChange } = props
 
   const id = useRef()
 

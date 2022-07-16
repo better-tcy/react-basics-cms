@@ -5,12 +5,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons'
 
 import _ from 'lodash'
 
-import {
-  getTableDataH,
-  removeTableDataH,
-  startTableDataH,
-  stopTableDataH
-} from '@/request/api/content/common/page'
+import { getQuery, remove, post } from '@/request/http'
 
 import { btnAuthorityFun } from 'page/utils'
 
@@ -22,21 +17,22 @@ import './pageTableResetAntd.css'
 const { confirm } = Modal
 
 const PageTable = memo((props) => {
-  const { pageRequestUrl, pageTableConfig, searchData, pageModalConfig } = props
+  const { pageRequestUrl, pageTableConfig, pageModalConfig, searchData } = props
   const { curdUrl, getMoreParams, postMoreParams, putMoreParams, enableUrl, disabledUrl } =
     pageRequestUrl
   const {
     columns,
     pageAuthorityArr,
-    tableMoreButtonArr = [],
-    pageMoreButtonArr = [],
+    actionColumnsWidth = 500,
     isShowAddBtn = true,
     isShowCheckDetailsBtn = true,
     isShowUpdateBtn = true,
     isShowRemoveBtn = true,
     isShowEnableDisableBtn = true,
     isShowActionColumns = true,
-    actionColumnsWidth = 500,
+    tableMoreButtonArr = [],
+    pageMoreButtonArr = [],
+    scroll = { x: 1500, y: 490 },
     accordingRowIsRenderCheckBtnFun = () => true,
     accordingRowIsRenderUpdateBtnFun = () => true,
     accordingRowIsRenderRemoveBtnFun = () => true,
@@ -84,27 +80,29 @@ const PageTable = memo((props) => {
 
   const newColumns = [
     ...columns,
-    isShowActionColumns
-      ? {
-          title: '操作',
-          key: 'action',
-          align: 'center',
-          fixed: 'right',
-          width: actionColumnsWidth,
-          render: (_, record) => (
-            <Space size="middle">
-              {tableBtnArr.map((itemFun) => {
-                if (itemFun instanceof Function) {
-                  return itemFun(record) || <div key={record.id} style={{ width: '66px' }}></div>
-                } else {
-                  return <div key={record.id} style={{ width: '66px' }}></div>
-                }
-              })}
-            </Space>
-          )
-        }
-      : {}
+    {
+      title: '操作',
+      key: 'action',
+      align: 'center',
+      fixed: 'right',
+      width: actionColumnsWidth,
+      render: (_, record) => (
+        <Space size="middle">
+          {tableBtnArr.map((itemFun) => {
+            if (itemFun instanceof Function && itemFun(record)) {
+              return itemFun(record)
+            }
+            return ''
+          })}
+        </Space>
+      )
+    }
   ]
+
+  // 如果isShowActionColumns为false 那么则删掉newColumns数组中最后一项（操作列）
+  if (!isShowActionColumns) {
+    newColumns.splice(newColumns.length - 1, 1)
+  }
 
   const paginationConfig = {
     pageSizeOptions: [5, 10, 15, 20],
@@ -127,6 +125,36 @@ const PageTable = memo((props) => {
     onChange: (selectedRowKeys) => {
       setSelectedRowKeys(selectedRowKeys)
     }
+  }
+
+  const getTableDataFun = useCallback(() => {
+    let cloneDeepSearchData = _.cloneDeep(searchData)
+
+    if (cloneDeepSearchData.isSearch) {
+      cloneDeepSearchData.pageNum = 1
+    } else {
+      cloneDeepSearchData.pageNum = pageNum.current
+    }
+
+    cloneDeepSearchData.pageSize = pageSize.current
+    cloneDeepSearchData = Object.assign(cloneDeepSearchData, getMoreParams)
+
+    getQuery(curdUrl, cloneDeepSearchData).then((res) => {
+      setTableData(res.data)
+    })
+  }, [curdUrl, searchData, getMoreParams])
+
+  const commonConfirmFun = (title, callBackFun) => {
+    confirm({
+      title: title,
+      icon: <ExclamationCircleOutlined />,
+      onOk() {
+        callBackFun && callBackFun()
+      },
+      onCancel() {
+        console.log('Cancel')
+      }
+    })
   }
 
   function renderCheckRowDetailsBtnFun() {
@@ -181,7 +209,7 @@ const PageTable = memo((props) => {
               type="text"
               style={{ color: '#EB3030' }}
               onClick={() => {
-                removeTableDataFun(record.id)
+                removeTableItemDataFun(record.id)
               }}
             >
               删除
@@ -212,30 +240,6 @@ const PageTable = memo((props) => {
     }
   }
 
-  const commonConfirmFun = (title, callBackFun) => {
-    confirm({
-      title: title,
-      icon: <ExclamationCircleOutlined />,
-      onOk() {
-        callBackFun && callBackFun()
-      },
-      onCancel() {
-        console.log('Cancel')
-      }
-    })
-  }
-
-  const getTableDataFun = useCallback(() => {
-    let cloneDeepSearchData = _.cloneDeep(searchData)
-    cloneDeepSearchData.pageNum = pageNum.current
-    cloneDeepSearchData.pageSize = pageSize.current
-    cloneDeepSearchData = Object.assign(cloneDeepSearchData, getMoreParams)
-
-    getTableDataH(curdUrl, cloneDeepSearchData).then((res) => {
-      setTableData(res.data)
-    })
-  }, [curdUrl, searchData, getMoreParams])
-
   const showModalFun = (title, rowId) => {
     if (!pageModalConfig) {
       console.warn('如果想使用弹窗功能，请传入pageModalConfig这项配置')
@@ -256,9 +260,9 @@ const PageTable = memo((props) => {
     setIsModalVisible(false)
   }
 
-  const removeTableDataFun = (id) => {
+  const removeTableItemDataFun = (id) => {
     function callBackFun() {
-      removeTableDataH(curdUrl, { id }).then(() => {
+      remove(curdUrl, { id }).then(() => {
         message.success('删除成功')
         getTableDataFun()
       })
@@ -286,10 +290,11 @@ const PageTable = memo((props) => {
 
   // 启用或禁用
   const enableOrDisableFun = (isEnable, rowIdArr) => {
+    let callBackFun = null
     if (isEnable) {
       // 启用
-      function callBackFun() {
-        startTableDataH(enableUrl || `${curdUrl}start/`, { ids: rowIdArr }).then((res) => {
+      callBackFun = () => {
+        post(enableUrl || `${curdUrl}start/`, { ids: rowIdArr }).then((res) => {
           message.success('已启用')
           getTableDataFun()
         })
@@ -298,8 +303,8 @@ const PageTable = memo((props) => {
       commonConfirmFun('是否启用数据？', callBackFun)
     } else {
       // 禁用
-      function callBackFun() {
-        stopTableDataH(disabledUrl || `${curdUrl}stop/`, { ids: rowIdArr }).then((res) => {
+      callBackFun = () => {
+        post(disabledUrl || `${curdUrl}stop/`, { ids: rowIdArr }).then((res) => {
           message.warning('已禁用')
           getTableDataFun()
         })
@@ -351,9 +356,8 @@ const PageTable = memo((props) => {
           {pageMoreButtonArr.map((itemFun) => {
             if (itemFun instanceof Function) {
               return itemFun(selectedRowKeys)
-            } else {
-              return ''
             }
+            return ''
           })}
         </div>
       </div>
@@ -361,7 +365,7 @@ const PageTable = memo((props) => {
       <Table
         size="small"
         style={{ padding: '0 36px' }}
-        scroll={{ x: 1500 }}
+        scroll={scroll}
         columns={newColumns}
         dataSource={tableData.list}
         pagination={paginationConfig}
