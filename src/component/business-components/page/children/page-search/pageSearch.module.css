@@ -1,10 +1,10 @@
 .page_search {
-  padding: 20px 36px 10px 36px;
-  box-shadow: 0px 2px 5px 0px rgb(69 69 77 / 11%);
+  padding: 18px 28px;
   background-color: #fff;
-
   display: flex;
   justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 7px 5px 12px #bdbdbd;
 }
 
 .reset_btn {
@@ -12,4 +12,8 @@
   color: #fff !important;
   border: 1px solid #fa982d !important;
   margin-left: 10px;
+}
+
+.reset_btn:hover {
+  opacity: 0.76;
 }

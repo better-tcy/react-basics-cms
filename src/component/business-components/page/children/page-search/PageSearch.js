@@ -150,7 +150,7 @@ const PageSearch = memo((props) => {
               <div
                 key={searchItem.field}
                 style={{
-                  width: '20%',
+                  width: '300px',
                   marginRight: searchItemMarginRight,
                   marginBottom: '10px'
                 }}
@@ -166,7 +166,7 @@ const PageSearch = memo((props) => {
                 <div
                   key={itemConfig.field}
                   style={{
-                    width: '20%',
+                    width: '300px',
                     marginRight: searchItemMarginRight,
                     marginBottom: '10px'
                   }}
