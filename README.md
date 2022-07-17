@@ -99,16 +99,16 @@
 
 | Type     | 作用                                                                                   |
 | -------- | -------------------------------------------------------------------------------------- |
-| feat     | 新增特性 (feature)                                                                     |
-| fix      | 修复 Bug(bug fix)                                                                      |
-| docs     | 修改文档 (documentation)                                                               |
-| style    | 代码格式修改(white-space, formatting, missing semi colons, etc)                        |
-| refactor | 代码重构(refactor)                                                                     |
-| perf     | 改善性能(A code change that improves performance)                                      |
-| test     | 测试(when adding missing tests)                                                        |
+| feat     | 产品新功能，通常是能够让用户觉察到的变化，小到文案或样式修改                                                                    |
+| fix      | 修复Bug                                                                   |
+| docs     | 修改文档                                                               |
+| style    | 代码格式调整，对逻辑无影响：比如为按照 eslint 或团队风格修改代码格式。注意不是 UI 变更                  |
+| refactor | 重构：代码优化但不影响现有功能或添加功能。比如文件、变量重命名、代码抽象为函数，消除魔法数字等                                                           |
+| perf     | 改善性能                                     |
+| test     | 测试相关变更                                                 |
 | build    | 变更项目构建或外部依赖（例如 scopes: webpack、gulp、npm 等）                           |
 | ci       | 更改持续集成软件的配置文件和 package 中的 scripts 命令，例如 scopes: Travis, Circle 等 |
-| chore    | 变更构建流程或辅助工具(比如更改测试环境)                                               |
+| chore    | 杂项：其他无法归类的变更，比如代码合并                         |
 | revert   | 代码回退                                                                               |
 
 - 第二步选择本次修改的范围（作用域）
