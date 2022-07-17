@@ -10,3 +10,6 @@
 .ant-modal-title {
   color: #fff !important;
 }
+.ant-modal-footer {
+  padding: 0 !important;
+}

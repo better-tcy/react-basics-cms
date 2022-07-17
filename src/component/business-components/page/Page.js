@@ -37,7 +37,7 @@ const Page = memo((props) => {
   }
 
   return (
-    <div style={{ padding: '18px' }}>
+    <div>
       {pageTitleConfig && <PageTitle pageTitleConfig={pageTitleConfig}></PageTitle>}
 
       <div style={{ marginTop: '18px' }}>
