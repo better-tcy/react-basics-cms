@@ -14,7 +14,7 @@ const UsePage = memo((props) => {
 
   const pageConfig = {
     pageRequestUrl: {
-      curdUrl: '/oneOne/',
+      curdUrl: '/usePage/',
       getMoreParams: {
         type: 1
       },
@@ -24,8 +24,8 @@ const UsePage = memo((props) => {
       putMoreParams: {
         type: 1
       }
-      // enableUrl: '/oneOne/start', // 默认值/oneOne/start
-      // disabledUrl: '/oneOne/stop' // 默认值/oneOne/stop
+      // enableUrl: '/usePage/start', // 默认值/usePage/start
+      // disabledUrl: '/usePage/stop' // 默认值/usePage/stop
     },
     pageTitleConfig: {
       title: 'JS配置生成页面'

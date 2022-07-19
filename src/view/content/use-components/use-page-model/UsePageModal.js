@@ -21,7 +21,7 @@ const UsePageModal = memo(() => {
    **/
 
   const pageModalConfig = {
-    saveUrl: '/oneOne/',
+    saveUrl: '/usePage/',
     itemId: 1,
     modalTitle: '新增',
     modalItemArr: [

@@ -15,7 +15,7 @@ Mock.mock('http://localhost:3001/commonData/', 'get', function () {
 })
 
 // 查看表格数据及详情
-Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
+Mock.mock(RegExp(`http://localhost:3001/usePage?.*`), 'get', function (options) {
   console.log(options)
   if (options.url.indexOf('?') !== -1) {
     return Mock.mock({
@@ -141,7 +141,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne?.*`), 'get', function (options) {
 })
 
 // 删除某条数据
-Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'delete', function (options) {
+Mock.mock(RegExp(`http://localhost:3001/usePage.*`), 'delete', function (options) {
   console.log(options)
   return Mock.mock({
     code: 0,
@@ -151,7 +151,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'delete', function (options)
 })
 
 // 启用数据
-Mock.mock(RegExp(`http://localhost:3001/oneOne/start.*`), 'post', function (options) {
+Mock.mock(RegExp(`http://localhost:3001/usePage/start.*`), 'post', function (options) {
   console.log(options)
   return Mock.mock({
     code: 0,
@@ -161,7 +161,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne/start.*`), 'post', function (opti
 })
 
 // 禁用数据
-Mock.mock(RegExp(`http://localhost:3001/oneOne/stop.*`), 'post', function (options) {
+Mock.mock(RegExp(`http://localhost:3001/usePage/stop.*`), 'post', function (options) {
   console.log(options)
   return Mock.mock({
     code: 0,
@@ -171,7 +171,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne/stop.*`), 'post', function (optio
 })
 
 // 新增数据
-Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'post', function (options) {
+Mock.mock(RegExp(`http://localhost:3001/usePage.*`), 'post', function (options) {
   console.log(options)
   return Mock.mock({
     code: 0,
@@ -181,7 +181,7 @@ Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'post', function (options) {
 })
 
 // 修改数据
-Mock.mock(RegExp(`http://localhost:3001/oneOne.*`), 'put', function (options) {
+Mock.mock(RegExp(`http://localhost:3001/usePage.*`), 'put', function (options) {
   console.log(options)
   return Mock.mock({
     code: 0,
