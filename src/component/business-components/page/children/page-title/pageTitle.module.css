@@ -1,7 +1,8 @@
 .page_title {
-  height: 86px;
-  background-color: #ffffff;
-  padding-left: 50px;
-  line-height: 86px;
-  font-size: 24px;
+  padding: 10px 0;
+  border-radius: 10px;
+  background-color: #989898;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
 }

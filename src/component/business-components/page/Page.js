@@ -40,9 +40,11 @@ const Page = memo((props) => {
     <div>
       {pageTitleConfig && <PageTitle pageTitleConfig={pageTitleConfig}></PageTitle>}
 
-      <div style={{ padding: '18px' }}>
+      <div style={{ marginTop: '18px' }}>
         {pageSearchConfig && <PageSearch pageSearchConfig={newPageSearchConfig}></PageSearch>}
+      </div>
 
+      <div style={{ marginTop: '18px' }}>
         <PageTable
           onRef={pageTableRef}
           pageRequestUrl={pageRequestUrl}

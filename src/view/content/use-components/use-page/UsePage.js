@@ -6,7 +6,7 @@ import Page from '@/component/business-components/page/Page'
 
 import { btnAuthorityFun } from 'page/utils'
 
-const OneOne = memo((props) => {
+const UsePage = memo((props) => {
   // pageAuthorityArr来源于点击导航派发到页面对应的按钮权限数组
   const { pageAuthorityArr } = props.location.state
 
@@ -28,7 +28,7 @@ const OneOne = memo((props) => {
       // disabledUrl: '/oneOne/stop' // 默认值/oneOne/stop
     },
     pageTitleConfig: {
-      title: '配置生成页面'
+      title: 'JS配置生成页面'
     },
     pageSearchConfig: {
       // searchItemMarginRight: '50px',
@@ -427,4 +427,4 @@ const OneOne = memo((props) => {
   )
 })
 
-export default OneOne
+export default UsePage

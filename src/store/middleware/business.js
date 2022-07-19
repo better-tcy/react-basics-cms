@@ -1,9 +1,9 @@
-import { getCommonDataOneH } from '@/request/api/content/home/home'
+import { getCommonDataH } from '@/request/api/content/other/use-redux-middleware'
 
 import { setCommonDataOneA } from '../createAction/business'
 
 export const getCommonDataOneM = (dispatch, getState) => {
-  getCommonDataOneH().then((res) => {
+  getCommonDataH().then((res) => {
     dispatch(setCommonDataOneA(res.data))
   })
 }

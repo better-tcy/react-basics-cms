@@ -36,7 +36,7 @@ module.exports = {
             // 自定义主题 更多配置请参考 https://ant.design/docs/react/customize-theme-cn
             // 修改完之后记得重启项目才会生效
             modifyVars: {
-              // '@primary-color': '#1DA57A',
+              '@primary-color': '#e95e4e'
             },
             // modifyVars: getThemeVariables({
             //   dark: true, // 开启暗黑模式

@@ -89,16 +89,16 @@ const FrameWork = memo((props) => {
     <div className="frame_work">
       <Layout style={{ height: '100vh' }}>
         <Sider
-          style={{ background: theme.asideBgColor }}
-          trigger={null}
           collapsible
+          trigger={null}
+          style={{ background: theme.siderBgColor }}
           collapsed={collapsed}
         >
           <div className={frameWorkCss.cms_name}>{collapsed ? '' : 'Betteryourself'}</div>
           <Menu
-            theme="dark"
             mode="inline"
-            style={{ color: theme.menuTextColor }}
+            theme={theme.menuTheme || 'light'}
+            style={{ background: theme.menuBgColor }}
             openKeys={openKeys.length === 0 ? [currentOneMenuPath] : openKeys}
             selectedKeys={[currentTwoMenuPath]}
             onOpenChange={onOpenChange}

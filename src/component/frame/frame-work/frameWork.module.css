@@ -1,5 +1,5 @@
 .cms_name {
-  color: #ffffff;
+  color: #000;
   font-size: 18px;
   padding: 20px;
   text-align: center;
@@ -15,6 +15,7 @@
 }
 
 .content {
+  padding: 18px;
   height: calc(100vh - 58px);
   overflow: auto;
 }

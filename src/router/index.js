@@ -9,7 +9,8 @@ import FrameWork from '@/component/frame/frame-work/FrameWork'
 import loginRouter from './login/login'
 
 import homeRouter from './content/home'
-import oneRouter from './content/one'
+import useComponentsRouter from './content/use-components'
+import otherRouter from './content/other'
 import notFoundRouter from './content/not-found'
 
 const routes = [
@@ -43,7 +44,8 @@ const routes = [
       },
 
       ...homeRouter,
-      ...oneRouter,
+      ...useComponentsRouter,
+      ...otherRouter,
       ...notFoundRouter
     ]
   },

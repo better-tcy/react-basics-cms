@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 
 import { PageSearch } from 'page/children'
 
-const OneThree = memo(() => {
+const UsePageSearch = memo(() => {
   const pageSearchConfig = {
     // searchItemMarginRight: '50px',
     searchItemArr: [
@@ -34,4 +34,4 @@ const OneThree = memo(() => {
   )
 })
 
-export default OneThree
+export default UsePageSearch

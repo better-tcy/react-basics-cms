@@ -4,7 +4,7 @@ import { Button } from 'antd'
 
 import { PageModal } from 'page/children'
 
-const OneTwo = memo(() => {
+const UsePageModal = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   /**
@@ -65,4 +65,4 @@ const OneTwo = memo(() => {
   )
 })
 
-export default OneTwo
+export default UsePageModal

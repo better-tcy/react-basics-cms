@@ -1,7 +1,8 @@
 .page_table {
-  min-height: 620px;
+  min-height: 500px;
   background-color: #fff;
-  margin-top: 18px;
+  box-shadow: 7px 5px 12px #bdbdbd;
+  border-radius: 10px;
 }
 
 .page_table_top {
@@ -24,8 +25,15 @@
   color: #fff !important;
 }
 
+.start_btn:hover {
+  opacity: 0.76;
+}
+
 .stop_btn {
   background: #fa982d !important;
   border: 1px solid #fa982d !important;
   color: #fff !important;
+}
+.stop_btn:hover {
+  opacity: 0.76;
 }

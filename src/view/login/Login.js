@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
 
-import { Form, Input, Button } from 'antd'
+import { Form, Input } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
 import {
@@ -29,7 +29,13 @@ const Login = memo(() => {
 
   const dispatch = useDispatch()
 
-  const onFinish = () => {
+  const [form] = Form.useForm()
+
+  const login = async () => {
+    const values = await form.validateFields()
+
+    console.log('表单数据', values)
+
     localStorage.setItem('token', 'token')
     // 将导航数据保存到redux中
     dispatch(setMenuDataA(menuData))
@@ -67,10 +73,6 @@ const Login = memo(() => {
     history.replace('/content')
   }
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
-
   return (
     <div className="login">
       <div
@@ -78,40 +80,30 @@ const Login = memo(() => {
         style={{ backgroundImage: `url(${theme.loginBgImg.default})` }}
       >
         <div className={loginCss.card}>
-          <h1>Hello Betteryourself</h1>
-          <Form
-            style={{ width: '100%' }}
-            name="basic"
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-          >
-            <Form.Item
-              name="username"
-              rules={[{ required: true, message: 'Please input your username!' }]}
-            >
-              <Input
-                placeholder="Please input your username!"
-                prefix={<UserOutlined className="site-form-item-icon" />}
-              />
-            </Form.Item>
+          <span className={loginCss.title}>Hello</span>
+          <div className={loginCss.form}>
+            <Form name="basic" autoComplete="off" form={form}>
+              <Form.Item name="username" rules={[{ required: true, message: '请输入账号' }]}>
+                <Input
+                  placeholder="账号："
+                  prefix={<UserOutlined className="site-form-item-icon" />}
+                />
+              </Form.Item>
 
-            <Form.Item
-              name="password"
-              rules={[{ required: true, message: 'Please input your password!' }]}
-            >
-              <Input.Password
-                placeholder="Please input your password!"
-                prefix={<LockOutlined className="site-form-item-icon" />}
-              />
-            </Form.Item>
+              <Form.Item name="password" rules={[{ required: true, message: '请输入密码' }]}>
+                <Input.Password
+                  placeholder="密码："
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                />
+              </Form.Item>
 
-            <Form.Item>
-              <Button type="primary" htmlType="submit" block>
-                登录
-              </Button>
-            </Form.Item>
-          </Form>
+              <Form.Item>
+                <div className={loginCss.login_btn} onClick={login}>
+                  登陆
+                </div>
+              </Form.Item>
+            </Form>
+          </div>
         </div>
       </div>
     </div>

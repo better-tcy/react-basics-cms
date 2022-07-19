@@ -4,12 +4,12 @@ const menuData = [
     path: '/content/home'
   },
   {
-    name: 'one',
-    path: '/content/one',
+    name: '使用组件',
+    path: '/content/use-components',
     children: [
       {
-        name: 'oneOne',
-        path: '/content/one/OneOne',
+        name: 'JS配置生成页面',
+        path: '/content/use-components/UsePage',
         children: [
           {
             id: 1,
@@ -38,12 +38,26 @@ const menuData = [
         ]
       },
       {
-        name: 'oneTwo',
-        path: '/content/one/OneTwo'
+        name: 'Search单独使用',
+        path: '/content/use-components/UsePageSearch'
       },
       {
-        name: 'oneThree',
-        path: '/content/one/OneThree'
+        name: 'Modal单独使用',
+        path: '/content/use-components/UsePageModal'
+      }
+    ]
+  },
+  {
+    name: '其他',
+    path: '/content/other',
+    children: [
+      {
+        name: '使用redux中间件',
+        path: '/content/other/UseRudexMiddleware'
+      },
+      {
+        name: '资源',
+        path: '/content/other/Resource'
       }
     ]
   }

@@ -1,8 +1,7 @@
 /* 重置Login组件 antd样式 */
 
-/* 
-  .login .antd class{
-  
-  }
-
-*/
+.login .ant-input-affix-wrapper {
+  border: none;
+  border: 1px solid #000;
+  border-radius: 8px;
+}
