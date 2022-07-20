@@ -1,0 +1,13 @@
+.container {
+  /* 滚动条一直在底部的实现 */
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.show_text {
+  /* 滚动条一直在底部的实现 */
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  white-space: pre-wrap;
+}
