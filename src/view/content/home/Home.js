@@ -8,9 +8,34 @@ import { btnAuthorityFun } from 'page/utils'
 
 import homeCss from './home.module.css'
 
-const Home = (props) => {
-  const { pageAuthorityArr } = props.location.state
-
+const Home = () => {
+  // 模拟按钮权限数据
+  const pageAuthorityArr = [
+    {
+      id: 1,
+      name: '查看'
+    },
+    {
+      id: 2,
+      name: '新建'
+    },
+    {
+      id: 3,
+      name: '启用停用'
+    },
+    {
+      id: 4,
+      name: '修改'
+    },
+    {
+      id: 5,
+      name: '删除'
+    },
+    {
+      id: 6,
+      name: '其他按钮'
+    }
+  ]
   // 设置重新渲染
   const [againRender, setAgainRender] = useState([])
 
@@ -21,7 +46,7 @@ const Home = (props) => {
 
   // 所有文本内容
   const allText = useRef(
-    `你可以编写一个这样的js配置来生成一个页面（大概需要花费一两分钟 请耐心看完）
+    `你可以编写一个这样的js配置来生成一个页面（大概需要花费三分钟左右 请耐心看完）
     const pageConfig = {
       // 接口的配置
       pageRequestUrl: {
@@ -810,15 +835,13 @@ const Home = (props) => {
   }, [])
 
   return (
-    <div>
+    <div className={homeCss.container}>
       {isShowPage ? (
         <Page onRef={pageRef} pageConfig={pageConfig}></Page>
       ) : (
-        <div className={homeCss.container}>
-          <div ref={textDom} className={homeCss.show_text}>
-            {againRender}
-            {pageShowText.current}
-          </div>
+        <div ref={textDom} className={homeCss.show_text}>
+          {againRender}
+          {pageShowText.current}
         </div>
       )}
     </div>

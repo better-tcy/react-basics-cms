@@ -3,11 +3,16 @@
   position: relative;
   height: 100%;
   overflow: hidden;
+  display: flex;
+  flex-flow: column;
 }
 .show_text {
   /* 滚动条一直在底部的实现 */
   overflow-y: scroll;
   overflow-x: hidden;
+  flex: 1;
 
+  font-size: 16px;
+  font-weight: bold;
   white-space: pre-wrap;
 }
